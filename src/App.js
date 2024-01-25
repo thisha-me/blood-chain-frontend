@@ -1,11 +1,13 @@
-
 import './App.css';
+import WelcomeText from './components/WelcomeText';
 
 function App() {
   return (
-    <h1 className="text-5xl font-bold underline">
-      Hello world!
-    </h1>
+    <>
+      <WelcomeText/>
+    </>
+
+    
   );
 }
 
