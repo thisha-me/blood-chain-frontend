@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import './output.css';
-import logingForm from './Pages/LoginForm';
+import LoginForm from './Pages/LoginForm';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <logingForm/>
+    <LoginForm/>
   </React.StrictMode>
 );
 
