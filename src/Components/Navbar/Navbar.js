@@ -12,7 +12,7 @@ export const Navbar = () => {
   return (
     <header className="shadow-md flex items-center justify-between h-14 px-10 bg-backgroundColor">
 
-      <p className="text-mainColorLighter font-bold text-2xl">BloodChain</p>
+      <a href="/#" className="text-mainColorLighter font-bold text-2xl">BloodChain</a>
 
       <nav ref={navbarRef} className="md:flex flex-column gap-10">
         <a href="/#" className="text-textColor hover:text-mainColorLighter">Home</a>
