@@ -9,6 +9,8 @@ const LoginForm = () => {
           BloodChain
         </h1>
         <div className="flex flex-col space-y-4 items-center">
+
+        {/* Login and registration buttons */}
           <a
             href="/register"
             className="bg-white hover:bg-red-700 text-black font-bold py-3 rounded w-60 mb-4 text-center  text-2xl shadow-md">
