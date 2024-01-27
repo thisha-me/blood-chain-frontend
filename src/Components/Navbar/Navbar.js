@@ -10,11 +10,11 @@ export const Navbar = () => {
   };
 
   return (
-    <header className="shadow-md flex items-center justify-between h-16 px-8 bg-backgroundColor">
+    <header className="shadow-md flex items-center justify-between h-14 px-10 bg-backgroundColor">
 
       <p className="text-mainColorLighter font-bold text-2xl">BloodChain</p>
 
-      <nav ref={navbarRef} className="md:flex flex-column gap-8">
+      <nav ref={navbarRef} className="md:flex flex-column gap-10">
         <a href="/#" className="text-textColor hover:text-mainColorLighter">Home</a>
         <a href="/#" className="text-textColor hover:text-mainColorLighter">Donate</a>
         <a href="/#" className="text-textColor hover:text-mainColorLighter">Request</a>
