@@ -18,7 +18,7 @@ export const Navbar = () => {
         <a href="/#" className="text-textColor hover:text-mainColorLighter">Home</a>
         <a href="/#" className="text-textColor hover:text-mainColorLighter">Donate</a>
         <a href="/#" className="text-textColor hover:text-mainColorLighter">Request</a>
-        <a href="/#" className="login-btn text-textColor ps-5 pe-5 px-1 py-1 bg-mainColorLighter rounded-full hover:bg-mainColor hover:text-backgroundColor">
+        <a href="/#" className="login-btn text-backgroundColor ps-5 pe-5 px-1 py-1 bg-mainColorLighter rounded-full hover:bg-mainColor hover:text-backgroundColor">
             Login</a>
         <button className="navbar-btn navbar-close-btn md:hidden" onClick={displayNavbar}>
           <FaTimes />
