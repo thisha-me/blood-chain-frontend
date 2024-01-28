@@ -46,8 +46,10 @@ const AboutSection = () => {
                 <div className="max-w-lg w-full rounded overflow-hidden mx-2 flex flex-col justify-center items-center">
                     <p className="text-[#000000] font-bold p-2 text-5xl">About <span className="text-[#DC143C]">Blood Chain</span></p>
                     <div>
-                    <   p className="text-[#000000] font-normal p-2 text-2xl text-justify">Transforming donation landscapes. Decentralized platform revolutionizes blood & organ access. Secure data, empowered patients, transparent impact. <span className=" font-bold">Join the life-saving chain.</span><br /><br /></p>
+                    <p className="text-[#000000] font-normal p-2 text-2xl text-justify">Transforming donation landscapes. Decentralized platform revolutionizes blood & organ access. Secure data, empowered patients, transparent impact. <span className=" font-bold">Join the life-saving chain.</span><br /><br /></p>
                         <button className="bg-[#8C0909] hover:bg-red-700 text-white font-bold py-2 px-4 rounded-xl">Read More</button>
+                        <br/><br/>
+                        <hr className="border-t-2 border-red-500"/>
                     </div>
                 </div>
                 <div className=" max-w-lg w-full rounded overflow-hidden mx-2 my-4 flex items-center">
