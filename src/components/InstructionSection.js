@@ -14,12 +14,10 @@ const InstructionSection = () => {
           Share your medical details securely. Blockchain technology ensures transparency <br />and protects your privacy.
         </p>
       </div>
-
       <div className=" flex items-center justify-center">
         <img src={imageUrl} alt="How it works" />
         <div className="w-1/3">
           <p className="text-[#000000] font-medium  p-2 text-2xl text-justify">Once a match is made, our platform securely connects you directly with the donor or recipient. Communicate details and arrange the blood transfer without intermediaries.</p>
-
           <ul className="list-disc pl-6 leading-loose">
             <li className="flex items-center">
               <img src={icon} alt="Register Icon" />
@@ -44,7 +42,6 @@ const InstructionSection = () => {
           </ul>
           <br/>
           <button className="bg-[#8C0909] hover:bg-red-700 text-white font-bold py-2 px-4 rounded-xl">Read More</button>
-
         </div>
       </div>
     </div>
