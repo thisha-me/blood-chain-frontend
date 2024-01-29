@@ -50,3 +50,31 @@ const requestData = [
       contactNumber: '6789012345'
     },
   ];
+
+
+const DonationCards = () => {
+  return (
+    <div>
+      <div>
+        <h1>Currently Received Requests</h1>
+        <select>
+          <option value={null}>Select Blood Type</option>
+          <option value="A+">A+</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B-">B-</option>
+          <option value="AB+">AB+</option>
+          <option value="AB-">AB-</option>
+          <option value="O+">O+</option>
+          <option value="O-">O-</option>
+        </select>
+
+        <button>Sort by Date and Time</button>
+      </div>
+
+
+    </div>
+  )
+}
+
+export default DonationCards;
