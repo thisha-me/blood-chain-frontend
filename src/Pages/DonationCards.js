@@ -72,6 +72,19 @@ const DonationCards = () => {
         <button>Sort by Date and Time</button>
       </div>
 
+      <div>
+        {requestData.map(request => (
+          <div key={request.id}>
+            <p>Request ID : {request.id}</p>
+            <p>Name : {request.name}</p>
+            <p>Location : {request.location}</p>
+            <p>Blood Type : {request.bloodType}</p>
+            <p>Date : {request.date}</p>
+            <p>Time : {request.time}</p>
+            <button>Donate</button>
+          </div>
+        ))}
+      </div>
 
     </div>
   )
