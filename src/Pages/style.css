@@ -1,0 +1,135 @@
+
+.currently-received-requests {
+    margin-top: 2rem;
+  }
+  
+  .currently-received-requests h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .currently-received-requests select {
+    margin-right: 1rem;
+  }
+  
+  .currently-received-requests button {
+    background-color: #0066FF;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .currently-received-requests button:hover {
+    background-color: #0044CC;
+  }
+  
+  .currently-received-requests table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .currently-received-requests th,
+  .currently-received-requests td {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+  
+  .currently-received-requests tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .currently-received-requests tr:hover {
+    background-color: #ddd;
+  }
+  
+  /* Donation Cards */
+  
+  .donation-cards {
+    margin-top: 2rem;
+  }
+  
+  .donation-cards h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .donation-cards .card {
+    width: 250px;
+    height: 250px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .donation-cards .card h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .donation-cards .card p {
+    margin-bottom: 0.5rem;
+  }
+  
+  .donation-cards .card button {
+    background-color: #0066FF;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .donation-cards .card button:hover {
+    background-color: #0044CC;
+  }
+  
+  /* Popup */
+  
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popup .popup-content {
+    width: 400px;
+    height: 300px;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .popup .popup-content h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .popup .popup-content p {
+    margin-bottom: 0.5rem;
+  }
+  
+  .popup .popup-content button {
+    background-color: #0066FF;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .popup .popup-content button:hover {
+    background-color: #0044CC;
+  } 
