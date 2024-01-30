@@ -1,0 +1,40 @@
+.bloodSort{
+    display: flex;
+    margin-left: 70%;
+    padding-bottom: 2%;
+}
+
+.donate-blood-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .donate-blood-image {
+    width: 50%;
+    max-width: 450px;
+    margin-right: 100px;
+    margin-bottom: 50px;
+  }
+  
+  .statement-image{
+    width: 50%;
+    max-width: 300px;
+    margin-right: 20px;
+  }
+  @media (max-width: 768px) {
+    .donate-blood-image {
+        width: 100%;
+        max-width: none;
+         margin-bottom: 20px;
+    }
+
+    .statement-image{
+        width: 100%;
+         max-width: none;
+         margin-bottom: 20px;
+    }
+}
+  
+  
+  

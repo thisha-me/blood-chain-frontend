@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import donateBlood from '../Images/Rectangle 53.png';
+import '../Styles/DonationCard.css';
+import statement from '../Images/statement.png';
+
 
 const requestData = [
   {
@@ -64,13 +68,23 @@ const DonationCards = () => {
     }
     return requestData;
   };
+  
 
 
   return (
-    <div className="py-8 px-20">
-      <div className="mb-4 flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Currently Received Requests</h1>
-        <div className="flex items-center">
+    <div className="py-8 px-20 mt-10">
+     <div className="donate-blood-container">
+      <img src={donateBlood} alt="donateBlood" className="donate-blood-image" />
+      <img src={statement} alt="statement" className="statement-image" />
+    </div>
+
+      <div className="mb-4 flex items-center justify-between mt-5">
+        <h1 className="ml-72 text-2xl font-bold">Currently Received Requests</h1>
+        <button className="px-2 py-2 bg-mainColorLighter hover:mainColor text-backgroundColor rounded mr-60">Sort by Date and Time</button>
+
+        
+      </div>
+      <div className="bloodSort">
           <select value={selectedBloodType} onChange={(e) => setSelectedBloodType(e.target.value)} className="mr-4 border border-secondaryColor px-2 py-1 rounded">
             <option value={null}>Select Blood Type</option>
             <option value="">ALL</option>
@@ -83,9 +97,7 @@ const DonationCards = () => {
             <option value="O+">O+</option>
             <option value="O-">O-</option>
           </select>
-          <button className="px-2 py-2 bg-mainColorLighter text-backgroundColor rounded hover:mainColor">Sort by Date and Time</button>
         </div>
-      </div>
 
       <div className="ml-40 mr-40 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-1 gap-y-10 px-10 ">
         {filterRequests().map(request => (
