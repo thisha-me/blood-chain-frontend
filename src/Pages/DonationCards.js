@@ -73,6 +73,7 @@ const DonationCards = () => {
         <div className="flex items-center">
           <select value={selectedBloodType} onChange={(e) => setSelectedBloodType(e.target.value)} className="mr-4 border border-secondaryColor px-2 py-1 rounded">
             <option value={null}>Select Blood Type</option>
+            <option value="">ALL</option>
             <option value="A+">A+</option>
             <option value="A-">A-</option>
             <option value="B+">B+</option>
