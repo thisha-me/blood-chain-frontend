@@ -61,31 +61,48 @@ const DonationCards = () => {
   const [selectedRequest, setSelectedRequest] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const [selectedBloodType, setSelectedBloodType] = useState(null);
+  const [sortedRequests, setSortedRequests] = useState([...requestData]);
+  const [sortAscending, setSortAscending] = useState(true); // Initial sorting direction
 
   const filterRequests = () => {
     if (selectedBloodType) {
-      return requestData.filter(request => request.bloodType === selectedBloodType);
+      return sortedRequests.filter(request => request.bloodType === selectedBloodType);
     }
-    return requestData;
+    return sortedRequests;
   };
-  
+
+  const sortRequestsByDateTime = () => {
+    const sorted = [...sortedRequests].sort((a, b) => {
+      const dateA = new Date(`${a.date} ${a.time}`);
+      const dateB = new Date(`${b.date} ${b.time}`);
+      return sortAscending ? dateA - dateB : dateB - dateA;
+    });
+
+    setSortedRequests(sorted);
+    setSortAscending(!sortAscending); // Toggle sorting direction
+  };
 
 
   return (
-    <div className="py-8 px-20 mt-10">
-     <div className="donate-blood-container">
-      <img src={donateBlood} alt="donateBlood" className="donate-blood-image" />
-      <img src={statement} alt="statement" className="statement-image" />
-    </div>
-
-      <div className="mb-4 flex items-center justify-between mt-5">
-        <h1 className="ml-72 text-2xl font-bold">Currently Received Requests</h1>
-        <button className="px-2 py-2 bg-mainColorLighter hover:mainColor text-backgroundColor rounded mr-60">Sort by Date and Time</button>
-
-        
+    <div className="py-1 px-4 md:px-10 lg:px-20 mt-10">
+      <div className="donate-blood-container">
+        <img src={donateBlood} alt="donateBlood" className="flex items-center w-1/2 md:w-1/3 lg:w-1/3 mb-6 md:mb-8 lg:mb-12" />
+        <img src={statement} alt="statement" className="flex items-center w-1/3 md:w-1/3 lg:w-1/6 ml-4 md:ml-10 lg:ml-20" />
       </div>
-      <div className="bloodSort">
-          <select value={selectedBloodType} onChange={(e) => setSelectedBloodType(e.target.value)} className="mr-4 border border-secondaryColor px-2 py-1 rounded">
+
+      <div className="mb-2 flex flex-col md:flex-row items-center justify-between">
+        <p className="text-4xl font-bold mb-4 md:mb-0 md:ml-80">Currently Received Requests</p>
+        <button onClick={sortRequestsByDateTime} className=" d:mr-6 md:ml-0 md:mr-72 md:w-auto px-2 py-2 bg-mainColorLighter hover:mainColor text-backgroundColor rounded ">
+          Sort by Date and Time
+        </button>
+      </div>
+
+      <div className="bloodSort mb-4">
+        <select
+          value={selectedBloodType}
+          onChange={(e) => setSelectedBloodType(e.target.value)}
+          className="border border-secondaryColor px-2 py-1 rounded w-15 md:w-auto md:mr-72"
+        >
             <option value={null}>Select Blood Type</option>
             <option value="">ALL</option>
             <option value="A+">A+</option>
@@ -96,12 +113,12 @@ const DonationCards = () => {
             <option value="AB-">AB-</option>
             <option value="O+">O+</option>
             <option value="O-">O-</option>
-          </select>
-        </div>
+            </select>
+      </div>
 
-      <div className="ml-40 mr-40 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-1 gap-y-10 px-10 ">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 px-26 md:px-20 lg:px-72">
         {filterRequests().map(request => (
-          <div key={request.id} className="ml-20 mr-5 shadow-md mx-1 border rounded-lg p-4">
+          <div key={request.id} className="shadow-md border rounded-lg p-4">
             <p className="font-bold">Request ID : {request.id}</p>
             <p>Name : {request.name}</p>
             <p>Location : {request.location}</p>
@@ -110,7 +127,7 @@ const DonationCards = () => {
             <button onClick={() => {
               setSelectedRequest(request);
               setShowPopup(true);
-            }} className="ml-32 my-3 px-4 py-2 bg-mainColor text-backgroundColor rounded-lg ">Donate</button>
+            }} className="ml-40 my-3 px-4 py-2 bg-mainColor text-backgroundColor rounded-lg ">Donate</button>
             <p className='ml-56 text-xs'>Time : {request.time}</p>
             <p className='ml-56 text-xs'>Date : {request.date}</p>
           </div>
