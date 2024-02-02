@@ -6,7 +6,7 @@ const InstructionSection = () => {
   return (
     <div className="bg-[#F0F0F0] min-h-screen flex flex-col items-center justify-center">
       <div className="text-center py-1">
-        <p className="text-[#000000] font-bold p-2 text-5xl mb-4">
+        <p className="text-[#000000] font-bold p-2 text-5xl mb-4 hover:scale-105 transition-all duration-500">
           How It <span className="text-[#DC143C]">Works</span>
         </p>
 
