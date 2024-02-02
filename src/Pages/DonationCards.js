@@ -128,24 +128,31 @@ const DonationCards = () => {
               setSelectedRequest(request);
               setShowPopup(true);
             }} className="ml-40 my-3 px-4 py-2 bg-mainColor text-backgroundColor rounded-lg ">Donate</button>
-            <p className='ml-56 text-xs'>Time : {request.time}</p>
-            <p className='ml-56 text-xs'>Date : {request.date}</p>
+            <p className='ml-72 text-xs'>Time : {request.time}</p>
+            <p className='ml-72 text-xs'>Date : {request.date}</p>
           </div>
         ))}
       </div>
 
-      {showPopup && (
-        <div className="fixed top-0 left-0 w-full h-full bg-secondaryColor bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-8 rounded shadow-lg">
-            <p className="font-bold">Name : {selectedRequest.name}</p>
-            <p>Location : {selectedRequest.location}</p>
-            <p>Contact Number : {selectedRequest.contactNumber}</p>
-            <p><a href={`tel:${selectedRequest.contactNumber}`}>Contact</a></p>
-            <button onClick={() => setShowPopup(false)} className="px-4 py-2 bg-mainColorLighter text-backgroundColor rounded hover:mainColor">Close</button>
-          </div>
+    {showPopup && (
+    <div className="fixed top-0 left-0 w-full h-full bg-secondaryColor bg-opacity-60 flex items-center justify-center">
+      <div className="bg-white p-6 w-1/3 h-1/2 rounded shadow-lg">
+      <button onClick={() => setShowPopup(false)} className="ml-96 px-10 py-2 text-textColor font-bold rounded hover:mainColor">X</button>
+
+        <div className='text-3xl text-center font-bold mb-8 flex flex-col md:flex-row items-center gap-4 ml-24'>Recipient's <div className='text-mainColorLighter'> Details</div></div>
+          <div className='font-bold px-5'>
+          <p className='py-1'>Recipient Name : {selectedRequest.name}</p>
+          <p className='py-1'>Donation Center : {selectedRequest.location}</p>
+          <p className='py-1'>Contact Number : {selectedRequest.contactNumber}</p>
+          <p className='py-1'>Blood Type : {selectedRequest.bloodType}</p>
+
         </div>
-      )}
+        <button className='bg-mainColor text-backgroundColor px-8 py-2 rounded-lg ml-40 mt-8 mb-5'><a href={`tel:${selectedRequest.contactNumber}`}>Contact Now</a></button>
+
+      </div>
     </div>
+    )}
+  </div>
   );
 };
 
