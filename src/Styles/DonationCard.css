@@ -1,6 +1,6 @@
 .bloodSort{
-    display: flex;
-    margin-left: 70%;
+    /* display: flex; */
+    /* margin-left: 70%; */
     padding-bottom: 1%;
 }
 
@@ -9,5 +9,7 @@
     align-items: center;
     justify-content: center;
   }
+
+
   
  
