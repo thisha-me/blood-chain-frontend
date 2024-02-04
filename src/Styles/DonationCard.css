@@ -1,6 +1,4 @@
 .bloodSort{
-    /* display: flex; */
-    /* margin-left: 70%; */
     padding-bottom: 1%;
 }
 
@@ -10,6 +8,28 @@
     justify-content: center;
   }
 
-
+@media only screen and (max-width: 768px) {
+    .donate-blood-container {
+      flex-direction: column;
+      text-align: center;
+    }
   
- 
+    .donate-blood-container img {
+      width: 60%;
+      margin-bottom: 1rem;
+    }
+  
+    .mb-10.flex.flex-col.md\:flex-row.items-center.justify-center.md\:w-auto.gap-32 {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .grid.grid-cols-1.md\:grid-cols-1.gap-5.md\:w-auto {
+      grid-template-columns: 1fr;
+    }
+  
+    .p-4.md\:p-6.w-full.md\:w-3/lg\:w-1/max-w-lg {
+      width: 100%;
+    }
+  }
+  
