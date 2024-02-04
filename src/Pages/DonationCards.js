@@ -149,7 +149,7 @@ const DonationCards = () => {
 
   <div className="grid grid-cols-1 md:grid-cols-1 gap-5 md:w-auto">
     <button
-      className="flex min-w-[200px] justify-content: flex-start align-items: center px-4 py-2 bg-mainColorLighter hover:mainColor text-backgroundColor rounded mx-2 max-h-[38px]"
+      className="flex min-w-[200px] justify-content: flex-start align-items: center px-4 py-2 bg-primaryColor hover:secondaryColor text-bgColor1 rounded mx-2 max-h-[38px]"
       onClick={sortRequestsByDateAndTime} onDoubleClick={resetSorting}
     >
       Sort by Date and Time
@@ -158,9 +158,9 @@ const DonationCards = () => {
     <select
       value={selectedBloodType}
       onChange={(e) => setBloodType(e.target.value)}
-      className="border border-secondaryColor px-2 py-1 rounded mx-2 md:w-auto min-w-[200px]"
+      className="border border-bgColor2 px-2 py-1 rounded mx-2 md:w-auto min-w-[200px]"
     >
-      <option value={null}>Select Blood Type</option>
+      <option disabled selected>Select Blood Type</option>
       <option value="">ALL</option>
       <option value="A+">A+</option>
       <option value="A-">A-</option>
@@ -190,7 +190,7 @@ const DonationCards = () => {
                   setRequest(request);
                   setShowPopup(true);
                 }}
-                className="my-3 px-4 py-2 bg-mainColor text-backgroundColor rounded-lg"
+                className="my-3 px-4 py-2 bg-secondaryColor text-bgColor1 rounded-lg"
               >
                 Donate
               </button>
@@ -206,13 +206,13 @@ const DonationCards = () => {
     <div className="bg-white p-4 md:p-6 w-full md:w-3/4 lg:w-1/2 max-w-lg h-auto rounded shadow-lg">
       <button
         onClick={() => setShowPopup(false)}
-        className="ml-auto flex text-center py-1 text-textColor hover:mainColor font-bold rounded"
+        className="ml-auto flex text-center py-1 text-textColor hover:secondaryColor font-bold rounded"
       >
         X
       </button>
 
       <div className="text-2xl flex justify-center font-bold mb-4 md:mb-8 gap-4">
-        Recipient's <div className="text-mainColorLighter">Details</div>
+        Recipient's <div className="text-primaryColor">Details</div>
       </div>
 
       <div className="font-bold grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
@@ -227,7 +227,7 @@ const DonationCards = () => {
       </div>
 
       <div className="flex justify-center mt-4 md:mt-8 mb-2 md:mb-5">
-        <button className="bg-mainColor text-backgroundColor px-4 md:px-8 py-2 rounded-lg">
+        <button className="bg-secondaryColor text-bgColor1 px-4 md:px-8 py-2 rounded-lg">
           <a href={`tel:${selectedRequest.contactNumber}`}>Contact Now</a>
         </button>
       </div>
