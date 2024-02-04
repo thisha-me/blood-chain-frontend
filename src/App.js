@@ -1,12 +1,19 @@
 
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Login from './Login';
+import LoginForm from './LoginForm';
 
-function App() {
+const App = () => {
   return (
-    <h1>
-      Hello world!
-    </h1>
+    <Router>
+      <Switch>
+        <Route path="/signin" component={Login} />
+        <Route path="/register" component={LoginForm} />
+        {/* Add other routes as needed */}
+      </Switch>
+    </Router>
   );
-}
+};
 
 export default App;

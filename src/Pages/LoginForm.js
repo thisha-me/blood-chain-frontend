@@ -3,7 +3,10 @@ import React from "react";
 const LoginForm = () => {
   return (
     <div className="min-h-screen flex items-center justify-center  ">
-      <div className="p-8 bg-white rounded-md shadow-md">
+      <div className="p-8 bg-white rounded-md shadow-md" 
+      style={{width: '400px'}}
+      
+      >
         <h1
           className="text-center text-xl font-bold mb-14 p-2 bg-red-700 text-white rounded-md w-40 mx-auto">
           BloodChain

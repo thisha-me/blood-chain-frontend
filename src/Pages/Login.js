@@ -3,7 +3,10 @@ import React from "react";
 const Login = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
-      <div className="p-8 bg-white rounded-md shadow-md"> 
+      <div className="p-8 bg-white rounded-md shadow-md"
+      style={{width: '400px'}}
+      >
+
 
       {/* page title */}
         <h1  className="text-center text-xl font-bold mb-4 p-2 bg-red-700 text-white rounded-md w-40 mx-auto">
@@ -18,13 +21,13 @@ const Login = () => {
 
       {/* Email box */}
         <form className="flex flex-col">
-        <input className=" border mb-4 text-center bg-white text-black  py-3 rounded w-60  text-1xl "
+        <input className=" border mb-4 text-center bg-white text-black  py-3 rounded w90  text-1xl "
                type="text"
                name="email"
                placeholder="Email"/>
 
       {/* password box */}
-          <input className="border mb-4 text-center bg-white  text-black  py-3 rounded w-60  text-1xl"
+          <input className="border mb-4 text-center bg-white  text-black  py-3 rounded w-90  text-1xl"
                  type="password"
                  name="password"
                  placeholder="Password"/>
