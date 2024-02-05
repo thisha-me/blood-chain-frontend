@@ -14,7 +14,7 @@ const PointSection = () => {
           Request & <span className="text-[#DC143C]">Donate</span>
         </p>
       </div>
-      <div className="flex justify-between">
+      <div className="flex justify-between space-x-12 ">
         <div className=" bg-[#FFFFFF] max-w-md w-full rounded-xl overflow-hidden shadow-xl mx-2 my-4 flex flex-col justify-center items-center hover:scale-105 transition-all duration-500">
           <img
             className="w-full h-85 object-cover mx-2 my-4 px-3 py-3"
