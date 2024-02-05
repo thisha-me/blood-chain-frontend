@@ -7,7 +7,7 @@ const RegistrationSection = () => {
             <br/>
             <p className="text-[#000000] font-normal p-2 text-2xl text-justify">Become a donor or request for blood and help save lives</p>
             <br/>
-            <button className="bg-[#8C0909] hover:bg-red-700 text-white font-bold py-5 px-10 rounded-xl hover:scale-105 transition-all duration-500">
+            <button className="bg-[#8C0909] hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl hover:scale-105 transition-all duration-500">
                 <p className="font-bold text-4xl">Register Now</p>
             </button>
         </div>
