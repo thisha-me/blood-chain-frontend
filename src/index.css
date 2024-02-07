@@ -9,7 +9,8 @@
   --secondary-color: #8C0909;
   --bg-color1:#fff;
   --bg-color2:#f0f0f0;
-}
+  --text-color:#000000;
+} 
 
 *{
   margin: 0;
