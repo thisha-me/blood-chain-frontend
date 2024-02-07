@@ -12,6 +12,9 @@ module.exports = {
         bgColor1: '#FFFFFF',
         textColor: '#000000',
       },
+     fontFamily: {
+        'poppins': ['Poppins']
+      },
     },
   },
   plugins: [],
