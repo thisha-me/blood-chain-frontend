@@ -1,7 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root{
+  --primary-color: #DC143C;
+  --secondary-color: #8C0909;
+  --bg-color1:#fff;
+  --bg-color2:#f0f0f0;
+  --text-color:#000000;
+} 
+
 *{
     padding: 0;
     margin: 0;
@@ -9,10 +18,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-:root{
-    --mainColor:#8C0909;
-    --mainColorLighter:#DC143C;
-    --secondaryColor:#F0F0F0;
-    --backgroundColor:#FFFFFF;
-    --textColor:#000000;
+.submitBtn {
+  background-color: var(--primary-color);
 }
+
