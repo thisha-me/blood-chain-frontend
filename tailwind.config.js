@@ -6,10 +6,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        secondaryColor: '#8C0909',
-        primaryColor: '#DC143C',
-        bgColor2: '#F0F0F0',
-        bgColor1: '#FFFFFF',
+
+        mainColor: '#8C0909',
+        mainColorLighter: '#DC143C',
+        secondaryColor: '#F0F0F0',
+        backgroundColor: '#FFFFFF',
         textColor: '#000000',
       },
      fontFamily: {
@@ -19,3 +20,4 @@ module.exports = {
   },
   plugins: [],
 };
+
