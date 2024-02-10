@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Login = () => {
+  const [showPass , setShowPass] = useState(false);
+
+  const visiblePassword = ( ) => {
+    setShowPass(!showPass);
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
       <div className="p-8 bg-white rounded-md shadow-md"
@@ -30,7 +36,17 @@ const Login = () => {
           <input className="border mb-4 text-center bg-white  text-black  py-3 rounded w-90  text-1xl"
                  type="password"
                  name="password"
-                 placeholder="Password"/>
+                 placeholder="Password"
+          />
+
+          <button
+              type="button"
+              className="absolute top-6 transform -translate-y-1/2 right-3 border-s-2 pl-3"
+              onClick={visiblePassword}
+              style={{ bottom: "0" }}
+            >
+              {showPass ? "Hide" : "Show"}
+          </button>  
 
       {/* checkbox */}
           <div className="flex items-center mb-4">
