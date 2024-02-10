@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import imageUrl_1 from "../assets/donate.png";
 import imageUrl_2 from "../assets/request.png";
 
 const PointSection = () => {
   const ImageUrl_1 = imageUrl_1;
   const ImageUrl_2 = imageUrl_2;
+
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 660);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 660);
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
 
   return (
     <div className="bg-[#F0F0F0] min-h-screen flex items-center justify-center flex-col">
@@ -14,7 +28,7 @@ const PointSection = () => {
           Request & <span className="text-[#DC143C]">Donate</span>
         </p>
       </div>
-      <div className="flex justify-between space-x-12 ">
+      <div className= {` ${isMobile ? "flex-col " : "flex space-x-12 "} justify-between items-center`}>
         <div className=" bg-[#FFFFFF] max-w-md w-full rounded-xl overflow-hidden shadow-xl mx-2 my-4 flex flex-col justify-center items-center hover:scale-105 transition-all duration-500">
           <img
             className="w-full h-85 object-cover mx-2 my-4 px-3 py-3"

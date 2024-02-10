@@ -18,6 +18,20 @@ const InstructionSection = () => {
       };
   }, []);
 
+  const [isMobile_1, setIsMobile_1] = useState(window.innerWidth < 450);
+
+  useEffect(() => {
+      const handleResize = () => {
+          setIsMobile_1(window.innerWidth < 450);
+      };
+
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+          window.removeEventListener("resize", handleResize);
+      };
+  }, []);
+
   return (
     <div className="bg-[#F0F0F0] min-h-screen flex flex-col items-center justify-center">
       <div className="text-center py-1">
@@ -33,8 +47,7 @@ const InstructionSection = () => {
         <div className="max-w-md w-full">
           <img style={{height: '350px'}} src={imageUrl} alt="How it works" />
         </div>
-        
-        <div className=" max-w-lg  w-full">
+        <div className= {`max-w-lg  w-full ${isMobile_1 ? "text-center" : " "}`}>
           <p style={{fontSize: '18px'}} className="text-[#000000] font-medium p-2  text-justify">Once a match is made, our platform securely connects you directly with the donor or recipient. Communicate details and arrange the blood transfer without intermediaries.</p>
           <ul className="list-disc pl-6 leading-loose">
             <li className="flex items-center">
@@ -59,7 +72,7 @@ const InstructionSection = () => {
             </li>
           </ul>
           <br/>
-          <button className="bg-[#8C0909] hover:bg-red-700 text-white font-bold py-2 px-4 my-1 rounded-xl">Read More</button>
+          <button className="bg-[#8C0909] hover:bg-red-700 text-white font-bold py-2 px-4 my-1 rounded-xl items-center">Read More</button>
         </div>
       </div>
     </div>
