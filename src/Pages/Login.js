@@ -1,18 +1,14 @@
 import React, { useState } from "react";
 
-const Login = () => {
-  const [showPass , setShowPass] = useState(false);
-
+const Login = () => {       //function to visible password
+  const [disllayPassword , setShowPass] = useState(false);
   const visiblePassword = ( ) => {
-    setShowPass(!showPass);
+    setShowPass(!disllayPassword);
   };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
-      <div className="p-8 bg-white rounded-md shadow-md"
-      style={{width: '400px'}}
-      >
-
+      <div className="p-8 bg-white rounded-md shadow-md" style={{width: '400px'}}>
 
       {/* page title */}
         <h1  className="text-center text-xl font-bold mb-4 p-2 bg-red-700 text-white rounded-md w-40 mx-auto">
@@ -33,8 +29,9 @@ const Login = () => {
                placeholder="Email"/>
 
       {/* password box */}
-          <input className="border mb-4 text-center bg-white  text-black  py-3 rounded w-90  text-1xl"
-                 type="password"
+      <div className="relative">
+          <input className="border mb-4 text-center bg-white  text-black  py-3 rounded w-full  text-1xl"
+                 type={disllayPassword ? "text" : "password"}
                  name="password"
                  placeholder="Password"
           />
@@ -45,8 +42,9 @@ const Login = () => {
               onClick={visiblePassword}
               style={{ bottom: "0" }}
             >
-              {showPass ? "Hide" : "Show"}
+              {disllayPassword ? "Hide" : "Show"}
           </button>  
+        </div>
 
       {/* checkbox */}
           <div className="flex items-center mb-4">
