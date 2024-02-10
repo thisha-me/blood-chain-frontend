@@ -1,7 +1,7 @@
 // BloodDonationForm.js
 import React, { useState } from 'react';
-import PersonalData from './PersonalData';
-import HealthData from './HealthData';
+import PersonalData from './components/PersonalData';
+import HealthData from './components/HealthData';
 
 const BloodDonationForm = () => {
   const [formData, setFormData] = useState({});
