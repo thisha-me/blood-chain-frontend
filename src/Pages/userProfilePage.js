@@ -81,8 +81,8 @@ const UserProfile = () => {
               Active Requests
             </div>
             <div className="flex">
-              {userState.requests.map((request, index) => (
-                <div key={index} className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3">
+              {userState.requests.map((request) => (
+                <div className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3">
                   <div>
                     Request ID : <span className="font-bold text-lg text-black">{request.requestId}</span>
                   </div>
