@@ -11,27 +11,18 @@ const UserProfile = () => {
     numberOfRequests: 5,
 
     //active request
-
-  activeRequest: [
-    {
-      requestid: '100',
-      bloodtype: 'O+',
-      urgency : 'High'
-    },
-    {
-      donationid: '50',
-      bloodtype2: 'O-',
-      date: "20.01.2024",
-      time: 8.55 ,
-      location:'Colombo'
-    }
-
-  ]  
-    
+    requests: [
+      { requestId: '100', bloodtype: 'O+', urgency: 'High' },
+      { requestId: '101', bloodtype: 'AB-', urgency: 'Low' },
+      { requestId: '102', bloodtype: 'A+', urgency: 'Medium' }
+    ],
 
     //scheduled donations
-    
-
+    donations: [
+      { donationid: '50', bloodtype: 'O-', date: "20.01.2024", time: 8.55, location: 'Colombo' },
+      { donationid: '51', bloodtype: 'B+', date: "25.01.2024", time: 9.30, location: 'Kandy' },
+      { donationid: '52', bloodtype: 'A-', date: "30.01.2024", time: 10.15, location: 'Galle' }
+    ]
   });
 
   return (
@@ -47,34 +38,34 @@ const UserProfile = () => {
         </div>
         <div className="bg-[#F0F0F0] w-full sm:w-1/2 p-1 h-64 mb-4 sm:ml-4 rounded-2xl relative">
           <div className="text-black font-bold text-lg text-left flex flex-col justify-items-center my-3">
-            <label className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-2">
+            <div className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-2">
               User ID : <span className="font-bold text-lg text-black">{userState.userId}</span>
-            </label>
-            <label className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-2">
+            </div>
+            <div className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-2">
               Username : <span className="font-bold text-lg text-black">{userState.username}</span>
-            </label>
-            <label className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-2">
+            </div>
+            <div className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-2">
               Contact No : <span className="font-bold text-lg text-black">{userState.contactNo}</span>
-            </label>
-            <label className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-2">
+            </div>
+            <div className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-2">
               User Email : <span className="font-bold text-lg text-black">{userState.userEmail}</span>
-            </label>
+            </div>
           </div>
         </div>
         <div className="bg-[#F0F0F0] w-full sm:w-1/4 p-1 h-64 mb-4 sm:ml-4 rounded-2xl relative">
           <div className="text-black font-bold text-lg text-left flex flex-col justify-items-center my-3">
-            <label className="font-medium text-lg rounded-xl  mx-2 mb-2 bg-white p-2">
+            <div className="font-medium text-lg rounded-xl  mx-2 mb-2 bg-white p-2">
               Number of donations:
-            </label>
-            <label className="font-bold text-lg rounded-xl  mx-2 mb-2   bg-white p-2">
+            </div>
+            <div className="font-bold text-lg rounded-xl  mx-2 mb-2   bg-white p-2">
               {userState.numberOfDonations}
-            </label>
-            <label className="font-medium text-lg rounded-xl  mx-2 mb-2 bg-white p-2">
+            </div>
+            <div className="font-medium text-lg rounded-xl  mx-2 mb-2 bg-white p-2">
               Number of requests:
-            </label>
-            <label className="font-bold text-lg rounded-xl  mx-2 mb-2   bg-white p-2">
+            </div>
+            <div className="font-bold text-lg rounded-xl  mx-2 mb-2   bg-white p-2">
               {userState.numberOfRequests}
-            </label>
+            </div>
           </div>
         </div>
         <button className="bg-[#F0F0F0] font-medium text-black px-4 absolute bottom-0 left-0 m-1 rounded-2xl">
@@ -82,133 +73,64 @@ const UserProfile = () => {
         </button>
       </div>
 
-      {/* Activate request part */}
-
+      {/* Active Requests part */}
       <div className="bg-white flex flex-col sm:flex-row w-full sm:w-3/4 pt-4 rounded-2xl relative mt-2">
         <div className="bg-[#F0F0F0] w-full mr-4 h-58 mb-4 sm:ml-4 rounded-2xl relative max">
-          <div className="text-black font-bol text-lg text-left justify-items-center my-2 p-2">
-            <label className="font-bold text-lg flex   rounded-xl mx-2 mb-2 bg-white p-3 sm:w-1/2">
+          <div className="text-black font-bold text-lg text-left justify-items-center my-2 p-2">
+            <div className="font-bold text-lg flex rounded-xl mx-2 mb-2 bg-white p-3 sm:w-1/2">
               Active Requests
-            </label>
+            </div>
             <div className="flex">
-
-              <label className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white  p-6 sm:w-1/3">
-                <div>
-                Request ID : <span className="font-bold text-lg text-black ">{userState.requestid}</span>
+              {userState.requests.map((request, index) => (
+                <div key={index} className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3">
+                  <div>
+                    Request ID : <span className="font-bold text-lg text-black">{request.requestId}</span>
+                  </div>
+                  <div>
+                    Blood Type : <span className="font-bold text-lg text-black">{request.bloodtype}</span>
+                  </div>
+                  <div>
+                    Urgency : <span className="font-bold text-lg text-black">{request.urgency}</span>
+                  </div>
                 </div>
-                <div>
-                Blood Type : <span className="font-bold text-lg text-black ">{userState.bloodtype}</span>
-                </div>
-                <div>
-                Urgency : <span className="font-bold text-lg text-black ">{userState.urgency}</span>
-                </div>
-
-              </label>
-
-              <label className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-6  sm:w-1/3">
-                <div>
-                Request ID : <span className="font-bold text-lg text-black ">{userState.requestid}</span>
-                </div>
-                <div>
-                Blood Type : <span className="font-bold text-lg text-black ">{userState.bloodtype}</span>
-                </div>
-                <div>
-                Urgency : <span className="font-bold text-lg text-black ">{userState.urgency}</span>
-                </div>
-
-              </label>
-              
-              <label className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-6  sm:w-1/3">
-                <div>
-                Request ID : <span className="font-bold text-lg text-black ">{userState.requestid}</span>
-                </div>
-                <div>
-                Blood Type : <span className="font-bold text-lg text-black ">{userState.bloodtype}</span>
-                </div>
-                <div>
-                Urgency : <span className="font-bold text-lg text-black ">{userState.urgency}</span>
-                </div>
-
-              </label>  
+              ))}
             </div>
           </div>
         </div>
       </div>
 
       {/* Scheduled Donations part */}
-
       <div className="bg-white flex flex-col sm:flex-row w-full sm:w-3/4 pt-4 rounded-2xl relative mt-2">
         <div className="bg-[#F0F0F0] w-full mr-4 h-58 mb-4 sm:ml-4 rounded-2xl relative max">
-          <div className="text-black font-bol text-lg text-left justify-items-center my-2 p-2">
-            <label className="font-bold text-lg flex   rounded-xl mx-2 mb-2 bg-white p-3 sm:w-1/2">
-            Scheduled Donations
-            </label>
+          <div className="text-black font-bold text-lg text-left justify-items-center my-2 p-2">
+            <div className="font-bold text-lg flex rounded-xl mx-2 mb-2 bg-white p-3 sm:w-1/2">
+              Scheduled Donations
+            </div>
             <div className="flex">
-
-              <label className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white  p-6 sm:w-1/3">
-                <div>
-                Donation ID : <span className="font-bold text-lg text-black ">{userState.donationid}</span>
+              {userState.donations.map((donation, index) => (
+                <div key={index} className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3">
+                  <div>
+                    Donation ID : <span className="font-bold text-lg text-black">{donation.donationid}</span>
+                  </div>
+                  <div>
+                    Blood type : <span className="font-bold text-lg text-black">{donation.bloodtype}</span>
+                  </div>
+                  <div>
+                    Date  : <span className="font-bold text-lg text-black">{donation.date}</span>
+                  </div>
+                  <div>
+                    Time : <span className="font-bold text-lg text-black">{donation.time}</span>
+                  </div>
+                  <div>
+                    Location : <span className="font-bold text-lg text-black">{donation.location}</span>
+                  </div>
                 </div>
-                <div>
-                Blood type : <span className="font-bold text-lg text-black ">{userState.bloodtype2}</span>
-                </div>
-                <div>
-                Date  : <span className="font-bold text-lg text-black ">{userState.date}</span>
-                </div>
-                <div>
-                Time : <span className="font-bold text-lg text-black ">{userState.time}</span>
-                </div>
-                <div>
-                Location : <span className="font-bold text-lg text-black ">{userState.location}</span>
-                </div>
-
-              </label>
-
-              <label className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white  p-6 sm:w-1/3">
-                <div>
-                Donation ID : <span className="font-bold text-lg text-black ">{userState.donationid}</span>
-                </div>
-                <div>
-                Blood type : <span className="font-bold text-lg text-black ">{userState.bloodtype2}</span>
-                </div>
-                <div>
-                Date  : <span className="font-bold text-lg text-black ">{userState.date}</span>
-                </div>
-                <div>
-                Time : <span className="font-bold text-lg text-black ">{userState.time}</span>
-                </div>
-                <div>
-                Location : <span className="font-bold text-lg text-black ">{userState.location}</span>
-                </div>
-
-              </label>
-              <label className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white  p-6 sm:w-1/3">
-                <div>
-                Donation ID : <span className="font-bold text-lg text-black ">{userState.donationid}</span>
-                </div>
-                <div>
-                Blood type : <span className="font-bold text-lg text-black ">{userState.bloodtype2}</span>
-                </div>
-                <div>
-                Date  : <span className="font-bold text-lg text-black ">{userState.date}</span>
-                </div>
-                <div>
-                Time : <span className="font-bold text-lg text-black ">{userState.time}</span>
-                </div>
-                <div>
-                Location : <span className="font-bold text-lg text-black ">{userState.location}</span>
-                </div>
-
-              </label>
+              ))}
             </div>
           </div>
         </div>
       </div>
     </div>
-
-
-    ///////////////////////////////////////////////////// Thenuka( History part) ///////////////////////////////////////////////////////////////////
-    
   );
 };
 
