@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import image from "../assets/user.png";
+import DonationHistory from "./components/donationHistory"; 
+import RecieverHistory from "./components/recieverHistory"; 
 
 const UserProfile = () => {
   const [userState] = useState({
@@ -23,6 +25,17 @@ const UserProfile = () => {
     location:'Colombo',
 
   });
+  const donationArray = [
+    { donationid: '1', bloodtype: 'A+', date: '2024-01-01', time: '10:00', location: 'Hospital A' },
+    { donationid: '2', bloodtype: 'B-', date: '2024-01-15', time: '11:00', location: 'Hospital B' },
+    { donationid: '3', bloodtype: 'AB+', date: '2024-02-01', time: '09:00', location: 'Hospital C' }
+  ];
+
+  const bloodRequestArray = [
+    { requestid: '1', bloodType: 'O+', date: '2024-02-10', urgency: 'High', location: 'Hospital X' },
+    { requestid: '2', bloodType: 'A-', date: '2024-03-05', urgency: 'Medium', location: 'Hospital Y' },
+    { requestid: '3', bloodType: 'AB+', date: '2024-03-20', urgency: 'Low', location: 'Hospital Z' }
+  ];
 
   return (
     <div className="bg-[#F0F0F0] p-5 flex flex-col items-center justify-center">
@@ -194,10 +207,17 @@ const UserProfile = () => {
           </div>
         </div>
       </div>
+       {/* Donation History */}
+       <div>
+        <donationHistory donationArray={donationArray} />
+      </div>
+
+      {/* Receiver History */}
+      <div>
+        <recieverHistory bloodRequestArray={bloodRequestArray} />
+      </div>
     </div>
 
-
-    ///////////////////////////////////////////////////// Thenuka( History part) ///////////////////////////////////////////////////////////////////
     
   );
 };
