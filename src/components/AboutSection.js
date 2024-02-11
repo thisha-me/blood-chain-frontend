@@ -170,8 +170,26 @@ const AboutSection = () => {
             >
               X
             </button>
-            <div className="text-2xl flex justify-center font-bold mb-4 md:mb-8 gap-4">
-              Read more
+            <div className="text-2xl flex-col justify-center font-normal p-3 mb-4 md:mb-8 gap-4 overflow-y-auto" style={{ maxHeight: "430px" }}>
+              <div className="">
+                <p className="text-center font-medium"><span className="text-[#DC143C] center-text">Effortless Donation</span></p>
+                <p style={{ fontSize: "15px" }} className="text-justify">
+                  Blood Chain revolutionizes the blood donation process, offering an incredibly user-friendly platform that simplifies every step, from effortless sign-up procedures to seamlessly scheduling appointments and tracking the meaningful impact of donors. This streamlined approach ensures that contributing to the life-saving cause is not only accessible but also a straightforward and rewarding experience for individuals committed to making a difference.
+                  <br/><br/>
+                </p>
+              </div>
+              <div className="">
+                <p className="text-center font-medium"><span className="text-[#DC143C] center-text">Connecting Lives</span></p>
+                <p style={{ fontSize: "15px" }} className="text-justify">
+                  Blood Chain serves as a vital link between blood donors and patients in need, fostering a community dedicated to ensuring that life-saving blood reaches those who require it the most, precisely when they need it. By joining this platform, individuals become part of a network that actively contributes to the well-being of others, highlighting the powerful connection between donors and the recipients of their generosity. The platform's commitment to connecting lives underscores the importance of collective efforts in providing timely and crucial support to those facing medical challenges.
+                </p>
+              </div>
+              <div className="">
+                <p className="text-center font-medium"><span className="text-[#DC143C] center-text">Transparency and Trust</span></p>
+                <p style={{ fontSize: "15px" }} className="text-justify">
+                  At the heart of Blood Chain's mission lies a dedication to transparency and ethical practices. The platform prioritizes the safety and quality of every blood donation, implementing a decentralized system to ensure the utmost security of donor and patient data. This commitment fosters trust among participants, reassuring them that their contributions are not only impactful but are also handled with the highest standards of integrity, making the act of donation an ethically sound and reliable endeavor.
+                </p>
+              </div>
             </div>
           </div>
         </div>
