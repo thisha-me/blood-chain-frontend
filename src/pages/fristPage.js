@@ -1,9 +1,9 @@
 import '../App.css';
-import AboutSection from '../components/AboutSection';
-import InstructionSection from '../components/InstructionSection';
-import PointSection from '../components/PointSection';
-import RegistrationSection from '../components/RegistrationSection';
-import WelcomeSection from '../components/WelcomeSection';
+import AboutSection from '../Components/AboutSection';
+import InstructionSection from '../Components/InstructionSection';
+import PointSection from '../Components/PointSection';
+import RegistrationSection from '../Components/RegistrationSection';
+import WelcomeSection from '../Components/WelcomeSection';
 
 
 function FirstPage() {
