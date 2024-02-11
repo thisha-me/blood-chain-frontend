@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
 const Login = () => {       //function to visible password
-  const [disllayPassword , setShowPass] = useState(false);
+  const [displayPassword , setShowPass] = useState(false);
   const visiblePassword = ( ) => {
-    setShowPass(!disllayPassword);
+    setShowPass(!displayPassword);
   };
 
   return (
@@ -31,7 +31,7 @@ const Login = () => {       //function to visible password
       {/* password box */}
       <div className="relative">
           <input className="border mb-4 text-center bg-white  text-black  py-3 rounded w-full  text-1xl"
-                 type={disllayPassword ? "text" : "password"}
+                 type={displayPassword ? "text" : "password"}
                  name="password"
                  placeholder="Password"
           />
@@ -42,7 +42,7 @@ const Login = () => {       //function to visible password
               onClick={visiblePassword}
               style={{ bottom: "0" }}
             >
-              {disllayPassword ? "Hide" : "Show"}
+              {displayPassword ? "Hide" : "Show"}
           </button>  
         </div>
 
