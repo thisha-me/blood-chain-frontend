@@ -11,16 +11,26 @@ const UserProfile = () => {
     numberOfRequests: 5,
 
     //active request
-    requestid: '100',
-    bloodtype: 'O+',
-    urgency : 'High',
+
+  activeRequest: [
+    {
+      requestid: '100',
+      bloodtype: 'O+',
+      urgency : 'High'
+    },
+    {
+      donationid: '50',
+      bloodtype2: 'O-',
+      date: "20.01.2024",
+      time: 8.55 ,
+      location:'Colombo'
+    }
+
+  ]  
+    
 
     //scheduled donations
-    donationid: '50',
-    bloodtype2: 'O-',
-    date: "20.01.2024",
-    time: 8.55 ,
-    location:'Colombo',
+    
 
   });
 
