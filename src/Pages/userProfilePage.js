@@ -12,16 +12,16 @@ const UserProfile = () => {
 
     //active request
     requests: [
-      { requestId: '100', bloodtype: 'O+', urgency: 'High' },
-      { requestId: '101', bloodtype: 'AB-', urgency: 'Low' },
-      { requestId: '102', bloodtype: 'A+', urgency: 'Medium' }
+      { requestId: '100', bloodType: 'O+', urgency: 'High' },
+      { requestId: '101', bloodType: 'AB-', urgency: 'Low' },
+      { requestId: '102', bloodType: 'A+', urgency: 'Medium' }
     ],
 
     //scheduled donations
     donations: [
-      { donationid: '50', bloodtype: 'O-', date: "20.01.2024", time: 8.55, location: 'Colombo' },
-      { donationid: '51', bloodtype: 'B+', date: "25.01.2024", time: 9.30, location: 'Kandy' },
-      { donationid: '52', bloodtype: 'A-', date: "30.01.2024", time: 10.15, location: 'Galle' }
+      { donationId: '50', bloodType: 'O-', date: "20.01.2024", time: 8.55, location: 'Colombo' },
+      { donationId: '51', bloodType: 'B+', date: "25.01.2024", time: 9.30, location: 'Kandy' },
+      { donationId: '52', bloodType: 'A-', date: "30.01.2024", time: 10.15, location: 'Galle' }
     ]
   });
 
@@ -87,7 +87,7 @@ const UserProfile = () => {
                     Request ID : <span className="font-bold text-lg text-black">{request.requestId}</span>
                   </div>
                   <div>
-                    Blood Type : <span className="font-bold text-lg text-black">{request.bloodtype}</span>
+                    Blood Type : <span className="font-bold text-lg text-black">{request.bloodType}</span>
                   </div>
                   <div>
                     Urgency : <span className="font-bold text-lg text-black">{request.urgency}</span>
@@ -107,13 +107,13 @@ const UserProfile = () => {
               Scheduled Donations
             </div>
             <div className="flex">
-              {userState.donations.map((donation, index) => (
-                <div key={index} className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3">
+              {userState.donations.map((donation) => (
+                <div className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3">
                   <div>
-                    Donation ID : <span className="font-bold text-lg text-black">{donation.donationid}</span>
+                    Donation ID : <span className="font-bold text-lg text-black">{donation.donationId}</span>
                   </div>
                   <div>
-                    Blood type : <span className="font-bold text-lg text-black">{donation.bloodtype}</span>
+                    Blood type : <span className="font-bold text-lg text-black">{donation.bloodType}</span>
                   </div>
                   <div>
                     Date  : <span className="font-bold text-lg text-black">{donation.date}</span>
