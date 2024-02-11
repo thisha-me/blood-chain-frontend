@@ -14,14 +14,18 @@ const UserProfile = () => {
     requests: [
       { requestId: '100', bloodType: 'O+', urgency: 'High' },
       { requestId: '101', bloodType: 'AB-', urgency: 'Low' },
-      { requestId: '102', bloodType: 'A+', urgency: 'Medium' }
+      { requestId: '102', bloodType: 'O+', urgency: 'High' },
+      { requestId: '103', bloodType: 'AB-', urgency: 'Low' },
+      { requestId: '104', bloodType: 'A+', urgency: 'Medium' }
     ],
 
     //scheduled donations
     donations: [
       { donationId: '50', bloodType: 'O-', date: "20.01.2024", time: 8.55, location: 'Colombo' },
       { donationId: '51', bloodType: 'B+', date: "25.01.2024", time: 9.30, location: 'Kandy' },
-      { donationId: '52', bloodType: 'A-', date: "30.01.2024", time: 10.15, location: 'Galle' }
+      { donationId: '52', bloodType: 'A-', date: "30.01.2024", time: 10.15, location: 'Galle' },
+      { donationId: '53', bloodType: 'O-', date: "02.02.2024", time: 13.15, location: 'Matara' }
+      
     ]
   });
 
@@ -80,9 +84,11 @@ const UserProfile = () => {
             <div className="font-bold text-lg flex rounded-xl mx-2 mb-2 bg-white p-3 sm:w-1/2">
               Active Requests
             </div>
-            <div className="flex">
+            <div className="flex flex-wrap">
               {userState.requests.map((request) => (
-                <div className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3">
+                <div className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3"
+                style={{ flexBasis: 'calc(33.33% - 16px)' }}
+                >
                   <div>
                     Request ID : <span className="font-bold text-lg text-black">{request.requestId}</span>
                   </div>
@@ -106,9 +112,10 @@ const UserProfile = () => {
             <div className="font-bold text-lg flex rounded-xl mx-2 mb-2 bg-white p-3 sm:w-1/2">
               Scheduled Donations
             </div>
-            <div className="flex">
+            <div className="flex flex-wrap">
               {userState.donations.map((donation) => (
-                <div className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3">
+                <div className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3"
+                style={{ flexBasis: 'calc(33.33% - 16px)' }}>
                   <div>
                     Donation ID : <span className="font-bold text-lg text-black">{donation.donationId}</span>
                   </div>
