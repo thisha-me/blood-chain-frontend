@@ -5,6 +5,7 @@ import icon from "../assets/check-mark.png";
 const InstructionSection = () => {
 
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1050);
+  const [showReadMore, setShowPopup] = useState(false);
 
   useEffect(() => {
       const handleResize = () => {
@@ -31,6 +32,18 @@ const InstructionSection = () => {
           window.removeEventListener("resize", handleResize);
       };
   }, []);
+
+  useEffect(() => {
+    if (showReadMore) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [showReadMore]);
 
   return (
     <div className="bg-[#F0F0F0] min-h-screen flex flex-col items-center justify-center">
@@ -72,9 +85,30 @@ const InstructionSection = () => {
             </li>
           </ul>
           <br/>
-          <button className="bg-[#8C0909] hover:bg-red-700 text-white font-bold py-2 px-4 my-1 rounded-xl items-center">Read More</button>
+          <button className="bg-[#8C0909] hover:bg-red-700 text-white font-bold py-2 px-4 my-1 rounded-xl items-center"
+          onClick={() => {
+            setShowPopup(true);
+          }}>
+            Read More</button>
         </div>
       </div>
+
+      {showReadMore && (
+        <div className="fixed top-0 left-0 w-full h-full bg-secondaryColor bg-opacity-60 flex items-center justify-center">
+          <div className="bg-backgroundColor  w-3/4  max-w-full h-3/4 rounded shadow-lg">
+            <button
+              onClick={() => setShowPopup(false)}
+              className="ml-auto flex text-center py-5 mr-10 text-textColor hover:secondaryColor font-bold rounded"
+            >
+              X
+            </button>
+            <div className="text-2xl flex justify-center font-bold mb-4 md:mb-8 gap-4">
+              Read more
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };

@@ -41,6 +41,18 @@ const AboutSection = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (showReadMore) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [showReadMore]);
+
   return (
     <div className="min-h-screen flex items-center justify-center ">
       <div
