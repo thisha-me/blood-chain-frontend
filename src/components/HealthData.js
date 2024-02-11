@@ -65,7 +65,7 @@ const HealthData = ({ onRegister }) => {
 
 
         <label className="block mb-2">Have you been diagnosed with any kind of disease before:
-
+        <br/>
           <input
             type="radio"
             name="disease"
@@ -94,7 +94,7 @@ const HealthData = ({ onRegister }) => {
           </div>
         )}
 
-        <button onClick={handleRegister} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:bg-blue-600">
+        <button type='submit' onClick={handleRegister} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:bg-blue-600">
           Register
         </button>
       </fieldset>
