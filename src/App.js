@@ -1,10 +1,11 @@
+import React from 'react';
 import './App.css';
-
 
 function App() {
   return(
-    <p>Hello world</p>
-  );
-}
+    <React.Fragment>
+    </React.Fragment>
+    );
+};
 
 export default App;
