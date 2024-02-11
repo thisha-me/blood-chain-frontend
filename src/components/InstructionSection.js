@@ -133,6 +133,7 @@ const InstructionSection = () => {
             <div className="">
               <p className="text-center font-medium"><span className="text-[#DC143C] center-text"> View Pending Requests</span></p>
               <p style={{ fontSize: "15px" }} className="text-justify">
+                
               Donors can also browse a list of pending blood requests to see if there are any matches for their blood type and other criteria. This allows them to proactively donate blood to patients in need.
               <br/><br/>
               </p>
@@ -142,8 +143,13 @@ const InstructionSection = () => {
 
             <div className="">
               <p className="text-center font-medium"><span className="text-[#DC143C] center-text"> Blockchain's Role in Protecting Donor Data:</span></p>
+              <br/>
               <p style={{ fontSize: "15px" }} className="text-justify">
-              Donors can also browse a list of pending blood requests to see if there are any matches for their blood type and other criteria. This allows them to proactively donate blood to patients in need.
+              Data immutability: Once a donor's medical information is added to the blockchain, it cannot be altered or deleted without the consensus of all participants in the network. This makes it tamper-proof and protects against unauthorized data modification.
+              <br/><br/>
+              Encryption: Donors can choose to encrypt their most sensitive medical data before storing it on the blockchain. This adds an extra layer of security and ensures that only authorized parties can access it.
+              <br/><br/>
+              Decentralization: The blockchain is not stored in a single location, but rather distributed across a network of computers. This makes it resistant to hacking and data breaches, as there is no single point of failure.
               <br/><br/>
               </p>
             </div>
