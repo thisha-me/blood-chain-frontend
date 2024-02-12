@@ -117,7 +117,7 @@ const UserProfile = () => {
                   <div>
                     Urgency : <span className="font-bold text-lg text-black">{request.urgency}</span>
                   </div>
-                  <button onClick={() => handleRequestButtonClick(index)} className="bg-red-500 text-white px-3 py-1 mt-2 rounded-md">Show Details</button>
+                  
                 </div>
               ))}
             </div>
