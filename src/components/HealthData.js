@@ -1,7 +1,7 @@
 // HealthData.js
 import React, { useState } from 'react';
 
-const HealthData = ({ onRegister }) => {
+const HealthData = ({ onRegister, fieldsetClassName }) => {
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
   const [healthConditions, setHealthConditions] = useState('');
@@ -13,8 +13,8 @@ const HealthData = ({ onRegister }) => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8">
-      <fieldset className="border border-gray-300 p-4 rounded-md shadow-md">
+    <div className="max-w-lg mx-auto mt-8" style={{ width: '450px' }}>
+      <fieldset className={`border-2 border-red-500 rounded-md p-4 ${fieldsetClassName}`}>
         <legend className="text-lg font-semibold mb-4">Health Data</legend>
         <div className="mb-4">
           <label className="block mb-2" htmlFor="weight">Weight (kg):</label>
@@ -24,6 +24,7 @@ const HealthData = ({ onRegister }) => {
             value={weight}
             onChange={(e) => setWeight(e.target.value)}
             className="w-full border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-400"
+            style={{ width: '200px' }}
           />
         </div>
 
@@ -35,6 +36,7 @@ const HealthData = ({ onRegister }) => {
             value={height}
             onChange={(e) => setHeight(e.target.value)}
             className="w-full border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-400"
+            style={{ width: '200px' }}
           />
         </div>
 
@@ -64,15 +66,15 @@ const HealthData = ({ onRegister }) => {
         </div>
 
 
-        <label className="block mb-2">Have you been diagnosed with any kind of disease before:
-        <br/>
+        <label className="block mb-2">Have you been diagnosed with any kind of severe disease before:
+          <br />
           <input
             type="radio"
             name="disease"
             value="Yes"
             onChange={() => setHasDisease(true)}
           /> Yes
-        <br/>
+          <br />
           <input
             type="radio"
             name="disease"
@@ -94,9 +96,9 @@ const HealthData = ({ onRegister }) => {
           </div>
         )}
 
-        <button type='submit' onClick={handleRegister} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:bg-blue-600">
+        {/* <button type='submit' onClick={handleRegister} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:bg-blue-600">
           Register
-        </button>
+        </button> */}
       </fieldset>
     </div >
   );

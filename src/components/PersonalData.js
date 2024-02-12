@@ -1,7 +1,7 @@
 // PersonalData.js
 import React, { useState } from 'react';
 
-const PersonalData = ({ onNext }) => {
+const PersonalData = ({ onNext, fieldsetClassName }) => {
   const [name, setName] = useState('');
   const [birthday, setBirthday] = useState('');
   const [contactNumber, setContactNumber] = useState('');
@@ -15,10 +15,10 @@ const PersonalData = ({ onNext }) => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8">
-      <fieldset className="border border-gray-300 p-4 rounded-md shadow-md">
-        <legend className="text-lg font-semibold mb-4">Personal Data</legend>
-        <div className="mb-4">
+    <div className="max-w-lg mx-auto mt-8" style={{ width: '450px' }}> 
+    <fieldset className={`border-2 border-red-500 rounded-md p-4 ${fieldsetClassName}`}>
+      <legend className="text-lg font-semibold mb-4">Personal Data</legend>
+      <div className="mb-4">
           <label className="block mb-2" htmlFor="name">Name:</label>
           <input
             type="text"
