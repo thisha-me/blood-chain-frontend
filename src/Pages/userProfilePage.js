@@ -1,33 +1,52 @@
-import React, { useState } from "react";
-import image from "../assets/user.png";
+import React, { useState } from 'react';
+import image from '../assets/user.png';
 
 const UserProfile = () => {
-  const [userState] = useState({
+  const [selectedDonation, setSelectedDonation] = useState(null);
+  const [selectedRequestIndex, setSelectedRequestIndex] = useState(null);
+
+  const userState = {
     userId: '12345',
     username: 'john_doe',
     contactNo: '123-456-7890',
     userEmail: 'john@example.com',
     numberOfDonations: 5,
     numberOfRequests: 5,
-
-    //active request
     requests: [
-      { requestId: '100', bloodType: 'O+', urgency: 'High' },
-      { requestId: '101', bloodType: 'AB-', urgency: 'Low' },
-      { requestId: '102', bloodType: 'O+', urgency: 'High' },
-      { requestId: '103', bloodType: 'AB-', urgency: 'Low' },
-      { requestId: '104', bloodType: 'A+', urgency: 'Medium' }
+      { requestId: 'R123', bloodType: 'O+', urgency: 'High' },
+      { requestId: 'R456', bloodType: 'A-', urgency: 'Medium' },
+      { requestId: 'R789', bloodType: 'B+', urgency: 'Low' },
+      { requestId: 'R789', bloodType: 'B+', urgency: 'Low' },
     ],
-
-    //scheduled donations
     donations: [
-      { donationId: '50', bloodType: 'O-', date: "20.01.2024", time: 8.55, location: 'Colombo' },
-      { donationId: '51', bloodType: 'B+', date: "25.01.2024", time: 9.30, location: 'Kandy' },
-      { donationId: '52', bloodType: 'A-', date: "30.01.2024", time: 10.15, location: 'Galle' },
-      { donationId: '53', bloodType: 'O-', date: "02.02.2024", time: 13.15, location: 'Matara' }
-      
-    ]
-  });
+      { donationId: 'D123', bloodType: 'A+', date: '2024-01-01', time: '10:00', location: 'Hospital A' },
+      { donationId: 'D456', bloodType: 'B-', date: '2024-01-15', time: '11:00', location: 'Hospital B' },
+      { donationId: 'D789', bloodType: 'AB+', date: '2024-02-01', time: '09:00', location: 'Hospital C' },
+      { donationId: 'D456', bloodType: 'B-', date: '2024-01-15', time: '11:00', location: 'Hospital B' },
+      { donationId: 'D789', bloodType: 'AB+', date: '2024-02-01', time: '09:00', location: 'Hospital C' },
+    ],
+  };
+
+
+  const donationArray = [
+    { donationid: '1', bloodtype: 'A+', date: '2024-01-01', time: '10:00', location: 'Hospital A' },
+    { donationid: '2', bloodtype: 'B-', date: '2024-01-15', time: '11:00', location: 'Hospital B' },
+    { donationid: '3', bloodtype: 'AB+', date: '2024-02-01', time: '09:00', location: 'Hospital C' },
+  ];
+
+  const bloodRequestArray = [
+    { requestid: 'A12B34C', bloodType: 'O+', date: '2024-02-10', urgency: 'High', location: 'Colombo General Hospital' },
+    { requestid: 'G56H78I', bloodType: 'A-', date: '2024-03-05', urgency: 'Medium', location: 'Hospital Y' },
+    { requestid: 'J9KL0MN', bloodType: 'AB+', date: '2024-03-20', urgency: 'Low', location: 'Hospital Z' },
+  ];
+
+  const handleDonationButtonClick = (index) => {
+    setSelectedDonation(donationArray[index]);
+  };
+
+  const handleRequestButtonClick = (index) => {
+    setSelectedRequestIndex(index);
+  };
 
   return (
     <div className="bg-[#F0F0F0] p-5 flex flex-col items-center justify-center">
@@ -77,7 +96,7 @@ const UserProfile = () => {
         </button>
       </div>
 
-      {/* Active Requests part */}
+      {/* Activate request part */}
       <div className="bg-white flex flex-col sm:flex-row w-full sm:w-3/4 pt-4 rounded-2xl relative mt-2">
         <div className="bg-[#F0F0F0] w-full mr-4 h-58 mb-4 sm:ml-4 rounded-2xl relative max">
           <div className="text-black font-bold text-lg text-left justify-items-center my-2 p-2">
@@ -85,9 +104,9 @@ const UserProfile = () => {
               Active Requests
             </div>
             <div className="flex flex-wrap">
-              {userState.requests.map((request) => (
+              {userState.requests.map((request, index) => (
                 <div className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3"
-                style={{ flexBasis: 'calc(33.33% - 16px)' }}
+                  style={{ flexBasis: 'calc(33.33% - 16px)' }}
                 >
                   <div>
                     Request ID : <span className="font-bold text-lg text-black">{request.requestId}</span>
@@ -98,6 +117,7 @@ const UserProfile = () => {
                   <div>
                     Urgency : <span className="font-bold text-lg text-black">{request.urgency}</span>
                   </div>
+                  <button onClick={() => handleRequestButtonClick(index)} className="bg-red-500 text-white px-3 py-1 mt-2 rounded-md">Show Details</button>
                 </div>
               ))}
             </div>
@@ -115,7 +135,7 @@ const UserProfile = () => {
             <div className="flex flex-wrap">
               {userState.donations.map((donation) => (
                 <div className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3"
-                style={{ flexBasis: 'calc(33.33% - 16px)' }}>
+                  style={{ flexBasis: 'calc(33.33% - 16px)' }}>
                   <div>
                     Donation ID : <span className="font-bold text-lg text-black">{donation.donationId}</span>
                   </div>
@@ -137,6 +157,51 @@ const UserProfile = () => {
           </div>
         </div>
       </div>
+
+      {/* Donation History */}
+      <div className="bg-white flex flex-col sm:flex-row w-full sm:w-3/4 p-4 rounded-2xl relative mt-4">
+        <fieldset>
+          <legend>Blood Donation History</legend>
+          {donationArray.map((donation, index) => (
+            <div key={index} className="mb-4">
+              <input type="textbox" value={`Donation number ${index + 1}`} className="border p-2 rounded-md" />
+              <button onClick={() => handleDonationButtonClick(index)} className="ml-2 bg-red-500 text-white px-3 py-1 rounded-md" style={{ border: '4px solid #fff' }}>Show Details</button>
+            </div>
+          ))}
+        </fieldset>
+        {selectedDonation && (
+          <div className='p-5 ml-40 border rounded-3xl border-double border-red-500 border-8 text-xl' style={{ minWidth: '450px', maxHeight: '200px' }}>
+            <h2>Donation Details</h2>
+            <p>Date: {selectedDonation.date}</p>
+            <p>Location: {selectedDonation.location}</p>
+            <p>Blood Type: {selectedDonation.bloodtype}</p>
+            <p>Time: {selectedDonation.time}</p>
+          </div>
+        )}
+      </div>
+
+      {/* Receiver History */}
+      <div className="bg-white flex flex-col sm:flex-row w-full sm:w-3/4 p-4 rounded-2xl relative mt-4">
+        <fieldset>
+          <legend>Blood Request History</legend>
+          {bloodRequestArray.map((request, index) => (
+            <div key={index} className="mb-4">
+              <input type="textbox" value={`Request number ${index + 1}`} className="border p-2 rounded-md" />
+              <button onClick={() => handleRequestButtonClick(index)} className="ml-2 bg-red-500 text-white px-3 py-1 rounded-md" style={{ border: '4px solid #fff' }}>Show Details</button>
+            </div>
+          ))}
+        </fieldset>
+        {selectedRequestIndex !== null && (
+          <div className='p-5 ml-40 border rounded-3xl border-double border-red-500 border-8 text-xl' style={{ minWidth: '450px', maxHeight: '200px' }}>
+            <h2>Request Details</h2>
+            <p>Date: {bloodRequestArray[selectedRequestIndex].date}</p>
+            <p>Location: {bloodRequestArray[selectedRequestIndex].location}</p>
+            <p>Blood Type: {bloodRequestArray[selectedRequestIndex].bloodType}</p>
+            <p>Urgency: {bloodRequestArray[selectedRequestIndex].urgency}</p>
+          </div>
+        )}
+      </div>
+
     </div>
   );
 };
