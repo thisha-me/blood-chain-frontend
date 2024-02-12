@@ -5,53 +5,38 @@ const UserProfile = () => {
   const [selectedDonation, setSelectedDonation] = useState(null);
   const [selectedRequestIndex, setSelectedRequestIndex] = useState(null);
 
-  const userState = {
+  const userData = {
     userId: '12345',
     username: 'john_doe',
     contactNo: '123-456-7890',
     userEmail: 'john@example.com',
     numberOfDonations: 5,
     numberOfRequests: 5,
-    requests: [
-      { requestId: 'R123', bloodType: 'O+', urgency: 'High' },
-      { requestId: 'R456', bloodType: 'A-', urgency: 'Medium' },
-      { requestId: 'R789', bloodType: 'B+', urgency: 'Low' },
-      { requestId: 'R789', bloodType: 'B+', urgency: 'Low' },
-    ],
-    donations: [
-      { donationId: 'D123', bloodType: 'A+', date: '2024-01-01', time: '10:00', location: 'Hospital A' },
-      { donationId: 'D456', bloodType: 'B-', date: '2024-01-15', time: '11:00', location: 'Hospital B' },
-      { donationId: 'D789', bloodType: 'AB+', date: '2024-02-01', time: '09:00', location: 'Hospital C' },
-      { donationId: 'D456', bloodType: 'B-', date: '2024-01-15', time: '11:00', location: 'Hospital B' },
-      { donationId: 'D789', bloodType: 'AB+', date: '2024-02-01', time: '09:00', location: 'Hospital C' },
+    history: [
+      { id: 'D123', type: 'donation', bloodType: 'A+', date: '2024-01-01', time: '10:00', location: 'Hospital A' },
+    { id: 'D456', type: 'donation', bloodType: 'B-', date: '2024-01-15', time: '11:00', location: 'Hospital B' },
+    { id: 'D789', type: 'donation', bloodType: 'AB+', date: '2024-02-01', time: '09:00', location: 'Hospital C' },
+    { id: 'A12B34C', type: 'request', bloodType: 'O+', date: '2024-02-10', urgency: 'High', location: 'Colombo General Hospital', status: 'Fulfilled', number: 1 },
+    { id: 'G56H78I', type: 'request', bloodType: 'A-', date: '2024-03-05', urgency: 'Medium', location: 'Hospital Y', status: 'Pending', number: 2 },
+    { id: 'J9KL0MN', type: 'request', bloodType: 'AB+', date: '2024-03-20', urgency: 'Low', location: 'Hospital Z', status: 'Pending', number: 3 },
     ],
   };
 
-
-  const donationArray = [
-    { donationid: '1', bloodtype: 'A+', date: '2024-01-01', time: '10:00', location: 'Hospital A' },
-    { donationid: '2', bloodtype: 'B-', date: '2024-01-15', time: '11:00', location: 'Hospital B' },
-    { donationid: '3', bloodtype: 'AB+', date: '2024-02-01', time: '09:00', location: 'Hospital C' },
-  ];
-
-  const bloodRequestArray = [
-    { requestid: 'A12B34C', bloodType: 'O+', date: '2024-02-10', urgency: 'High', location: 'Colombo General Hospital' },
-    { requestid: 'G56H78I', bloodType: 'A-', date: '2024-03-05', urgency: 'Medium', location: 'Hospital Y' },
-    { requestid: 'J9KL0MN', bloodType: 'AB+', date: '2024-03-20', urgency: 'Low', location: 'Hospital Z' },
-  ];
-
-  const handleDonationButtonClick = (index) => {
-    setSelectedDonation(donationArray[index]);
-  };
-
-  const handleRequestButtonClick = (index) => {
-    setSelectedRequestIndex(index);
+  const handleButtonClick = (index, type) => {
+    if (type === 'donation') {
+      setSelectedDonation(userData.history[index]);
+      setSelectedRequestIndex(null); // Reset selected request
+    } else if (type === 'request') {
+      setSelectedRequestIndex(index);
+      setSelectedDonation(null); // Reset selected donation
+    }
   };
 
   return (
     <div className="bg-[#F0F0F0] p-5 flex flex-col items-center justify-center">
       {/* User information part */}
       <div className="bg-white flex flex-col sm:flex-row w-full sm:w-3/4 p-4 rounded-2xl relative">
+        {/* User Avatar */}
         <div className="bg-[#F0F0F0] w-full sm:w-1/4 h-64 mb-4 flex items-center justify-center rounded-2xl relative">
           <img
             src={image}
@@ -59,38 +44,24 @@ const UserProfile = () => {
             className="w-40 h-40 rounded-full"
           />
         </div>
+        {/* User Details */}
         <div className="bg-[#F0F0F0] w-full sm:w-1/2 p-1 h-64 mb-4 sm:ml-4 rounded-2xl relative">
           <div className="text-black font-bold text-lg text-left flex flex-col justify-items-center my-3">
             <div className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-2">
-              User ID : <span className="font-bold text-lg text-black">{userState.userId}</span>
+              User ID : <span className="font-bold text-lg text-black">{userData.userId}</span>
             </div>
             <div className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-2">
-              Username : <span className="font-bold text-lg text-black">{userState.username}</span>
+              Username : <span className="font-bold text-lg text-black">{userData.username}</span>
             </div>
             <div className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-2">
-              Contact No : <span className="font-bold text-lg text-black">{userState.contactNo}</span>
+              Contact No : <span className="font-bold text-lg text-black">{userData.contactNo}</span>
             </div>
             <div className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-2">
-              User Email : <span className="font-bold text-lg text-black">{userState.userEmail}</span>
+              User Email : <span className="font-bold text-lg text-black">{userData.userEmail}</span>
             </div>
           </div>
         </div>
-        <div className="bg-[#F0F0F0] w-full sm:w-1/4 p-1 h-64 mb-4 sm:ml-4 rounded-2xl relative">
-          <div className="text-black font-bold text-lg text-left flex flex-col justify-items-center my-3">
-            <div className="font-medium text-lg rounded-xl  mx-2 mb-2 bg-white p-2">
-              Number of donations:
-            </div>
-            <div className="font-bold text-lg rounded-xl  mx-2 mb-2   bg-white p-2">
-              {userState.numberOfDonations}
-            </div>
-            <div className="font-medium text-lg rounded-xl  mx-2 mb-2 bg-white p-2">
-              Number of requests:
-            </div>
-            <div className="font-bold text-lg rounded-xl  mx-2 mb-2   bg-white p-2">
-              {userState.numberOfRequests}
-            </div>
-          </div>
-        </div>
+        {/* Edit Button */}
         <button className="bg-[#F0F0F0] font-medium text-black px-4 absolute bottom-0 left-0 m-1 rounded-2xl">
           Edit
         </button>
@@ -104,21 +75,21 @@ const UserProfile = () => {
               Active Requests
             </div>
             <div className="flex flex-wrap">
-              {userState.requests.map((request, index) => (
-                <div className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3"
-                  style={{ flexBasis: 'calc(33.33% - 16px)' }}
-                >
-                  <div>
-                    Request ID : <span className="font-bold text-lg text-black">{request.requestId}</span>
+              {userData.history.map((item, index) => (
+                item.type === 'request' && (
+                  <div className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3" key={index}
+                    style={{ flexBasis: 'calc(33.33% - 16px)' }}>
+                    <div>
+                      Request ID : <span className="font-bold text-lg text-black">{item.id}</span>
+                    </div>
+                    <div>
+                      Blood Type : <span className="font-bold text-lg text-black">{item.bloodType}</span>
+                    </div>
+                    <div>
+                      Urgency : <span className="font-bold text-lg text-black">{item.urgency}</span>
+                    </div>
                   </div>
-                  <div>
-                    Blood Type : <span className="font-bold text-lg text-black">{request.bloodType}</span>
-                  </div>
-                  <div>
-                    Urgency : <span className="font-bold text-lg text-black">{request.urgency}</span>
-                  </div>
-                  
-                </div>
+                )
               ))}
             </div>
           </div>
@@ -133,25 +104,27 @@ const UserProfile = () => {
               Scheduled Donations
             </div>
             <div className="flex flex-wrap">
-              {userState.donations.map((donation) => (
-                <div className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3"
-                  style={{ flexBasis: 'calc(33.33% - 16px)' }}>
-                  <div>
-                    Donation ID : <span className="font-bold text-lg text-black">{donation.donationId}</span>
+              {userData.history.map((item, index) => (
+                item.type === 'donation' && (
+                  <div className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3" key={index}
+                    style={{ flexBasis: 'calc(33.33% - 16px)' }}>
+                    <div>
+                      Donation ID : <span className="font-bold text-lg text-black">{item.id}</span>
+                    </div>
+                    <div>
+                      Blood type : <span className="font-bold text-lg text-black">{item.bloodType}</span>
+                    </div>
+                    <div>
+                      Date  : <span className="font-bold text-lg text-black">{item.date}</span>
+                    </div>
+                    <div>
+                      Time : <span className="font-bold text-lg text-black">{item.time}</span>
+                    </div>
+                    <div>
+                      Location : <span className="font-bold text-lg text-black">{item.location}</span>
+                    </div>
                   </div>
-                  <div>
-                    Blood type : <span className="font-bold text-lg text-black">{donation.bloodType}</span>
-                  </div>
-                  <div>
-                    Date  : <span className="font-bold text-lg text-black">{donation.date}</span>
-                  </div>
-                  <div>
-                    Time : <span className="font-bold text-lg text-black">{donation.time}</span>
-                  </div>
-                  <div>
-                    Location : <span className="font-bold text-lg text-black">{donation.location}</span>
-                  </div>
-                </div>
+                )
               ))}
             </div>
           </div>
@@ -162,47 +135,36 @@ const UserProfile = () => {
       <div className="bg-white flex flex-col sm:flex-row w-full sm:w-3/4 p-4 rounded-2xl relative mt-4">
         <fieldset>
           <legend>Blood Donation History</legend>
-          {donationArray.map((donation, index) => (
-            <div key={index} className="mb-4">
-              <input type="textbox" value={`Donation number ${index + 1}`} className="border p-2 rounded-md" />
-              <button onClick={() => handleDonationButtonClick(index)} className="ml-2 bg-red-500 text-white px-3 py-1 rounded-md" style={{ border: '4px solid #fff' }}>Show Details</button>
-            </div>
+          {userData.history.map((item, index) => (
+            item.type === 'donation' && (
+              <div key={index} className="mb-4">
+                <input type="textbox" value={`Donation number ${index + 1}`} className="border p-2 rounded-md" style={{ width: '900px' }} />
+                <button onClick={() => handleButtonClick(index, 'donation')} className="ml-2 bg-red-500 text-white px-3 py-1 rounded-md" style={{ border: '4px solid #fff' }}>Share</button>
+              </div>
+            )
           ))}
         </fieldset>
-        {selectedDonation && (
-          <div className='p-5 ml-40 border rounded-3xl border-double border-red-500 border-8 text-xl' style={{ minWidth: '450px', maxHeight: '200px' }}>
-            <h2>Donation Details</h2>
-            <p>Date: {selectedDonation.date}</p>
-            <p>Location: {selectedDonation.location}</p>
-            <p>Blood Type: {selectedDonation.bloodtype}</p>
-            <p>Time: {selectedDonation.time}</p>
-          </div>
-        )}
       </div>
-
       {/* Receiver History */}
       <div className="bg-white flex flex-col sm:flex-row w-full sm:w-3/4 p-4 rounded-2xl relative mt-4">
         <fieldset>
           <legend>Blood Request History</legend>
-          {bloodRequestArray.map((request, index) => (
-            <div key={index} className="mb-4">
-              <input type="textbox" value={`Request number ${index + 1}`} className="border p-2 rounded-md" />
-              <button onClick={() => handleRequestButtonClick(index)} className="ml-2 bg-red-500 text-white px-3 py-1 rounded-md" style={{ border: '4px solid #fff' }}>Show Details</button>
-            </div>
+          {userData.history.map((item, index) => (
+            item.type === 'request' && (
+              <div key={index} className="mb-4 flex items-center">
+                <div className="relative flex-grow">
+                  <input type="textbox" value={`Request number ${item.number}`} className="border p-2 rounded-md w-full" style={{ width: '900px' }} />
+                  <span className={`absolute right-4 top-1/2 transform -translate-y-1/2 font-bold text-lg ${item.status === 'Fulfilled' ? 'text-green-500' : 'text-yellow-500'}`}>{item.status}</span>
+                </div>
+                <button onClick={() => handleButtonClick(index, 'request')} className="ml-2 bg-red-500 text-white px-3 py-1 rounded-md" style={{ border: '4px solid #fff' }}>Share</button>
+              </div>
+            )
           ))}
         </fieldset>
-        {selectedRequestIndex !== null && (
-          <div className='p-5 ml-40 border rounded-3xl border-double border-red-500 border-8 text-xl' style={{ minWidth: '450px', maxHeight: '200px' }}>
-            <h2>Request Details</h2>
-            <p>Date: {bloodRequestArray[selectedRequestIndex].date}</p>
-            <p>Location: {bloodRequestArray[selectedRequestIndex].location}</p>
-            <p>Blood Type: {bloodRequestArray[selectedRequestIndex].bloodType}</p>
-            <p>Urgency: {bloodRequestArray[selectedRequestIndex].urgency}</p>
-          </div>
-        )}
       </div>
 
     </div>
+
   );
 };
 
