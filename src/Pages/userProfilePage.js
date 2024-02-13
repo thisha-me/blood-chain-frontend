@@ -61,6 +61,23 @@ const UserProfile = () => {
             </div>
           </div>
         </div>
+        {/* /// */}
+        <div className="bg-[#F0F0F0] w-full sm:w-1/4 p-1 h-64 mb-4 sm:ml-4 rounded-2xl relative">
+          <div className="text-black font-bold text-lg text-left flex flex-col justify-items-center my-3">
+            <div className="font-medium text-lg rounded-xl  mx-2 mb-2 bg-white p-2">
+              Number of donations:
+            </div>
+            <div className="font-bold text-lg rounded-xl  mx-2 mb-2   bg-white p-2">
+              {userData.numberOfDonations}
+            </div>
+            <div className="font-medium text-lg rounded-xl  mx-2 mb-2 bg-white p-2">
+              Number of requests:
+            </div>
+            <div className="font-bold text-lg rounded-xl  mx-2 mb-2   bg-white p-2">
+              {userData.numberOfRequests}
+            </div>
+          </div>
+        </div>
         {/* Edit Button */}
         <button className="bg-[#F0F0F0] font-medium text-black px-4 absolute bottom-0 left-0 m-1 rounded-2xl">
           Edit
