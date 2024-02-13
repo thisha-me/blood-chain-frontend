@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import image from '../assets/user.png';
+import "./userProfile.css"
 
 const UserProfile = () => {
   const [selectedDonation, setSelectedDonation] = useState(null);
@@ -14,11 +15,11 @@ const UserProfile = () => {
     numberOfRequests: 5,
     history: [
       { id: 'D123', type: 'donation', bloodType: 'A+', date: '2024-01-01', time: '10:00', location: 'Hospital A' },
-    { id: 'D456', type: 'donation', bloodType: 'B-', date: '2024-01-15', time: '11:00', location: 'Hospital B' },
-    { id: 'D789', type: 'donation', bloodType: 'AB+', date: '2024-02-01', time: '09:00', location: 'Hospital C' },
-    { id: 'A12B34C', type: 'request', bloodType: 'O+', date: '2024-02-10', urgency: 'High', location: 'Colombo General Hospital', status: 'Fulfilled', number: 1 },
-    { id: 'G56H78I', type: 'request', bloodType: 'A-', date: '2024-03-05', urgency: 'Medium', location: 'Hospital Y', status: 'Pending', number: 2 },
-    { id: 'J9KL0MN', type: 'request', bloodType: 'AB+', date: '2024-03-20', urgency: 'Low', location: 'Hospital Z', status: 'Pending', number: 3 },
+      { id: 'D456', type: 'donation', bloodType: 'B-', date: '2024-01-15', time: '11:00', location: 'Hospital B' },
+      { id: 'D789', type: 'donation', bloodType: 'AB+', date: '2024-02-01', time: '09:00', location: 'Hospital C' },
+      { id: 'A12B34C', type: 'request', bloodType: 'O+', date: '2024-02-10', urgency: 'High', location: 'Colombo General Hospital', status: 'Fulfilled', number: 1 },
+      { id: 'G56H78I', type: 'request', bloodType: 'A-', date: '2024-03-05', urgency: 'Medium', location: 'Hospital Y', status: 'Pending', number: 2 },
+      { id: 'J9KL0MN', type: 'request', bloodType: 'AB+', date: '2024-03-20', urgency: 'Low', location: 'Hospital Z', status: 'Pending', number: 3 },
     ],
   };
 
@@ -77,7 +78,7 @@ const UserProfile = () => {
               {userData.numberOfRequests}
             </div>
           </div>
-        </div>
+        </div>
         {/* Edit Button */}
         <button className="bg-[#F0F0F0] font-medium text-black px-4 absolute bottom-0 left-0 m-1 rounded-2xl">
           Edit
@@ -154,7 +155,7 @@ const UserProfile = () => {
           <legend>Blood Donation History</legend>
           {userData.history.map((item, index) => (
             item.type === 'donation' && (
-              <div key={index} className="mb-4">
+              <div key={index} className="donation-item mb-4"> {/* Make sure this className matches the one in CSS */}
                 <input type="textbox" value={`Donation number ${index + 1}`} className="border p-2 rounded-md" style={{ width: '900px' }} />
                 <button onClick={() => handleButtonClick(index, 'donation')} className="ml-2 bg-red-500 text-white px-3 py-1 rounded-md" style={{ border: '4px solid #fff' }}>Share</button>
               </div>
@@ -168,7 +169,7 @@ const UserProfile = () => {
           <legend>Blood Request History</legend>
           {userData.history.map((item, index) => (
             item.type === 'request' && (
-              <div key={index} className="mb-4 flex items-center">
+              <div key={index} className="request-item mb-4 flex items-center"> {/* Make sure this className matches the one in CSS */}
                 <div className="relative flex-grow">
                   <input type="textbox" value={`Request number ${item.number}`} className="border p-2 rounded-md w-full" style={{ width: '900px' }} />
                   <span className={`absolute right-4 top-1/2 transform -translate-y-1/2 font-bold text-lg ${item.status === 'Fulfilled' ? 'text-green-500' : 'text-yellow-500'}`}>{item.status}</span>
@@ -179,6 +180,7 @@ const UserProfile = () => {
           ))}
         </fieldset>
       </div>
+
 
     </div>
 
