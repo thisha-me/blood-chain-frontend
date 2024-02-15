@@ -10,7 +10,7 @@ const Registration = ({ email, onRegister, fieldsetClassName }) => {
   return (
     <div className="registration-container">
       <div class="max-w-100 mx-auto mt-8 sm:w-full md:w-3/4 lg:w-7/10">
-        <fieldset className={`border-4 border-red-500 rounded-md p-4 ${fieldsetClassName}`}>
+        <fieldset className={`border-4 border-solid border-[#f0f0f0] rounded-md p-4 ${fieldsetClassName}`}>
           <legend className="text-lg font-semibold mb-4">Authentication</legend>
           <div className="mb-4">
             <label className="block mb-2">Would you like to use E-mail as the ID:</label>
@@ -72,11 +72,11 @@ const Registration = ({ email, onRegister, fieldsetClassName }) => {
               className="w-full border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-400"
             />
           </div>
-          
+
         </fieldset>
       </div>
-    </div>  
+    </div>
   );
 };
 
-      export default Registration;
+export default Registration;
