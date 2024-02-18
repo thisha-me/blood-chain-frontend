@@ -1,15 +1,11 @@
-// BloodDonationForm.js
 import React from 'react';
-import "./App.css"
-import RenderingPage from './Pages/RegistrationForm';
+import './App.css';
 
-const BloodDonationForm = () => {
-
-  return (
-    <div>
-      <RenderingPage />
-    </div>
-  );
+function App() {
+  return(
+    <React.Fragment>
+    </React.Fragment>
+    );
 };
 
 export default BloodDonationForm;
