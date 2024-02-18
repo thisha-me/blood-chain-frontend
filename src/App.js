@@ -1,7 +1,7 @@
 // BloodDonationForm.js
 import React from 'react';
 import "./App.css"
-import RenderingPage from './components/renderingPage';
+import RenderingPage from './Pages/RegistrationForm';
 
 const BloodDonationForm = () => {
 

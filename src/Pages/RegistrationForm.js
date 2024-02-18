@@ -3,7 +3,7 @@ import HealthData from "../components/HealthData";
 import Registration from "../components/Registration";
 import { useState } from "react";
 
-const RenderingPage = () => {
+const RegistrationForm = () => {
     const [formData, setFormData] = useState({});
     const [step, setStep] = useState(1);
 
@@ -32,4 +32,4 @@ const RenderingPage = () => {
     );
 };
 
-export default RenderingPage;
+export default RegistrationForm;
