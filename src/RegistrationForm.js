@@ -1,6 +1,6 @@
-import PersonalData from "./PersonalData";
-import HealthData from "./HealthData";
-import Registration from "./Registration";
+import PersonalData from "./components/PersonalData";
+import HealthData from "./components/HealthData";
+import Registration from "./components/Registration";
 import { useState } from "react";
 
 const RenderingPage = () => {
