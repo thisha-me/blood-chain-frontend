@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import image from '../assets/user.png';
 import "./userProfile.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShare } from '@fortawesome/free-solid-svg-icons';
+import Share from '../assets/share.png';
 
 const UserProfile = () => {
   const [selectedDonation, setSelectedDonation] = useState(null);
@@ -172,11 +171,10 @@ const UserProfile = () => {
                     />
                     <button
                       onClick={() => handleButtonClick(index, 'donation')}
-                      className="ml-2 bg-red-500 text-white px-3 py-1 rounded-md flex items-center"
+                      className="ml-2 text-white px-1 py-1 rounded-md flex items-center"
                       style={{ border: '4px solid #fff' }}
                     >
-                      <FontAwesomeIcon icon={faShare} className="mr-2" />
-
+                      <img src={Share} className=' h-8 w-8'/>
                     </button>
                   </div>
                 )
@@ -205,16 +203,16 @@ const UserProfile = () => {
                       style={{ width: '100%', maxWidth: '900px', position: 'relative' }}
                     >
                       <span className="font-bold">Request number </span> {item.number}
-                      <span className={`absolute right-4 top-1/2 transform -translate-y-1/2 font-bold text-lg ${item.status === 'Fulfilled' ? 'text-green-500' : 'text-yellow-500'}`}>
+                      <span className={`absolute right-4 top-1/2 transform -translate-y-1/2 font-bold text-lg ${item.status === 'Fulfilled' ? ' text-black ' : ' text-gray-300'}`}>
                         {item.status}
                       </span>
                     </div>
                     <button
                       onClick={() => handleButtonClick(index, 'request')}
-                      className="ml-2 bg-red-500 text-white px-3 py-1 rounded-md flex items-center"
-                      style={{ border: '4px solid #fff', padding: '0.7rem' }} // Adjust padding here
+                      className="ml-2 text-white px-1 py-1 rounded-md flex items-center"
+                      style={{ border: '4px solid #fff'}} // Adjust padding here
                     >
-                      <FontAwesomeIcon icon={faShare} className="mr-2" />
+                      <img src={Share} className=' h-8 w-8'/>
 
                     </button>
                   </div>
@@ -224,10 +222,6 @@ const UserProfile = () => {
           </div>
         </div>
       </div>
-
-
-
-
     </div>
   );
 }
