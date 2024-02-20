@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import {Link} from "react-router-dom";
+ 
 const Login = () => {       //function to visible password
   const [displayPassword , setShowPass] = useState(false);
   const visiblePassword = ( ) => {
@@ -56,9 +57,9 @@ const Login = () => {       //function to visible password
             </label>
           </div>
     
-          <a href="/signin" className="text-center text-xl font-bold mb-14 p-2 bg-red-700 text-white rounded-md w-40 mx-auto">
+          <Link to="/profile" className="text-center text-xl font-bold mb-14 p-2 bg-red-700 text-white rounded-md w-40 mx-auto">
             Sign In
-          </a>
+          </Link>
         </form>
       </div>
     </div>

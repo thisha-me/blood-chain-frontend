@@ -1,7 +1,8 @@
-import PersonalData from "../components/PersonalData";
-import HealthData from "../components/HealthData";
-import Registration from "../components/Registration";
+import PersonalData from "../Components/PersonalData";
+import HealthData from "../Components/HealthData";
+import Registration from "../Components/Registration";
 import { useState } from "react";
+import {Link} from "react-router-dom";
 
 const RegistrationForm = () => {
     const [formData, setFormData] = useState({});
@@ -13,19 +14,16 @@ const RegistrationForm = () => {
     };
 
     return (
-        <div className="flex justify-center flex-col ">
-            <h1 className="text-red-500 text-4xl font-bold mb-4 self-center mt-4">Registration</h1>
+        <div className="flex justify-center flex-col">
+            <h1 className="text-[#DC143C] text-4xl font-bold mb-4 self-center mt-4">Registration</h1>
             <div className='max-w-100 shadow-lg sm:w-full md:w-1/2 lg:w-1/2 items-center justify-center border-4 rounded-lg border-gray-300 mx-auto'>
                 <form>
                     <PersonalData />
                     <HealthData />
                     <Registration email={formData.email} onRegister={handleRegister} />
-                    <button type='submit' className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring focus:bg-red-600 mx-auto block mt-4">
-                        Register
+                    <button type='submit' className="bg-[#8C0909] hover:bg-red-700 text-white px-4 py-2 rounded-md focus:outline-none focus:ring focus:bg-red-600 mx-auto block mt-4">
+                        <Link to="/profile">Register</Link>
                     </button>
-
-
-
                 </form>
             </div>
         </div>

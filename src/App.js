@@ -8,4 +8,4 @@ function App() {
     );
 };
 
-export default BloodDonationForm;
+export default App;

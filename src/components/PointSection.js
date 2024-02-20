@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import imageUrl_1 from "../assets/donate.png";
 import imageUrl_2 from "../assets/request.png";
+import {Link} from "react-router-dom";
 
 const PointSection = () => {
   const ImageUrl_1 = imageUrl_1;
@@ -37,7 +38,7 @@ const PointSection = () => {
           />
           <div className="px-6 py-4 w-full text-center">
             <button className="bg-[#8C0909] hover:bg-red-700 text-white font-bold py-2 px-4 rounded-xl">
-              Request Blood
+              <Link to = "/request">Request Blood</Link>
             </button>
           </div>
         </div>
@@ -49,7 +50,7 @@ const PointSection = () => {
           />
           <div className="px-6 py-4 w-full text-center">
             <button className="bg-[#8C0909] hover:bg-red-700 text-white font-bold py-2 px-4 rounded-xl">
-              Donate Blood
+              <Link to = "/donate">Donate Blood</Link>
             </button>
           </div>
         </div>
