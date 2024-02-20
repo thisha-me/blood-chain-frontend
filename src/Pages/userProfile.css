@@ -1,0 +1,42 @@
+/* userProfile.css */
+
+  /* Media query for widths less than 1398px */
+  @media (max-width: 1398px) {
+    .user-info-container .user-details,
+    .user-info-container .statistics {
+      max-width: 40%;
+    }
+    
+    .request-container,
+    .donation-container {
+      max-width: 60%;
+    }
+    
+    /* Media query for donation history and receiver history */
+    .donation-container,
+    .request-container {
+      max-width: 80%;
+    }
+    
+    /* Adjusting textbox width and status position */
+    .donation-container .donation-item input[type="textbox"],
+    .request-container .request-item input[type="textbox"] {
+      width: 30%;
+    }
+    
+    .donation-container .donation-item span,
+    .request-container .request-item span {
+      position: absolute;
+      right: 8px; /* Adjust position for status */
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    
+    /* Shrink share button */
+    .donation-container .donation-item button,
+    .request-container .request-item button {
+      width: 60px; /* Adjust width for share button */
+      font-size: 12px; /* Adjust font size */
+    }
+  }
+  
