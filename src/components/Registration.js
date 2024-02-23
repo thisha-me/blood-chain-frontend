@@ -1,6 +1,4 @@
-// Registration.js
 import React, { useState } from 'react';
-
 
 const Registration = ({ email, onRegister, fieldsetClassName }) => {
   // Ensure that the initial state of useEmailId is set to false
