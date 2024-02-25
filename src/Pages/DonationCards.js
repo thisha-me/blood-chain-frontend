@@ -128,7 +128,7 @@ const DonationCards = () => {
   };
 
   return (
-    <div className="py-1 px-4 md:px-10 lg:px-20 mt-10">
+    <div className="py-1 px-4 md:px-10 lg:px-20 mt-16 mb-16">
       <div className="donate-blood-container">
         <img
           src={donateBlood}
@@ -149,7 +149,7 @@ const DonationCards = () => {
 
   <div className="grid grid-cols-1 md:grid-cols-1 gap-5 md:w-auto">
     <button
-      className="flex min-w-[200px] justify-content: flex-start align-items: center px-4 py-2 bg-primaryColor hover:secondaryColor text-bgColor1 rounded mx-2 max-h-[38px]"
+      className=" button text-backgroundColor flex min-w-[200px] justify-content: flex-start align-items: center px-4 py-2 bg-primaryColor hover:secondaryColor text-bgColor1 rounded mx-2 max-h-[38px]"
       onClick={sortRequestsByDateAndTime} onDoubleClick={resetSorting}
     >
       Sort by Date and Time
@@ -175,7 +175,7 @@ const DonationCards = () => {
 </div>
 
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 px-26 md:px-20 lg:px-72 ">
+      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-10 px-20 md:px-20 lg:px-56 mb-10">
         {filterRequests().map((request) => (
           <div key={request.id} className="shadow-md border rounded-lg p-4">
             <p className="font-bold">Request ID : {request.id}</p>
@@ -190,7 +190,8 @@ const DonationCards = () => {
                   setRequest(request);
                   setShowPopup(true);
                 }}
-                className="my-3 px-4 py-2 bg-secondaryColor text-bgColor1 rounded-lg"
+                className="my-3 px-4 py-2 button text-backgroundColor  rounded-lg "
+                
               >
                 Donate
               </button>
@@ -227,7 +228,7 @@ const DonationCards = () => {
       </div>
 
       <div className="flex justify-center mt-4 md:mt-8 mb-2 md:mb-5">
-        <button className="bg-secondaryColor text-bgColor1 px-4 md:px-8 py-2 rounded-lg">
+        <button className="text-backgroundColor px-4 md:px-8 py-2 rounded-lg button">
           <a href={`tel:${selectedRequest.contactNumber}`}>Contact Now</a>
         </button>
       </div>

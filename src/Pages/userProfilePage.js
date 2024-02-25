@@ -36,7 +36,7 @@ const UserProfile = () => {
 
 
   return (
-    <div className="bg-[#F0F0F0] min-h-screen p-5 flex flex-col items-center justify-center">
+    <div className="bg-[#F0F0F0] min-h-screen p-5 flex flex-col items-center justify-center mt-16 mb-16">
       {/* User information part */}
       <div className="bg-white flex flex-col xl:flex-row xl:w-3/4 w-full p-4 rounded-2xl relative items-center justify-center">
         {/* User Avatar */}

@@ -6,7 +6,7 @@ const Registration = ({ email, onRegister, fieldsetClassName }) => {
   const [customId, setCustomId] = useState('');
 
   return (
-    <div className="registration-container">
+    <div className="registration-container ">
       <div class="max-w-100 mx-auto mt-8 sm:w-full md:w-3/4 lg:w-7/10">
         <fieldset className={`border-4 border-solid border-[#f0f0f0] rounded-md p-4 ${fieldsetClassName}`}>
           <legend className="text-lg font-semibold mb-4">Authentication</legend>

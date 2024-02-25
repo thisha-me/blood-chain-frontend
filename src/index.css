@@ -29,3 +29,16 @@ body {
 .submitBtn {
   background-color: var(--primary-color);
 }
+
+.button {
+  background-color: var(--secondary-color);
+}
+
+/* Hover state styles */
+.button:hover {
+  background-color: var(--primary-color);
+}
+
+.active-text-red {
+  color: red;
+}
