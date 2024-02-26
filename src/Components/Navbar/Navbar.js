@@ -94,6 +94,7 @@ const Navbar = () => {
         <Link
           to="/loginform"
           className="login-btn text-backgroundColor px-5 bg-mainColorLighter rounded-full hover:bg-mainColor hover:text-backgroundColor"
+          onClick={() => handleNavLinkClick("/loginform")}
         >
           Login
         </Link>
