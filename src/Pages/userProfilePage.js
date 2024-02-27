@@ -81,10 +81,6 @@ const UserProfile = () => {
             </div>
           </div>
         </div>
-        {/* Edit Button */}
-        <button className="bg-[#F0F0F0] font-medium text-black px-4 absolute bottom-0 left-0 m-1 rounded-2xl">
-          Edit
-        </button>
       </div>
 
       {/* Activate request part */}
@@ -174,7 +170,7 @@ const UserProfile = () => {
                       className="ml-2 text-white px-1 py-1 rounded-md flex items-center"
                       style={{ border: '4px solid #fff' }}
                     >
-                      <img src={Share} className=' h-8 w-8'/>
+                      <img src={Share} className=' h-8 w-8' />
                     </button>
                   </div>
                 )
@@ -210,9 +206,9 @@ const UserProfile = () => {
                     <button
                       onClick={() => handleButtonClick(index, 'request')}
                       className="ml-2 text-white px-1 py-1 rounded-md flex items-center"
-                      style={{ border: '4px solid #fff'}} // Adjust padding here
+                      style={{ border: '4px solid #fff' }} // Adjust padding here
                     >
-                      <img src={Share} className=' h-8 w-8'/>
+                      <img src={Share} className=' h-8 w-8' />
 
                     </button>
                   </div>
