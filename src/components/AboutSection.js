@@ -68,7 +68,7 @@ const AboutSection = () => {
             >
               <img src={Image_1} alt="Free Forever" className="" />
               <div>
-                <p className="text-[#DC143C] font-medium p-2 text-2xl">
+                <p className="text-[#DC143C] font-medium p-2 text-xl">
                   Find Blood
                 </p>
               </div>
@@ -79,7 +79,7 @@ const AboutSection = () => {
             >
               <img src={Image_2} alt="Save a Life" className="" />
               <div>
-                <p className="text-[#DC143C] font-medium p-2 text-2xl">
+                <p className="text-[#DC143C] font-medium p-2 text-xl">
                   Get Notified
                 </p>
               </div>
@@ -92,7 +92,7 @@ const AboutSection = () => {
             >
               <img src={Image_3} alt="Free Forever" className="" />
               <div>
-                <p className="text-[#DC143C] font-medium p-2 text-2xl">
+                <p className="text-[#DC143C] font-medium p-2 text-xl">
                   Free Forever
                 </p>
               </div>
@@ -103,7 +103,7 @@ const AboutSection = () => {
             >
               <img src={Image_4} alt="Save a Life" className="" />
               <div>
-                <p className="text-[#DC143C] font-medium p-2 text-2xl">
+                <p className="text-[#DC143C] font-medium p-2 text-xl">
                   Save a Life
                 </p>
               </div>

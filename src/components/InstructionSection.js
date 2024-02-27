@@ -52,7 +52,7 @@ const InstructionSection = () => {
           How It <span className="text-[#DC143C]">Works</span>
         </p>
 
-        <p className="text-[#000000] font-normal  p-2 text-2xl mb-4">
+        <p className="text-[#000000] font-normal  p-2 text-xl mb-4">
           Share your medical details securely. Blockchain technology ensures transparency and protects your privacy.
         </p>
       </div>
@@ -65,23 +65,23 @@ const InstructionSection = () => {
           <ul className="list-disc pl-6 leading-loose">
             <li className="flex items-center">
               <img src={icon} alt="Register Icon" />
-              <p style={{ fontSize: '1.3rem' }} className="mr-2 text-[#000000] text-2xl font-normal p-2">Register</p>
+              <p style={{ fontSize: '1.2rem' }} className="mr-2 text-[#000000] text-2xl font-normal p-2">Register</p>
             </li>
             <li className="flex items-center">
               <img src={icon} alt="Profile Icon" />
-              <p style={{ fontSize: '1.3rem' }} className="mr-2 text-[#000000] text-2xl font-normal p-2">Fill your Profile</p>
+              <p style={{ fontSize: '1.2rem' }} className="mr-2 text-[#000000] text-2xl font-normal p-2">Fill your Profile</p>
             </li>
             <li className="flex items-center">
               <img src={icon} alt="Request Icon" />
-              <p style={{ fontSize: '1.3rem' }} className="mr-2 text-[#000000] text-2xl font-normal p-2">Request Blood</p>
+              <p style={{ fontSize: '1.2rem' }} className="mr-2 text-[#000000] text-2xl font-normal p-2">Request Blood</p>
             </li>
             <li className="flex items-center">
               <img src={icon} alt="Donate Icon" />
-              <p style={{ fontSize: '1.3rem' }} className="mr-2 text-[#000000] text-2xl font-normal p-2">Donate Blood</p>
+              <p style={{ fontSize: '1.2rem' }} className="mr-2 text-[#000000] text-2xl font-normal p-2">Donate Blood</p>
             </li>
             <li className="flex items-center">
               <img src={icon} alt="View Icon" />
-              <p style={{ fontSize: '1.3rem' }} className="mr-2 text-[#000000] text-2xl font-normal p-2">View pending Requests</p>
+              <p style={{ fontSize: '1.2rem' }} className="mr-2 text-[#000000] text-2xl font-normal p-2">View pending Requests</p>
             </li>
           </ul>
           <br/>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import image from '../assets/user.png';
-import "./userProfile.css";
+import '../Styles/userProfile.css';
 import Share from '../assets/share.png';
 
 const UserProfile = () => {
@@ -49,34 +49,34 @@ const UserProfile = () => {
         </div>
         {/* User Details */}
         <div className="bg-[#F0F0F0] w-full xl:w-1/2 p-1 h-64 mb-4 xl:ml-4 rounded-2xl relative">
-          <div className="text-black font-bold text-lg text-left flex flex-col justify-items-center my-3">
-            <div className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-2">
-              User ID : <span className="font-bold text-lg text-black">{userData.userId}</span>
+          <div className="text-black font-bold text-base text-left flex flex-col justify-items-center my-3">
+            <div className="font-medium text-base rounded-xl mx-2 mb-2 bg-white p-2">
+              User ID : <span className="font-bold text-base text-black">{userData.userId}</span>
             </div>
-            <div className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-2">
-              Username : <span className="font-bold text-lg text-black">{userData.username}</span>
+            <div className="font-medium text-base rounded-xl mx-2 mb-2 bg-white p-2">
+              Username : <span className="font-bold text-base text-black">{userData.username}</span>
             </div>
-            <div className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-2">
-              Contact No : <span className="font-bold text-lg text-black">{userData.contactNo}</span>
+            <div className="font-medium text-base rounded-xl mx-2 mb-2 bg-white p-2">
+              Contact No : <span className="font-bold text-base text-black">{userData.contactNo}</span>
             </div>
-            <div className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-2">
-              User Email : <span className="font-bold text-lg text-black">{userData.userEmail}</span>
+            <div className="font-medium text-base rounded-xl mx-2 mb-2 bg-white p-2">
+              User Email : <span className="font-bold text-base text-black">{userData.userEmail}</span>
             </div>
           </div>
         </div>
         {/* /// */}
         <div className="bg-[#F0F0F0] w-full xl:w-1/4 p-1 h-64 mb-4 xl:ml-4 rounded-2xl relative">
-          <div className="text-black font-bold text-lg text-left flex flex-col justify-items-center my-3">
-            <div className="font-medium text-lg rounded-xl  mx-2 mb-2 bg-white p-2">
+          <div className="text-black font-bold text-base text-left flex flex-col justify-items-center my-3">
+            <div className="font-medium text-base rounded-xl  mx-2 mb-2 bg-white p-2">
               Number of donations:
             </div>
-            <div className="font-bold text-lg rounded-xl  mx-2 mb-2   bg-white p-2">
+            <div className="font-bold text-base rounded-xl  mx-2 mb-2   bg-white p-2">
               {userData.numberOfDonations}
             </div>
-            <div className="font-medium text-lg rounded-xl  mx-2 mb-2 bg-white p-2">
+            <div className="font-medium text-base rounded-xl  mx-2 mb-2 bg-white p-2">
               Number of requests:
             </div>
-            <div className="font-bold text-lg rounded-xl  mx-2 mb-2   bg-white p-2">
+            <div className="font-bold text-base rounded-xl  mx-2 mb-2   bg-white p-2">
               {userData.numberOfRequests}
             </div>
           </div>
@@ -90,23 +90,23 @@ const UserProfile = () => {
       {/* Activate request part */}
       <div className="bg-white flex flex-col sm:flex-row xl:w-3/4 w-full p-4 rounded-2xl relative mt-2">
         <div className="bg-[#F0F0F0] w-full mr-0 h-58 mb-0 sm:ml-4 rounded-2xl relative max">
-          <div className="text-black font-bold text-lg text-left justify-items-center my-2 p-2">
-            <div className="font-bold text-lg flex rounded-xl mx-2 mb-2 bg-white p-2 sm:w-1/2">
+          <div className="text-black font-bold text-base text-left justify-items-center my-2 p-2">
+            <div className="font-bold text-base flex rounded-xl mx-2 mb-2 bg-white p-2 sm:w-1/2">
               Active Requests
             </div>
             <div className="flex flex-wrap">
               {userData.history.map((item, index) => (
                 item.type === 'request' && (
-                  <div className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3 max-h-90 max-w-90 " key={index}
+                  <div className="font-medium text-base rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3 max-h-90 max-w-90" key={index}
                     style={{ flexBasis: 'calc(33.33% - 16px)' }}>
                     <div>
-                      Request ID : <span className="font-bold text-lg text-black">{item.id}</span>
+                      Request ID : <span className="font-bold text-base text-black ">{item.id}</span>
                     </div>
                     <div>
-                      Blood Type : <span className="font-bold text-lg text-black">{item.bloodType}</span>
+                      Blood Type : <span className="font-bold text-base text-black">{item.bloodType}</span>
                     </div>
                     <div>
-                      Urgency : <span className="font-bold text-lg text-black">{item.urgency}</span>
+                      Urgency : <span className="font-bold text-base text-black">{item.urgency}</span>
                     </div>
                   </div>
                 )
@@ -119,29 +119,29 @@ const UserProfile = () => {
       {/* Scheduled Donations part */}
       <div className="bg-white flex flex-col sm:flex-row xl:w-3/4 w-full  p-4 rounded-2xl relative mt-2">
         <div className="bg-[#F0F0F0] w-full mr-0 h-58 mb-0 sm:ml-4 rounded-2xl relative max">
-          <div className="text-black font-bold text-lg text-left justify-items-center my-2 p-2">
-            <div className="font-bold text-lg flex rounded-xl mx-2 mb-2 bg-white p-2 sm:w-1/2">
+          <div className="text-black font-bold text-base text-left justify-items-center my-2 p-2">
+            <div className="font-bold text-base flex rounded-xl mx-2 mb-2 bg-white p-2 sm:w-1/2">
               Scheduled Donations
             </div>
             <div className="flex flex-wrap">
               {userData.history.map((item, index) => (
                 item.type === 'donation' && (
-                  <div className="font-medium text-lg rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3" key={index}
+                  <div className="font-medium text-base rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3" key={index}
                     style={{ flexBasis: 'calc(33.33% - 16px)' }}>
                     <div>
-                      Donation ID : <span className="font-bold text-lg text-black">{item.id}</span>
+                      Donation ID : <span className="font-bold text-base text-black">{item.id}</span>
                     </div>
                     <div>
-                      Blood type : <span className="font-bold text-lg text-black">{item.bloodType}</span>
+                      Blood type : <span className="font-bold text-base text-black">{item.bloodType}</span>
                     </div>
                     <div>
-                      Date  : <span className="font-bold text-lg text-black">{item.date}</span>
+                      Date  : <span className="font-bold text-base text-black">{item.date}</span>
                     </div>
                     <div>
-                      Time : <span className="font-bold text-lg text-black">{item.time}</span>
+                      Time : <span className="font-bold text-base text-black">{item.time}</span>
                     </div>
                     <div>
-                      Location : <span className="font-bold text-lg text-black">{item.location}</span>
+                      Location : <span className="font-bold text-base text-black">{item.location}</span>
                     </div>
                   </div>
                 )
@@ -155,8 +155,8 @@ const UserProfile = () => {
       {/* Donation History part */}
       <div className="bg-white flex flex-col sm:flex-row xl:w-3/4 w-full p-4 rounded-2xl relative mt-2">
         <div className="bg-[#F0F0F0] w-full mr-0 h-58 mb-0 sm:ml-4 rounded-2xl relative max">
-          <div className="text-black font-bold text-lg text-left justify-items-center my-2 p-2">
-            <div className="font-bold text-lg flex rounded-xl mx-2 mb-2 bg-white p-2 sm:w-1/2">
+          <div className="text-black font-bold text-base text-left justify-items-center my-2 p-2">
+            <div className="font-bold text-base flex rounded-xl mx-2 mb-2 bg-white p-2 sm:w-1/2">
               Donation History
             </div>
             <div className="flex-col sm:flex-wrap">
@@ -190,8 +190,8 @@ const UserProfile = () => {
       {/* Request History part */}
       <div className="bg-white flex flex-col sm:flex-row xl:w-3/4 w-full p-4 rounded-2xl relative mt-2">
         <div className="bg-[#F0F0F0] w-full mr-0 h-58 mb-0 sm:ml-4 rounded-2xl relative max">
-          <div className="text-black font-bold text-lg text-left justify-items-center my-2 p-2">
-            <div className="font-bold text-lg flex rounded-xl mx-2 mb-2 bg-white p-2 sm:w-1/2">
+          <div className="text-black font-bold text-base text-left justify-items-center my-2 p-2">
+            <div className="font-bold text-base flex rounded-xl mx-2 mb-2 bg-white p-2 sm:w-1/2">
               Request History
             </div>
             <div className="flex-col sm:flex-wrap">
@@ -203,7 +203,7 @@ const UserProfile = () => {
                       style={{ width: '100%', maxWidth: '900px', position: 'relative' }}
                     >
                       <span className="font-bold">Request number </span> {item.number}
-                      <span className={`absolute right-4 top-1/2 transform -translate-y-1/2 font-bold text-lg ${item.status === 'Fulfilled' ? ' text-black ' : ' text-gray-300'}`}>
+                      <span className={`absolute right-4 top-1/2 transform -translate-y-1/2 font-bold text-base ${item.status === 'Fulfilled' ? ' text-black ' : ' text-gray-300'}`}>
                         {item.status}
                       </span>
                     </div>
