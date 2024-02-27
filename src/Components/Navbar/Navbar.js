@@ -32,6 +32,11 @@ const Navbar = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const { pathname } = location;
+    setActiveNavLink(pathname);
+  }, [location]);
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between h-13 py-2 px-10 bg-backgroundColor ${showShadow ? "shadow-md" : ""
@@ -47,8 +52,8 @@ const Navbar = () => {
         <Link
           to="/"
           className={`${activeNavLink === "/"
-              ? "text-textColor hover:text-mainColorLighter active-text-red"
-              : "text-textColor hover:text-mainColorLighter"
+            ? "text-textColor hover:text-mainColorLighter active-text-red"
+            : "text-textColor hover:text-mainColorLighter"
             }`}
           onClick={() => handleNavLinkClick("/")}
         >
@@ -58,8 +63,8 @@ const Navbar = () => {
         <Link
           to="/donate"
           className={`${activeNavLink === "/donate"
-              ? "text-textColor hover:text-mainColorLighter active-text-red"
-              : "text-textColor hover:text-mainColorLighter"
+            ? "text-textColor hover:text-mainColorLighter active-text-red"
+            : "text-textColor hover:text-mainColorLighter"
             }`}
           onClick={() => handleNavLinkClick("/donate")}
         >
@@ -69,8 +74,8 @@ const Navbar = () => {
         <Link
           to="/request"
           className={`${activeNavLink === "/request"
-              ? "text-textColor hover:text-mainColorLighter active-text-red"
-              : "text-textColor hover:text-mainColorLighter"
+            ? "text-textColor hover:text-mainColorLighter active-text-red"
+            : "text-textColor hover:text-mainColorLighter"
             }`}
           onClick={() => handleNavLinkClick("/request")}
         >
@@ -80,8 +85,8 @@ const Navbar = () => {
         <Link
           to="/profile"
           className={`${activeNavLink === "/profile"
-              ? "text-textColor hover:text-mainColorLighter active-text-red"
-              : "text-textColor hover:text-mainColorLighter"
+            ? "text-textColor hover:text-mainColorLighter active-text-red"
+            : "text-textColor hover:text-mainColorLighter"
             }`}
           onClick={() => handleNavLinkClick("/profile")}
         >
