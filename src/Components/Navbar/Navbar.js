@@ -1,14 +1,14 @@
 import { useRef, useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import "./Navbar.css";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [activeNavLink, setActiveNavLink] = useState(null);
   const [showShadow, setShowShadow] = useState(false);
 
-  const handleNavLinkClick = (e) => {
-    setActiveNavLink(e.target.href);
+  const handleNavLinkClick = (to) => {
+    setActiveNavLink(to);
   };
 
   const navbarRef = useRef();
@@ -32,51 +32,72 @@ const Navbar = () => {
 
   return (
     <header
-      className={`flex items-center justify-between h-12 mt-1 py-2 px-10 bg-backgroundColor ${
+      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between h-13 py-2 px-10 bg-backgroundColor ${
         showShadow ? "shadow-md" : ""
       }`}
     >
-      <Link to="/" className="text-mainColorLighter font-bold text-3xl">BloodChain</Link>
+      <Link to="/" className="text-mainColorLighter font-bold text-3xl"           
+      onClick={() => handleNavLinkClick("/")}
+>
+        BloodChain
+      </Link>
 
       <nav ref={navbarRef} className="md:flex flex-column gap-8 ">
-        <Link to="/"
+        <Link
+          to="/"
           className={`${
             activeNavLink === "/"
-              ? "text-textColor hover:text-mainColorLighter active:text-red "
+              ? "text-textColor hover:text-mainColorLighter active-text-red"
               : "text-textColor hover:text-mainColorLighter"
           }`}
-          onClick={handleNavLinkClick}
-        >Home</Link>
+          onClick={() => handleNavLinkClick("/")}
+        >
+          Home
+        </Link>
 
-        <Link to="/donate"
+        <Link
+          to="/donate"
           className={`${
             activeNavLink === "/donate"
-              ? "text-textColor hover:text-mainColorLighter active:text-red"
+              ? "text-textColor hover:text-mainColorLighter active-text-red"
               : "text-textColor hover:text-mainColorLighter"
           }`}
-          onClick={handleNavLinkClick}
-        >Donate</Link>
+          onClick={() => handleNavLinkClick("/donate")}
+        >
+          Donate
+        </Link>
 
-        <Link to="/request"
+        <Link
+          to="/request"
           className={`${
             activeNavLink === "/request"
-              ? "text-textColor hover:text-mainColorLighter active:text-red"
+              ? "text-textColor hover:text-mainColorLighter active-text-red"
               : "text-textColor hover:text-mainColorLighter"
           }`}
-          onClick={handleNavLinkClick}
-        >Request</Link>
+          onClick={() => handleNavLinkClick("/request")}
+        >
+          Request
+        </Link>
 
-        <Link to="/profile"
+        <Link
+          to="/profile"
           className={`${
             activeNavLink === "/profile"
-              ? "text-textColor hover:text-mainColorLighter active:text-red"
+              ? "text-textColor hover:text-mainColorLighter active-text-red"
               : "text-textColor hover:text-mainColorLighter"
           }`}
-          onClick={handleNavLinkClick}
-        >Profile</Link>
+          onClick={() => handleNavLinkClick("/profile")}
+        >
+          Profile
+        </Link>
 
-        <Link to="/loginform" className="login-btn text-backgroundColor px-5 bg-mainColorLighter rounded-full hover:bg-mainColor hover:text-backgroundColor "
-        >Login</Link>
+        <Link
+          to="/loginform"
+          className="login-btn text-backgroundColor px-5 bg-mainColorLighter rounded-full hover:bg-mainColor hover:text-backgroundColor"
+          onClick={() => handleNavLinkClick("/loginform")}
+        >
+          Login
+        </Link>
 
         <button
           className="navbar-btn navbar-close-btn md:hidden"

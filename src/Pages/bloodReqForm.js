@@ -25,7 +25,7 @@ const BloodReqForm = () => {
 	};
 
 	return (
-		<div className="flex items-center justify-center h-screen">
+		<div className="flex items-center justify-center h-screen mt-16 mb-16">
 			<div className="w-full max-w-xl mx-auto m-4 p-4 bg-white rounded-md shadow-lg">
 				<h1 className="text-3xl text-center mb-4">Blood Request Form</h1>
 				<form onSubmit={handleSubmit}>
@@ -129,7 +129,7 @@ const BloodReqForm = () => {
 					<div className="text-center">
 						<button
 							type="submit"
-							className="text-white text-center px-8 py-2 rounded-md submitBtn"
+							className="text-white text-center px-8 py-2 rounded-md button"
 
 						>
 							Submit
