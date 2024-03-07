@@ -2,8 +2,31 @@ import { useRef, useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import "./Navbar.css";
 import { Link, useLocation } from "react-router-dom";
+import { ConnectWallet, Web3Button, useAddress, useContract, useContractWrite, useContractRead, useDisconnect } from "@thirdweb-dev/react";
+import { STATUS_CONTRACT_ADDRESS } from "../Navbar/../../constants/addresses";
 
 const Navbar = () => {
+
+  const address = useAddress();
+  const [newStatus, setNewStatus] = useState(address);
+
+  const { contract } = useContract("0x729676943630Cc1090a10100Db0E55ee0EAc33b4");
+  const { mutateAsync: connectWallet, isLoading } = useContractWrite(contract, "connectWallet")
+
+  const call = async () => {
+    try {
+      const data = await connectWallet({ args: [address] });
+      console.info("contract call successs", data);
+    } catch (err) {
+      console.error("contract call failure", err);
+    }
+  }
+
+  // const connectWallet = async () => {
+  //   console.log('Connected to MetaMask:', address);
+    
+  // };
+
   const [activeNavLink, setActiveNavLink] = useState(null);
   const [showShadow, setShowShadow] = useState(false);
 
@@ -94,11 +117,14 @@ const Navbar = () => {
         </Link>
 
         <Link
-          to="/loginform"
-          className="login-btn text-backgroundColor px-5 bg-mainColorLighter rounded-full hover:bg-mainColor hover:text-backgroundColor"
-          onClick={() => handleNavLinkClick("/loginform")}
+          onClick={() => {
+            call();
+          }}
         >
-          Login
+          <ConnectWallet
+            theme={"light"}
+            modalSize={"wide"}
+          />
         </Link>
 
         <button

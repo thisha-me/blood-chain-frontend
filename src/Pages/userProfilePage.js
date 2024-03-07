@@ -2,13 +2,20 @@ import React, { useState } from 'react';
 import image from '../assets/user.png';
 import '../Styles/userProfile.css';
 import Share from '../assets/share.png';
+import { truncateAddress } from "../utils/truncateAddress";
+import { ConnectWallet, Web3Button, useAddress, useContract, useContractRead, useDisconnect } from "@thirdweb-dev/react";
 
 const UserProfile = () => {
   const [selectedDonation, setSelectedDonation] = useState(null);
   const [selectedRequestIndex, setSelectedRequestIndex] = useState(null);
+  
+  const address = useAddress();
+
+  // Check if the address is available before using it
+  const userIdElement = address ? <p>{truncateAddress(address)}</p> : null;
 
   const userData = {
-    userId: '12345',
+    userId: userIdElement,
     username: 'john_doe',
     contactNo: '123-456-7890',
     userEmail: 'john@example.com',
@@ -23,7 +30,7 @@ const UserProfile = () => {
       { id: 'J9KL0MN', type: 'request', bloodType: 'AB+', date: '2024-03-20', urgency: 'Low', location: 'Hospital Z', status: 'Pending', number: 3 },
     ]
   };
-
+  
   const handleButtonClick = (index, type) => {
     if (type === 'donation') {
       setSelectedDonation(userData.history[index]);

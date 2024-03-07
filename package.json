@@ -10,14 +10,29 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.6.7",
     "icons": "^1.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.0",
     "react-icons": "^5.0.1",
+    "react-router-dom": "^6.22.0",
     "react-scripts": "5.0.1",
     "tailwindcss-react-ui": "^1.0.10",
-    "web-vitals": "^2.1.4"
+    "thirdweb": "^0.13.41",
+    "web-vitals": "^2.1.4",
+    "web3": "^4.5.0",
+    "@thirdweb-dev/react": "^4",
+    "@thirdweb-dev/sdk": "^4",
+    "ethers": "^5",
+    "url": "latest",
+    "http": "npm:http-browserify",
+    "https": "npm:https-browserify",
+    "zlib": "npm:browserify-zlib",
+    "http-browserify": "latest",
+    "https-browserify": "latest",
+    "browserify-zlib": "latest",
+    "assert": "^2.0.0",
+    "stream": "^0.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -44,7 +59,25 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@thirdweb-dev/react": "^4",
+    "@thirdweb-dev/sdk": "^4.0.38",
+    "assert": "^2.0.0",
+    "browserify-zlib": "latest",
+    "ethers": "^5.7.2",
+    "http": "npm:http-browserify",
+    "http-browserify": "latest",
+    "https": "npm:https-browserify",
+    "https-browserify": "latest",
+    "react": "^18.2",
+    "react-dom": "^18.2",
     "react-scripts": "^5.0.1",
-    "tailwindcss": "^3.4.1"
+    "stream": "^0.0.2",
+    "tailwindcss": "^3.4.1",
+    "url": "latest",
+    "web-vitals": "^3.1.0",
+    "zlib": "npm:browserify-zlib"
   }
 }
