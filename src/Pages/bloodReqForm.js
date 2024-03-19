@@ -128,17 +128,10 @@ const BloodReqForm = () => {
 						</select>
 					</div>
 					<div className="text-center">
-						{/* <button
-							type="submit"
-							className="text-white text-center px-8 py-2 rounded-md button"
-
-						>
-							Submit
-						</button> */}
 						<Web3Button
-							contractAddress="0xF2655F16d7206506B44171AD1c39FD4E7d79e1d9"
+							contractAddress="0xa4F1e39d3a23133A32094adcb45A38Cd373683Fe"
 							action={(contract) => {
-								contract.call("storeBloodReqFormData", [
+								contract.call("submitBloodReq", [
 									formData.pname,
 									formData.contactNum,
 									formData.district,
@@ -155,7 +148,6 @@ const BloodReqForm = () => {
 			</div>
 		</div>
 	)
-
 }
 
 const provinces = [

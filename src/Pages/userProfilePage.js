@@ -10,8 +10,6 @@ const UserProfile = () => {
   const [selectedRequestIndex, setSelectedRequestIndex] = useState(null);
   
   const address = useAddress();
-
-  // Check if the address is available before using it
   const userIdElement = address ? <p>{truncateAddress(address)}</p> : null;
 
   const userData = {
