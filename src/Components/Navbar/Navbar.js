@@ -120,7 +120,7 @@ const Navbar = () => {
         <Link
           onClick={() => {
             call();
-          }}
+          }} 
         >
           <ConnectWallet
             theme={"light"}
