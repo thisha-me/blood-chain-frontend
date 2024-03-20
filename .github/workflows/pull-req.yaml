@@ -13,5 +13,3 @@ jobs:
         run: npm install
       - name: Run EsLint
         run: npm run lint
-        
-```
