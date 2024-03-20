@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import donateBlood from "../Images/Rectangle 53.png";
 import "../Styles/DonationCard.css";
 import statement from "../Images/statement.png";
+import { useContract, useContractRead } from "@thirdweb-dev/react";
 
 const requestData = [
   {
@@ -67,6 +68,19 @@ const requestData = [
 ];
 
 const DonationCards = () => {
+
+  //===================================================================================================
+  const { contract } = useContract("0x1C8b6ace2BD3f9A5007c1cf0b06eE531ad3Dd17A");
+  const { data, isLoading } = useContractRead(contract, "getAllRequests");
+  console.log("Wallet Addresses:", data);
+
+  // useEffect(() => {
+  //   if (!isLoading) {
+  //     console.log("Wallet Addresses:", data);
+  //   }
+  // }, [isLoading, data]);
+  //===================================================================================================
+
   const [selectedRequest, setRequest] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const [selectedBloodType, setBloodType] = useState(null);
