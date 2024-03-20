@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import image from '../assets/user.png';
 import '../Styles/userProfile.css';
 import Share from '../assets/share.png';
@@ -43,6 +43,17 @@ const UserProfile = () => {
     }
   };
 
+  useEffect(() => {
+    if (showPopup) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [showPopup]);
 
   return (
     <div className="bg-[#F0F0F0] min-h-screen p-5 flex flex-col items-center justify-center mt-16 mb-16">
