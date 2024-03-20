@@ -70,21 +70,44 @@ const requestData = [
 const DonationCards = () => {
 
   //===================================================================================================
+  //fetching data from blockchain for the donation cards
   const { contract } = useContract("0x1C8b6ace2BD3f9A5007c1cf0b06eE531ad3Dd17A");
-  const { data, isLoading } = useContractRead(contract, "getAllRequests");
-  console.log("Wallet Addresses:", data);
+  const { data: bloodRequestData, isLoading } = useContractRead(contract, "getAllRequests");
+  console.log("Wallet Addresses:", bloodRequestData);
+  
+  let formattedData = []; // Declare formattedData outside of the if block
 
-  // useEffect(() => {
-  //   if (!isLoading) {
-  //     console.log("Wallet Addresses:", data);
-  //   }
-  // }, [isLoading, data]);
+  if (bloodRequestData) {
+    formattedData = bloodRequestData.map((request) => {
+      const [id, name, contactNumber, location, , donationCenter, bloodType, dateTimeObj, ] = request;
+      // Extract date and time from the BigNumber hex value
+      const date = new Date(parseInt(dateTimeObj.hex, 16) * 1000);
+      const dateString = date.toLocaleDateString('en-US');
+      const timeString = date.toLocaleTimeString('en-US');
+    
+      return {
+        id: id,
+        name: name,
+        location: location,
+        bloodType: bloodType,
+        date: dateString,
+        time: timeString,
+        donationCenter: donationCenter,
+        contactNumber: contactNumber,
+      };
+    });
+
+    // To display the formatted data in the console
+    console.log(formattedData);
+  } else {
+    console.log('Waiting for data...');
+  }
   //===================================================================================================
 
   const [selectedRequest, setRequest] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const [selectedBloodType, setBloodType] = useState(null);
-  const [sortedRequests, setSortedRequests] = useState([...requestData]);
+  const [sortedRequests, setSortedRequests] = useState([...formattedData]);
   const [isAscending, setIsAscending] = useState(true);
 
   const filterRequests = () => {
@@ -138,7 +161,7 @@ const DonationCards = () => {
   };
 
   const resetSorting = () => {
-    setSortedRequests([...requestData]);
+    setSortedRequests([...formattedData]);
   };
 
   return (
