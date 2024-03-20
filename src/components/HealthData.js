@@ -1,21 +1,17 @@
+/* eslint-disable react/prop-types */
 // HealthData.js
 import React, { useState } from 'react';
 
 
-const HealthData = ({ onRegister, fieldsetClassName }) => {
+const HealthData = ({ fieldsetClassName }) => {
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
   const [healthConditions, setHealthConditions] = useState('');
   const [hasDisease, setHasDisease] = useState(false);
 
-  const handleRegister = () => {
-    // You can add validation logic here before submitting the form
-    onRegister({ weight, height, healthConditions, hasDisease });
-  };
-
   return (
     <div className="health-data-container">
-      <div class="max-w-100 mx-auto mt-8 sm:w-full md:w-3/4 lg:w-7/10">
+      <div className="max-w-100 mx-auto mt-8 sm:w-full md:w-3/4 lg:w-7/10">
         <fieldset className={`border-4 border-solid border-[#f0f0f0] rounded-md p-4 ${fieldsetClassName}`}>
           <legend className="text-lg font-semibold mb-4">Health Data</legend>
           <div className="mb-4">

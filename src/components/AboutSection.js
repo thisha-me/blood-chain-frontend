@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useEffect, useState } from "react";
 import image_1 from "../assets/find-blood.png";
 import image_2 from "../assets/get-notified.png";
@@ -198,7 +199,7 @@ const AboutSection = () => {
               </div>
               <div className="">
                 <p className="text-center font-medium"><span className="text-[#DC143C] center-text">Transparency and Trust</span></p>
-                <p style={{ fontSize: "15px" }} className="text-justify">
+                <p style={{ fontSize: "15px"}} className="text-justify">
                   At the heart of Blood Chain's mission lies a dedication to transparency and ethical practices. The platform prioritizes the safety and quality of every blood donation, implementing a decentralized system to ensure the utmost security of donor and patient data. This commitment fosters trust among participants, reassuring them that their contributions are not only impactful but are also handled with the highest standards of integrity, making the act of donation an ethically sound and reliable endeavor.
                 </p>
               </div>

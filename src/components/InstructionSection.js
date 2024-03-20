@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useEffect, useState } from "react";
 import imageUrl from "../assets/instruct.png";
 import icon from "../assets/check-mark.png";

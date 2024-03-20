@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 // PersonalData.js
 import React, { useState } from 'react';
 
 
-const PersonalData = ({ onNext, fieldsetClassName }) => {
+const PersonalData = ({ fieldsetClassName }) => {
   const [name, setName] = useState('');
   const [birthday, setBirthday] = useState('');
   const [contactNumber, setContactNumber] = useState('');
@@ -10,14 +11,10 @@ const PersonalData = ({ onNext, fieldsetClassName }) => {
   const [sex, setSex] = useState('');
   const [email, setEmail] = useState('');
 
-  const handleNext = () => {
-    // You can add validation logic here before moving to the next step
-    onNext({ name, birthday, contactNumber, address, sex, email });
-  };
 
   return (
     <div className="personal-data-container ">
-      <div class="max-w-100 mx-auto mt-8 sm:w-full md:w-3/4 lg:w-7/10">
+      <div className="max-w-100 mx-auto mt-8 sm:w-full md:w-3/4 lg:w-7/10">
         <fieldset className={`border-4 border-solid border-[#f0f0f0] rounded-md p-4 ${fieldsetClassName}`}>
           <legend className="text-lg font-semibold mb-4">Personal Data</legend>
           <div className="mb-4">
