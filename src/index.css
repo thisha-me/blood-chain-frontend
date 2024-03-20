@@ -34,6 +34,12 @@ body {
   background-color: var(--secondary-color);
 }
 
+.nobtn {
+  background-color: #FFFFFF;
+  border-style:double;
+  border-color: #8C0909;
+}
+
 /* Hover state styles */
 .button:hover {
   background-color: var(--primary-color);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import image from '../assets/user.png';
 import '../Styles/userProfile.css';
 import Share from '../assets/share.png';
@@ -8,7 +8,9 @@ import { ConnectWallet, Web3Button, useAddress, useContract, useContractRead, us
 const UserProfile = () => {
   const [selectedDonation, setSelectedDonation] = useState(null);
   const [selectedRequestIndex, setSelectedRequestIndex] = useState(null);
-  
+  const [showPopup, setShowPopup] = useState(false);
+
+
   const address = useAddress();
 
   // Check if the address is available before using it
@@ -30,7 +32,7 @@ const UserProfile = () => {
       { id: 'J9KL0MN', type: 'request', bloodType: 'AB+', date: '2024-03-20', urgency: 'Low', location: 'Hospital Z', status: 'Pending', number: 3 },
     ]
   };
-  
+
   const handleButtonClick = (index, type) => {
     if (type === 'donation') {
       setSelectedDonation(userData.history[index]);
@@ -41,6 +43,17 @@ const UserProfile = () => {
     }
   };
 
+  useEffect(() => {
+    if (showPopup) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [showPopup]);
 
   return (
     <div className="bg-[#F0F0F0] min-h-screen p-5 flex flex-col items-center justify-center mt-16 mb-16">
@@ -111,13 +124,61 @@ const UserProfile = () => {
                     <div>
                       Urgency : <span className="font-bold text-base text-black">{item.urgency}</span>
                     </div>
+                    <div>
+                      <button onClick={() => {
+                        setShowPopup(true);
+                      }} className="my-3 px-4 py-2 button text-backgroundColor  rounded-lg ">Full fill request</button>
+                    </div>
                   </div>
                 )
               ))}
             </div>
           </div>
         </div>
+
+        {showPopup && (
+          <div className="fixed top-0 left-0 w-full h-full bg-secondaryColor bg-opacity-60 flex items-center justify-center">
+            <div className="bg-white p-4 md:p-6 w-full md:w-3/4 lg:w-1/2 max-w-lg h-auto rounded shadow-lg">
+              <button
+                onClick={() => setShowPopup(false)}
+                className="ml-auto flex text-center py-1 text-textColor hover:secondaryColor font-bold rounded"
+              >
+                X
+              </button>
+
+              <div className="text-1xl flex justify-center font-bold mb-4 md:mb-8 gap-4">
+                Do you want to fullfil the request?
+              </div>
+
+              <div className='flex justify-center mt-3'>
+                <button
+                  onClick={() => {
+                  }}
+                  className="px-4 py-2 button text-backgroundColor rounded-lg mr-4"
+                >
+                  Yes
+                </button>
+                <button
+                  onClick={() => setShowPopup(false)}
+                  className="px-4 py-2 bg-transparent hover:bg-secondaryColor text-mainColor hover:text-mainColor border border-mainColor hover:border-transparent rounded"
+                >
+                  No
+                </button>
+              </div>
+
+
+              <div className="font-bold grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
+                <p className="py-1"></p>
+
+              </div>
+
+
+            </div>
+          </div>
+        )}
       </div>
+
+
 
       {/* Scheduled Donations part */}
       <div className="bg-white flex flex-col sm:flex-row xl:w-3/4 w-full  p-4 rounded-2xl relative mt-2">
@@ -187,8 +248,6 @@ const UserProfile = () => {
         </div>
       </div>
 
-
-      {/* Request History part */}
 
       {/* Request History part */}
       <div className="bg-white flex flex-col sm:flex-row xl:w-3/4 w-full p-4 rounded-2xl relative mt-2">
