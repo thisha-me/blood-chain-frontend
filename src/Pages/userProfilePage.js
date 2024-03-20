@@ -111,6 +111,10 @@ const UserProfile = () => {
                     <div>
                       Urgency : <span className="font-bold text-base text-black">{item.urgency}</span>
                     </div>
+                    <div>
+                      <button onClick={() => {
+                }} className="my-3 px-4 py-2 button text-backgroundColor  rounded-lg ">Full fill request</button>
+                    </div>
                   </div>
                 )
               ))}
@@ -187,8 +191,6 @@ const UserProfile = () => {
         </div>
       </div>
 
-
-      {/* Request History part */}
 
       {/* Request History part */}
       <div className="bg-white flex flex-col sm:flex-row xl:w-3/4 w-full p-4 rounded-2xl relative mt-2">
