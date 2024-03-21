@@ -59,6 +59,11 @@ const DonationCards = () => {
     setShowPopup(true);
   };
 
+  const shortenID = (id) => {
+    if (id.length <= 5) return id; // If ID length is less than or equal to 4, return as it is
+    return id.slice(0, 5) + "......" + id.slice(-5); // Otherwise, return shortened ID
+  };
+
   return (
     <div className="py-1 px-4 md:px-10 lg:px-20 mt-16 mb-16 ">
       <div className="donate-blood-container ">
@@ -99,7 +104,7 @@ const DonationCards = () => {
         <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-10 px-20 md:px-20 lg:px-56 mb-10">
           {formattedData.map((request) => (
             <div key={request.id} className="shadow-md border rounded-lg p-4">
-              <p className="font-bold">Request ID : {request.id}</p>
+              <p className="font-bold">Request ID : {shortenID(request.id)}</p>
               <p>Name : {request.name}</p>
               <p>Location : {request.location}</p>
               <p className="text-center">Blood Type </p>
