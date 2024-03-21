@@ -81,9 +81,12 @@ const DonationCards = () => {
     formattedData = bloodRequestData.map((request) => {
       const [id, name, contactNumber, location, , donationCenter, bloodType, dateTimeObj, ] = request;
       // Extract date and time from the BigNumber hex value
-      const date = new Date(parseInt(dateTimeObj.hex, 16) * 1000);
+      const date  = new Date(dateTimeObj.toNumber() * 1000);
       const dateString = date.toLocaleDateString('en-US');
-      const timeString = date.toLocaleTimeString('en-US');
+      const timeString = date.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit'
+      });
     
       return {
         id: id,
