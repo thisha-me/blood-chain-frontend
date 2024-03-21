@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 import { useRef, useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import "./Navbar.css";

@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import React, { useState } from "react";
 import donateBlood from "../Images/Rectangle 53.png";
 import "../Styles/DonationCard.css";
