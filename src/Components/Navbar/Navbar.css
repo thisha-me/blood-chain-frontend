@@ -1,4 +1,3 @@
-/* Navbar.css */
 @media only screen and (max-width:789px) {
 
     header nav{
@@ -12,15 +11,13 @@
         align-items: center;
         justify-content: center;
         gap: 1.5rem;
-        background-color:#F0F0F0;
+        background-color: var(--secondaryColor);
         transition: 0.5s;
         transform: translateY(-100vh);
     }
   
     header .responsive_navbar{
         transform: none;
-        background-color: #F0F0F0;
-
     }
   
     nav .navbar-close-btn{

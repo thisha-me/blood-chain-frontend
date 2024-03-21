@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 import { useRef, useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import "./Navbar.css";
@@ -81,8 +80,6 @@ const Navbar = () => {
             : "text-textColor hover:text-mainColorLighter"
             }`}
           onClick={() => handleNavLinkClick("/")}
-          onClickCapture={displayNavbar}
-
         >
           Home
         </Link>
@@ -94,8 +91,6 @@ const Navbar = () => {
             : "text-textColor hover:text-mainColorLighter"
             }`}
           onClick={() => handleNavLinkClick("/donate")}
-          onClickCapture={displayNavbar}
-
         >
           Donate
         </Link>
@@ -107,7 +102,6 @@ const Navbar = () => {
             : "text-textColor hover:text-mainColorLighter"
             }`}
           onClick={() => handleNavLinkClick("/request")}
-          onClickCapture={displayNavbar}
         >
           Request
         </Link>
@@ -119,27 +113,20 @@ const Navbar = () => {
             : "text-textColor hover:text-mainColorLighter"
             }`}
           onClick={() => handleNavLinkClick("/profile")}
-          onClickCapture={displayNavbar}
-
         >
           Profile
         </Link>
 
-        <div className="connect-wallet-button">
         <Link
           onClick={() => {
             call();
-            
           }}
-          onClickCapture={displayNavbar}
-
         >
           <ConnectWallet
             theme={"light"}
             modalSize={"wide"}
           />
         </Link>
-        </div>
 
         <button
           className="navbar-btn navbar-close-btn md:hidden"

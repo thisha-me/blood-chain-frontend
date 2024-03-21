@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 import '../App.css';
 import AboutSection from '../Components/AboutSection';
 import InstructionSection from '../Components/InstructionSection';
