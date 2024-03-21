@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import {Link} from "react-router-dom";
  
 const Login = () => {       //function to visible password
-  const [displayPassword , setShowPass] = useState(false);
+  const [displayPassword , setShowPass] = useState(false);  // State hook to manage the visibility of password
+  // Function to toggle the visibility of the password
   const visiblePassword = ( ) => {
     setShowPass(!displayPassword);
   };
@@ -37,6 +38,7 @@ const Login = () => {       //function to visible password
                  placeholder="Password"
           />
 
+      {/* Button to toggle password visibility */}
           <button
               type="button"
               className="absolute top-6 transform -translate-y-1/2 right-3 border-s-2 pl-3"
