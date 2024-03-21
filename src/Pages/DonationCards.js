@@ -4,24 +4,39 @@ import donateBlood from "../Images/Rectangle 53.png";
 import "../Styles/DonationCard.css";
 import statement from "../Images/statement.png";
 import { useContract, useContractRead } from "@thirdweb-dev/react";
+import loadingGif from "../assets/Rolling-1s-157px.gif";
 
 const DonationCards = () => {
-  const { contract } = useContract("0x1C8b6ace2BD3f9A5007c1cf0b06eE531ad3Dd17A");
-  const { data: bloodRequestData, isLoading: loading } = useContractRead(contract, "getAllRequests");
+  const { contract } = useContract(
+    "0x1C8b6ace2BD3f9A5007c1cf0b06eE531ad3Dd17A"
+  );
+  const { data: bloodRequestData, isLoading: loading } = useContractRead(
+    contract,
+    "getAllRequests"
+  );
   const [formattedData, setFormattedData] = useState([]);
   const [showLoader, setShowLoader] = useState(true); // State to manage loader visibility
   const [showPopup, setShowPopup] = useState(false);
   const [selectedRequest, setSelectedRequest] = useState(null);
-  
+
   useEffect(() => {
     if (!loading && bloodRequestData) {
       const formatted = bloodRequestData.map((request) => {
-        const [id, name, contactNumber, location, , donationCenter, bloodType, dateTimeObj] = request;
+        const [
+          id,
+          name,
+          contactNumber,
+          location,
+          ,
+          donationCenter,
+          bloodType,
+          dateTimeObj,
+        ] = request;
         const date = new Date(dateTimeObj.toNumber() * 1000);
-        const dateString = date.toLocaleDateString('en-US');
-        const timeString = date.toLocaleTimeString('en-US', {
-          hour: '2-digit',
-          minute: '2-digit'
+        const dateString = date.toLocaleDateString("en-US");
+        const timeString = date.toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
         });
         return {
           id: id,
@@ -45,8 +60,8 @@ const DonationCards = () => {
   };
 
   return (
-    <div className="py-1 px-4 md:px-10 lg:px-20 mt-16 mb-16">
-      <div className="donate-blood-container">
+    <div className="py-1 px-4 md:px-10 lg:px-20 mt-16 mb-16 ">
+      <div className="donate-blood-container ">
         <img
           src={donateBlood}
           alt="donateBlood"
@@ -60,7 +75,12 @@ const DonationCards = () => {
       </div>
 
       {/* Loader */}
-      {showLoader && <div className="text-center">Loading...</div>}
+      {showLoader && (
+        <div className="text-center flex flex-col justify-center items-center h-full">
+          <img src={loadingGif} alt="loading..." />
+          <p>Loading...</p>
+        </div>
+      )}
 
       {/* Render donation cards when data is loaded */}
       {!showLoader && (
