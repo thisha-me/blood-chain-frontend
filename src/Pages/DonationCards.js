@@ -9,12 +9,14 @@ const DonationCards = () => {
   //===================================================================================================
   //fetching data from blockchain for the donation cards
   const { contract } = useContract("0x1C8b6ace2BD3f9A5007c1cf0b06eE531ad3Dd17A");
-  const { data: bloodRequestData, isLoading } = useContractRead(contract, "getAllRequests");
+  const { data: bloodRequestData, isLoading : loading } = useContractRead(contract, "getAllRequests");
   console.log("Wallet Addresses:", bloodRequestData);
   
   let formattedData = []; // Declare formattedData outside of the if block
 
-  if (bloodRequestData) {
+  if(loading){
+    console.log("loading...")
+  } else {
     formattedData = bloodRequestData.map((request) => {
       const [id, name, contactNumber, location, , donationCenter, bloodType, dateTimeObj, ] = request;
       // Extract date and time from the BigNumber hex value
@@ -39,9 +41,36 @@ const DonationCards = () => {
 
     // To display the formatted data in the console
     console.log(formattedData);
-  } else {
-    console.log('Waiting for data...');
   }
+
+  // if (bloodRequestData) {
+  //   formattedData = bloodRequestData.map((request) => {
+  //     const [id, name, contactNumber, location, , donationCenter, bloodType, dateTimeObj, ] = request;
+  //     // Extract date and time from the BigNumber hex value
+  //     const date  = new Date(dateTimeObj.toNumber() * 1000);
+  //     const dateString = date.toLocaleDateString('en-US');
+  //     const timeString = date.toLocaleTimeString('en-US', {
+  //       hour: '2-digit',
+  //       minute: '2-digit'
+  //     });
+    
+  //     return {
+  //       id: id,
+  //       name: name,
+  //       location: location,
+  //       bloodType: bloodType,
+  //       date: dateString,
+  //       time: timeString,
+  //       donationCenter: donationCenter,
+  //       contactNumber: contactNumber,
+  //     };
+  //   });
+
+  //   // To display the formatted data in the console
+  //   console.log(formattedData);
+  // } else {
+  //   console.log('Waiting for data...');
+  // }
   //===================================================================================================
 
   const [selectedRequest, setRequest] = useState(null);
