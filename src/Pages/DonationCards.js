@@ -11,6 +11,7 @@ const DonationCards = () => {
   const [formattedData, setFormattedData] = useState([]);
   const [showLoader, setShowLoader] = useState(true); // State to manage loader visibility
   const [showPopup, setShowPopup] = useState(false);
+  const [selectedRequest, setSelectedRequest] = useState(null);
   
   useEffect(() => {
     if (!loading && bloodRequestData) {
@@ -37,6 +38,11 @@ const DonationCards = () => {
       setShowLoader(false); // Once data is loaded, hide the loader
     }
   }, [bloodRequestData, loading]);
+
+  const handleDonateButtonClick = (request) => {
+    setSelectedRequest(request); // Set selectedRequest when clicking on the "Donate" button
+    setShowPopup(true);
+  };
 
   return (
     <div className="py-1 px-4 md:px-10 lg:px-20 mt-16 mb-16">
@@ -80,10 +86,7 @@ const DonationCards = () => {
               <p className="text-center font-extrabold">{request.bloodType} </p>
               <div className="text-center">
                 <button
-                  onClick={() => {
-                    setRequest(request);
-                    setShowPopup(true);
-                  }}
+                  onClick={() => handleDonateButtonClick(request)}
                   className="my-3 px-4 py-2 button text-backgroundColor  rounded-lg "
                 >
                   Donate
