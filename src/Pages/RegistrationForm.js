@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Web3Button } from "@thirdweb-dev/react";
 
 const RegistrationForm = () => {
     const [formData, setFormData] = useState({
@@ -88,12 +89,21 @@ const RegistrationForm = () => {
 						</select>
 					</div>
 					<div className="text-center">
-						<button
+						{/* <button
 							type="submit"
 							className="text-white text-center px-8 py-2 rounded-md button"
 						>
 							Register
-						</button>
+						</button> */}
+
+                        <Web3Button
+                            contractAddress="0x9c4B8619C0Ee1688426fc425bcF0c77616Bb19Cb"
+                            action={(contract) => {
+                                contract.call("registerUser", [formData.username])
+                            }}
+                            >
+                            Register
+                        </Web3Button>
 					</div>
 				</form>
 			</div>
