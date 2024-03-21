@@ -58,6 +58,6 @@ body {
   margin-bottom: 2px;
 }
 
-.connect-wallet-button button :hover{
+.connect-wallet-button :hover{
   background-color:#f0f0f0; 
 }
