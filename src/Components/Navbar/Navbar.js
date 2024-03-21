@@ -81,6 +81,8 @@ const Navbar = () => {
             : "text-textColor hover:text-mainColorLighter"
             }`}
           onClick={() => handleNavLinkClick("/")}
+          onClickCapture={displayNavbar}
+
         >
           Home
         </Link>
@@ -92,6 +94,8 @@ const Navbar = () => {
             : "text-textColor hover:text-mainColorLighter"
             }`}
           onClick={() => handleNavLinkClick("/donate")}
+          onClickCapture={displayNavbar}
+
         >
           Donate
         </Link>
@@ -103,6 +107,7 @@ const Navbar = () => {
             : "text-textColor hover:text-mainColorLighter"
             }`}
           onClick={() => handleNavLinkClick("/request")}
+          onClickCapture={displayNavbar}
         >
           Request
         </Link>
@@ -114,6 +119,8 @@ const Navbar = () => {
             : "text-textColor hover:text-mainColorLighter"
             }`}
           onClick={() => handleNavLinkClick("/profile")}
+          onClickCapture={displayNavbar}
+
         >
           Profile
         </Link>
@@ -122,7 +129,10 @@ const Navbar = () => {
         <Link
           onClick={() => {
             call();
+            
           }}
+          onClickCapture={displayNavbar}
+
         >
           <ConnectWallet
             theme={"light"}
