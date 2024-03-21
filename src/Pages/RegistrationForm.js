@@ -97,9 +97,9 @@ const RegistrationForm = () => {
 						</button> */}
 
                         <Web3Button
-                            contractAddress="0x9c4B8619C0Ee1688426fc425bcF0c77616Bb19Cb"
+                            contractAddress="0x2721d46144702600fa700548B2E98D1d59896CAa"
                             action={(contract) => {
-                                contract.call("registerUser", [formData.username])
+                                contract.call("registerUser", [formData.username, formData.age, formData.contactNum, formData.bloodType])
                             }}
                             >
                             Register
