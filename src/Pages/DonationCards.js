@@ -18,6 +18,64 @@ const DonationCards = () => {
   const [showLoader, setShowLoader] = useState(true); // State to manage loader visibility
   const [showPopup, setShowPopup] = useState(false);
   const [selectedRequest, setSelectedRequest] = useState(null);
+  const [sortedRequests, setSortedRequests] = useState([...formattedData]);
+  const [isAscending, setIsAscending] = useState(true);
+  const [selectedBloodType, setBloodType] = useState(null);
+
+
+  const filterRequests = () => {
+    if (selectedBloodType) {
+      return sortedRequests.filter(
+        (request) => request.bloodType === selectedBloodType
+      );
+    }
+    return sortedRequests;
+  };
+
+  const convertToDateObject = (dateString, timeString) => {
+    const dateParts = dateString.split("/");
+    const timeParts = timeString.split(" ");
+    const year = parseInt(dateParts[2]);
+    const month = parseInt(dateParts[1]) - 1;
+    const day = parseInt(dateParts[0]);
+    const hours = parseInt(timeParts[0].split(":")[0]);
+    const minutes = parseInt(timeParts[0].split(":")[1]);
+    return new Date(year, month, day, hours, minutes);
+  };
+
+  const sortRequestsByDateAndTime = () => {
+    const sortedData = [...sortedRequests];
+
+    sortedData.sort((a, b) => {
+      const dateA = convertToDateObject(a.date, a.time);
+      const dateB = convertToDateObject(b.date, b.time);
+      return dateA - dateB;
+    });
+
+    if (isAscending) {
+      sortedData.sort((a, b) => {
+        const timeA = new Date(a.time).getTime();
+        const timeB = new Date(b.time).getTime();
+
+        return timeA - timeB;
+      });
+    } else {
+      sortedData.sort((a, b) => {
+        const timeA = new Date(a.time).getTime();
+        const timeB = new Date(b.time).getTime();
+
+        return timeB - timeA;
+      });
+    }
+
+    setSortedRequests(sortedData);
+
+    setIsAscending(!isAscending);
+  };
+
+  const resetSorting = () => {
+    setSortedRequests([...formattedData]);
+  };
 
   useEffect(() => {
     if (!loading && bloodRequestData) {
@@ -60,8 +118,8 @@ const DonationCards = () => {
   };
 
   const shortenID = (id) => {
-    if (id.length <= 5) return id; // If ID length is less than or equal to 4, return as it is
-    return id.slice(0, 5) + "......" + id.slice(-5); // Otherwise, return shortened ID
+    if (id.length <= 5) return id; 
+    return id.slice(0, 5) + "......" + id.slice(-5); 
   };
 
   return (
@@ -78,26 +136,58 @@ const DonationCards = () => {
           className="flex items-center w-1/3 md:w-1/3 lg:w-1/6 ml-4 md:ml-10 lg:ml-20"
         />
       </div>
-
-      {/* Loader */}
-      {showLoader && (
-        <div className="text-center flex flex-col justify-center items-center h-full">
-          <img src={loadingGif} alt="loading..." />
-          <p>Loading...</p>
-        </div>
-      )}
-
-      {/* Render donation cards when data is loaded */}
-      {!showLoader && (
+      
         <div className="mb-10 flex flex-col md:flex-row items-center justify-center md:w-auto gap-32">
           <p className="text-4xl font-bold  md:mb-20 md:w-auto">
             Currently Received Requests
           </p>
           <div className="grid grid-cols-1 md:grid-cols-1 gap-5 md:w-auto">
-            {/* Your sorting and filtering buttons */}
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-5 md:w-auto">
+          <button
+            className=" button text-backgroundColor flex min-w-[200px] justify-content: flex-start align-items: center px-4 py-2 bg-primaryColor hover:secondaryColor text-bgColor1 rounded mx-2 max-h-[38px]"
+            onClick={sortRequestsByDateAndTime}
+            onDoubleClick={resetSorting}
+          >
+            Sort by Date and Time
+          </button>
+
+          <select
+            value={selectedBloodType}
+            onChange={(e) => setBloodType(e.target.value)}
+            className="border border-bgColor2 px-2 py-1 rounded mx-2 md:w-auto min-w-[200px]"
+          >
+            <option disabled selected>
+              Select Blood Type
+            </option>
+            <option value="">ALL</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+          </select>
+        </div>
+      
           </div>
         </div>
-      )}
+     
+
+      {/* Loader */}
+      {showLoader && (
+  <div className=" top-10 left-0 w-full flex justify-center items-start p-4 h-screen">
+    <div className="text-center">
+      <img src={loadingGif} alt="loading..." />
+      <p>Loading...</p>
+    </div>
+  </div>
+)}
+
+
+      {/* Render donation cards when data is loaded */}
+      
 
       {/* Render donation cards when data is loaded */}
       {!showLoader && (
