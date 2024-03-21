@@ -5,7 +5,17 @@ import { useState } from "react";
 import {Link} from "react-router-dom";
 
 const RegistrationForm = () => {
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({
+        username : '',
+        bday : '',
+        contactno : '',
+        address: '',
+        sex : '',
+        email : '',
+        weight: '',
+        height : '',
+        bloodtype : ''
+    });
     const [step, setStep] = useState(1);
 
     const handleRegister = () => {
