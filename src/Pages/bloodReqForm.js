@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Web3Button } from "@thirdweb-dev/react";
 
 const BloodReqForm = () => {
 	const [formData, setFormData] = useState({
@@ -127,19 +128,26 @@ const BloodReqForm = () => {
 						</select>
 					</div>
 					<div className="text-center">
-						<button
-							type="submit"
-							className="text-white text-center px-8 py-2 rounded-md button"
-
+						<Web3Button
+							contractAddress="0x1C8b6ace2BD3f9A5007c1cf0b06eE531ad3Dd17A"
+							action={(contract) => {
+								contract.call("submitBloodReq", [
+									formData.pname,
+									formData.contactNum,
+									formData.district,
+									formData.province,
+									formData.donationCenter,
+									formData.bloodType
+								]);
+							}}
 						>
 							Submit
-						</button>
+						</Web3Button>
 					</div>
 				</form>
 			</div>
 		</div>
 	)
-
 }
 
 const provinces = [

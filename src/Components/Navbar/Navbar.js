@@ -34,11 +34,6 @@ const Navbar = () => {
     }
   };
 
-  // const connectWallet = async () => {
-  //   console.log('Connected to MetaMask:', address);
-
-  // };
-
   const [activeNavLink, setActiveNavLink] = useState(null);
   const [showShadow, setShowShadow] = useState(false);
 
@@ -139,20 +134,14 @@ const Navbar = () => {
           Profile
         </Link>
 
-        <div className="connect-wallet-button">
-          <Link
-            onClick={() => {
-              call();
-            }}
-            onClickCapture={displayNavbar}
-          >
-            <ConnectWallet theme={"light"} 
-            modalSize={"wide"} 
-            style={{ height: "50px" }}
-            />
-          </Link>
-        
-        </div>
+        <Link>
+          <ConnectWallet
+            theme={"light"}
+            modalSize={"wide"}
+          />
+        </Link>
+
+
         <button
           className="navbar-btn navbar-close-btn md:hidden"
           onClick={displayNavbar}

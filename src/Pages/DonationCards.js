@@ -1,77 +1,26 @@
-import React, { useState } from "react";
+/* eslint-disable no-undef */
+import React, { useState, useEffect } from "react";
 import donateBlood from "../Images/Rectangle 53.png";
 import "../Styles/DonationCard.css";
 import statement from "../Images/statement.png";
-
-const requestData = [
-  {
-    id: "2014",
-    name: "Dew",
-    location: "Matara",
-    bloodType: "A+",
-    date: "20/04/2024",
-    time: "10:00 AM",
-    donationCenter: "Matara Hospital",
-    contactNumber: "1234567890",
-  },
-  {
-    id: "2015",
-    name: "John",
-    location: "Colombo",
-    bloodType: "B-",
-    date: "15/05/2024",
-    time: "11:30 AM",
-    donationCenter: "Colombo Hospital",
-    contactNumber: "9876543210",
-  },
-  {
-    id: "2016",
-    name: "Jane",
-    location: "Galle",
-    bloodType: "O+",
-    date: "10/06/2024",
-    time: "02:15 PM",
-    donationCenter: "Galle Hospital",
-    contactNumber: "5678901234",
-  },
-  {
-    id: "2017",
-    name: "Sarah",
-    location: "Kandy",
-    bloodType: "AB+",
-    date: "25/07/2024",
-    time: "09:45 AM",
-    donationCenter: "Kandy Hospital",
-    contactNumber: "4321098765",
-  },
-  {
-    id: "2018",
-    name: "Mike",
-    location: "Negombo",
-    bloodType: "A-",
-    date: "30/08/2024",
-    time: "04:20 PM",
-    donationCenter: "Negombo Hospital",
-    contactNumber: "6789012345",
-  },
-  {
-    id: "2019",
-    name: "Mike",
-    location: "Negombo",
-    bloodType: "A-",
-    date: "30/01/2024",
-    time: "04:20 PM",
-    donationCenter: "Negombo Hospital",
-    contactNumber: "6789012345",
-  },
-];
+import { useContract, useContractRead } from "@thirdweb-dev/react";
+import loadingGif from "../assets/Rolling-1s-157px.gif";
 
 const DonationCards = () => {
-  const [selectedRequest, setRequest] = useState(null);
+  const { contract } = useContract(
+    "0x1C8b6ace2BD3f9A5007c1cf0b06eE531ad3Dd17A"
+  );
+  const { data: bloodRequestData, isLoading: loading } = useContractRead(
+    contract,
+    "getAllRequests"
+  );
+  const [formattedData, setFormattedData] = useState([]);
+  const [showLoader, setShowLoader] = useState(true); // State to manage loader visibility
   const [showPopup, setShowPopup] = useState(false);
-  const [selectedBloodType, setBloodType] = useState(null);
-  const [sortedRequests, setSortedRequests] = useState([...requestData]);
+  const [selectedRequest, setSelectedRequest] = useState(null);
+  const [sortedRequests, setSortedRequests] = useState([...formattedData]);
   const [isAscending, setIsAscending] = useState(true);
+  const [selectedBloodType, setBloodType] = useState(null);
 
   const filterRequests = () => {
     if (selectedBloodType) {
@@ -82,54 +31,93 @@ const DonationCards = () => {
     return sortedRequests;
   };
 
-  const convertToDateObject = (dateString, timeString) => {
-    const dateParts = dateString.split("/");
-    const timeParts = timeString.split(" ");
-    const year = parseInt(dateParts[2]);
-    const month = parseInt(dateParts[1]) - 1;
-    const day = parseInt(dateParts[0]);
-    const hours = parseInt(timeParts[0].split(":")[0]);
-    const minutes = parseInt(timeParts[0].split(":")[1]);
-    return new Date(year, month, day, hours, minutes);
-  };
-
   const sortRequestsByDateAndTime = () => {
     const sortedData = [...sortedRequests];
-
+    
     sortedData.sort((a, b) => {
-      const dateA = convertToDateObject(a.date, a.time);
-      const dateB = convertToDateObject(b.date, b.time);
-      return dateA - dateB;
+      const dateA = new Date(a.date + ' ' + a.time);
+      const dateB = new Date(b.date + ' ' + b.time);
+  
+      return isAscending ? dateA - dateB : dateB - dateA;
     });
-
-    if (isAscending) {
-      sortedData.sort((a, b) => {
-        const timeA = new Date(a.time).getTime();
-        const timeB = new Date(b.time).getTime();
-
-        return timeA - timeB;
-      });
-    } else {
-      sortedData.sort((a, b) => {
-        const timeA = new Date(a.time).getTime();
-        const timeB = new Date(b.time).getTime();
-
-        return timeB - timeA;
-      });
-    }
-
+    
     setSortedRequests(sortedData);
-
     setIsAscending(!isAscending);
   };
+  
+  
 
   const resetSorting = () => {
-    setSortedRequests([...requestData]);
+    setSortedRequests([...formattedData]);
+    setIsAscending(true);
   };
 
+  useEffect(() => {
+    if (!loading && bloodRequestData) {
+      const formatted = bloodRequestData.map((request) => {
+        const [
+          id,
+          name,
+          contactNumber,
+          location,
+          ,
+          donationCenter,
+          bloodType,
+          dateTimeObj,
+        ] = request;
+        const date = new Date(dateTimeObj.toNumber() * 1000);
+        const dateString = date.toLocaleDateString("en-US");
+        const timeString = date.toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+        return {
+          id: id,
+          name: name,
+          location: location,
+          bloodType: bloodType,
+          date: dateString,
+          time: timeString,
+          donationCenter: donationCenter,
+          contactNumber: contactNumber,
+        };
+      });
+      formatted.sort((a, b) => {
+        const dateTimeA = new Date(a.date + ' ' + a.time);
+        const dateTimeB = new Date(b.date + ' ' + b.time);
+        return dateTimeB - dateTimeA;
+      });
+
+      setFormattedData(formatted);
+      setSortedRequests(formatted);
+      setShowLoader(false); // Once data is loaded, hide the loader
+    }
+  }, [bloodRequestData, loading]);
+
+  const handleDonateButtonClick = (request) => {
+    setSelectedRequest(request); // Set selectedRequest when clicking on the "Donate" button
+    setShowPopup(true);
+  };
+
+  const shortenID = (id) => {
+    if (id.length <= 5) return id;
+    return id.slice(0, 5) + "......" + id.slice(-5);
+  };
+
+  useEffect(() => {
+    if (selectedBloodType) {
+      const filteredRequests = formattedData.filter(
+        (request) => request.bloodType === selectedBloodType
+      );
+      setSortedRequests(filteredRequests);
+    } else {
+      setSortedRequests(formattedData);
+    }
+  }, [selectedBloodType, formattedData]);
+
   return (
-    <div className="py-1 px-4 md:px-10 lg:px-20 mt-16 mb-16">
-      <div className="donate-blood-container">
+    <div className="py-1 px-4 md:px-10 lg:px-20 mt-16 mb-16 ">
+      <div className="donate-blood-container ">
         <img
           src={donateBlood}
           alt="donateBlood"
@@ -148,59 +136,71 @@ const DonationCards = () => {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-1 gap-5 md:w-auto">
-          <button
-            className=" button text-backgroundColor flex min-w-[200px] justify-content: flex-start align-items: center px-4 py-2 bg-primaryColor hover:secondaryColor text-bgColor1 rounded mx-2 max-h-[38px]"
-            onClick={sortRequestsByDateAndTime}
-            onDoubleClick={resetSorting}
-          >
-            Sort by Date and Time
-          </button>
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-5 md:w-auto">
+            <button
+              className=" button text-backgroundColor flex min-w-[200px] justify-content: flex-start align-items: center px-4 py-2 bg-primaryColor hover:secondaryColor text-bgColor1 rounded mx-2 max-h-[38px]"
+              onClick={sortRequestsByDateAndTime}
+              onDoubleClick={resetSorting}
+            >
+              Sort by Date and Time
+            </button>
 
-          <select
-            value={selectedBloodType}
-            onChange={(e) => setBloodType(e.target.value)}
-            className="border border-bgColor2 px-2 py-1 rounded mx-2 md:w-auto min-w-[200px]"
-          >
-            <option disabled selected>
-              Select Blood Type
-            </option>
-            <option value="">ALL</option>
-            <option value="A+">A+</option>
-            <option value="A-">A-</option>
-            <option value="B+">B+</option>
-            <option value="B-">B-</option>
-            <option value="AB+">AB+</option>
-            <option value="AB-">AB-</option>
-            <option value="O+">O+</option>
-            <option value="O-">O-</option>
-          </select>
+            <select
+              value={selectedBloodType}
+              onChange={(e) => setBloodType(e.target.value)}
+              className="border border-bgColor2 px-2 py-1 rounded mx-2 md:w-auto min-w-[200px]"
+            >
+              <option disabled selected>
+                Select Blood Type
+              </option>
+              <option value="">ALL</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+            </select>
+          </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-10 px-20 md:px-20 lg:px-56 mb-10">
-        {filterRequests().map((request) => (
-          <div key={request.id} className="shadow-md border rounded-lg p-4">
-            <p className="font-bold">Request ID : {request.id}</p>
-            <p>Name : {request.name}</p>
-            <p>Location : {request.location}</p>
-            <p className="text-center">Blood Type </p>
-            <p className="text-center font-extrabold">{request.bloodType} </p>
-            <div className="text-center">
-              <button
-                onClick={() => {
-                  setRequest(request);
-                  setShowPopup(true);
-                }}
-                className="my-3 px-4 py-2 button text-backgroundColor  rounded-lg "
-              >
-                Donate
-              </button>
-            </div>
-            <p className="text-right text-xs">Time : {request.time}</p>
-            <p className="text-right text-xs">Date : {request.date}</p>
+      {/* Loader */}
+      {showLoader && (
+        <div className=" top-10 left-0 w-full flex justify-center items-start p-4 h-screen">
+          <div className="text-center">
+            <img src={loadingGif} alt="loading..." />
+            <p>Loading...</p>
           </div>
-        ))}
-      </div>
+        </div>
+      )}
+
+      {/* Render donation cards when data is loaded */}
+      {!showLoader && (
+        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-10 px-20 md:px-20 lg:px-56 mb-10">
+          {filterRequests().map((request) => (
+            <div key={request.id} className="shadow-md border rounded-lg p-4">
+              <p className="font-bold">Request ID : {shortenID(request.id)}</p>
+              <p>Name : {request.name}</p>
+              <p>Location : {request.location}</p>
+              <p className="text-center">Blood Type </p>
+              <p className="text-center font-extrabold">{request.bloodType} </p>
+              <div className="text-center">
+                <button
+                  onClick={() => handleDonateButtonClick(request)}
+                  className="my-3 px-4 py-2 button text-backgroundColor  rounded-lg "
+                >
+                  Donate
+                </button>
+              </div>
+              <p className="text-right text-xs">Time : {request.time}</p>
+              <p className="text-right text-xs">Date : {request.date}</p>
+            </div>
+          ))}
+        </div>
+      )}
 
       {showPopup && (
         <div className="fixed top-0 left-0 w-full h-full bg-secondaryColor bg-opacity-60 flex items-center justify-center">
