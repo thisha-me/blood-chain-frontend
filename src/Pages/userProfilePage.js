@@ -21,6 +21,28 @@ const UserProfile = () => {
   );
   console.log(activeRequestData);
 
+  // Check if activeRequestData is defined
+  if (activeRequestData) {
+    // Extracting values from activeRequestData array
+    const [userId, username, contactNumber, district, province, city, bloodType, dateTimeObj, status] = activeRequestData;
+    const date = new Date(dateTimeObj.toNumber() * 1000);
+    const dateString = date.toLocaleDateString("en-US");
+    const timeString = date.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
+    // Creating userData object
+    const activeReqDataArray = {
+      userId: userIdElement,
+      bloodType: bloodType,
+      date: dateString
+    };
+
+    console.log(activeReqDataArray);
+  } else {
+    console.log("activeRequestData is undefined or null");
+  }
 
 
   const userData = {
