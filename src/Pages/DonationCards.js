@@ -31,28 +31,21 @@ const DonationCards = () => {
     return sortedRequests;
   };
 
-  const convertToDateTime = (dateString, timeString) => {
-    const [day, month, year] = dateString.split("/");
-    const [hours, minutes] = timeString.split(":");
-    return new Date(year, month - 1, day, hours, minutes);
-  };
-
   const sortRequestsByDateAndTime = () => {
     const sortedData = [...sortedRequests];
-
+    
     sortedData.sort((a, b) => {
-      const dateA = convertToDateTime(a.date, a.time);
-      const dateB = convertToDateTime(b.date, b.time);
-      return dateB - dateA;
+      const dateA = new Date(a.date + ' ' + a.time);
+      const dateB = new Date(b.date + ' ' + b.time);
+  
+      return isAscending ? dateA - dateB : dateB - dateA;
     });
-
-    if (!isAscending) {
-      sortedData.reverse();
-    }
-
+    
     setSortedRequests(sortedData);
     setIsAscending(!isAscending);
   };
+  
+  
 
   const resetSorting = () => {
     setSortedRequests([...formattedData]);
@@ -90,9 +83,9 @@ const DonationCards = () => {
         };
       });
       formatted.sort((a, b) => {
-        const dateA = new Date(a.date);
-        const dateB = new Date(b.date);
-        return dateB - dateA;
+        const dateTimeA = new Date(a.date + ' ' + a.time);
+        const dateTimeB = new Date(b.date + ' ' + b.time);
+        return dateTimeB - dateTimeA;
       });
 
       setFormattedData(formatted);
