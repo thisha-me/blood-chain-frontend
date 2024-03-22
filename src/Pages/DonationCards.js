@@ -213,7 +213,7 @@ const DonationCards = () => {
             </button>
 
             <div className="text-2xl flex justify-center font-bold mb-4 md:mb-8 gap-4">
-              Recipient's <div className="text-primaryColor">Details</div>
+              Recipient&apos;s <div className="text-mainColor">Details</div>
             </div>
 
             <div className="font-bold grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
