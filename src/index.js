@@ -15,10 +15,7 @@ import Registration from './Pages/RegistrationForm';
 
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 
-import { ConnectWallet, Web3Button, useAddress, useContract, useContractRead, useDisconnect } from "@thirdweb-dev/react";
-import { ThirdwebProvider, coinbaseWallet, embeddedWallet, metamaskWallet, rainbowWallet, smartWallet, trustWallet, walletConnect, localWallet } from "@thirdweb-dev/react";
-
-const activeChain = "mumbai";
+import { ThirdwebProvider, coinbaseWallet, embeddedWallet, metamaskWallet, walletConnect, localWallet } from "@thirdweb-dev/react";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -79,20 +76,12 @@ const router = createBrowserRouter([
               <Footer/> 
             </>
   }
-
-
 ]);
-
-const smartWalletConfig = {
-  factoryAddress: "0x675245C4301D4C69D563E9cF81e6F31D3a18D44C",
-  gasless: true,
-};
 
 root.render(
   <ThirdwebProvider
       activeChain="mumbai"
       clientId="18f168f4642bb2154147980a5db8cafd"
-      // locale={en()}
       supportedWallets={[
         metamaskWallet(),
         coinbaseWallet({ recommended: true }),
