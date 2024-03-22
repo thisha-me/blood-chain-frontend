@@ -11,7 +11,7 @@ const UserProfile = () => {
   const [showPopup, setShowPopup] = useState(false);
 
   const address = useAddress();
-  const userIdElement = address ? <p>{truncateAddress(address)}</p> : null;
+  const userIdElement = address ? <span>{truncateAddress(address)}</span> : null;
 
   const { contract } = useContract("0x1C8b6ace2BD3f9A5007c1cf0b06eE531ad3Dd17A");
   const { data: activeRequestData, isLoading: loading } = useContractRead(
@@ -20,6 +20,8 @@ const UserProfile = () => {
     [address]
   );
   console.log(activeRequestData);
+
+  let activeReqDataArray = [];
 
   // Check if activeRequestData is defined
   if (activeRequestData) {
@@ -33,7 +35,7 @@ const UserProfile = () => {
     });
 
     // Creating userData object
-    const activeReqDataArray = {
+    activeReqDataArray = {
       userId: userIdElement,
       bloodType: bloodType,
       date: dateString
@@ -62,6 +64,8 @@ const UserProfile = () => {
       { id: 'J9KL0MN', type: 'request', bloodType: 'AB+', date: '2024-03-20', urgency: 'Low', location: 'Hospital Z', status: 'Pending', number: 3 },
     ]
   };
+
+  console.log(userData)
 
   const handleButtonClick = (index, type) => {
     if (type === 'donation') {
@@ -141,27 +145,23 @@ const UserProfile = () => {
               Active Requests
             </div>
             <div className="flex flex-wrap">
-              {userData.history.map((item, index) => (
-                item.type === 'request' && (
-                  <div className="font-medium text-base rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3 max-h-90 max-w-90" key={index}
-                    style={{ flexBasis: 'calc(33.33% - 16px)' }}>
-                    <div>
-                      Request ID : <span className="font-bold text-base text-black ">{item.id}</span>
-                    </div>
-                    <div>
-                      Blood Type : <span className="font-bold text-base text-black">{item.bloodType}</span>
-                    </div>
-                    <div>
-                      Date : <span className="font-bold text-base text-black">{item.date}</span>
-                    </div>
-                    <div>
-                      <button onClick={() => {
-                        setShowPopup(true);
-                      }} className="my-3 px-4 py-2 button text-backgroundColor  rounded-lg ">Full fill request</button>
-                    </div>
-                  </div>
-                )
-              ))}
+              <div className="font-medium text-base rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3 max-h-90 max-w-90"
+                style={{ flexBasis: 'calc(33.33% - 16px)' }}>
+                <div>
+                  Request ID : <span className="font-bold text-base text-black ">{activeReqDataArray.userId}</span>
+                </div>
+                <div>
+                  Blood Type : <span className="font-bold text-base text-black">{activeReqDataArray.bloodType}</span>
+                </div>
+                <div>
+                  Date : <span className="font-bold text-base text-black">{activeReqDataArray.date}</span>
+                </div>
+                <div>
+                  <button onClick={() => {
+                    setShowPopup(true);
+                  }} className="my-3 px-4 py-2 button text-backgroundColor  rounded-lg ">Full fill request</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
