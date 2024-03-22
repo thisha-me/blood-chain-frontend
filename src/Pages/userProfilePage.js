@@ -10,9 +10,18 @@ const UserProfile = () => {
   const [selectedRequestIndex, setSelectedRequestIndex] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
 
-
   const address = useAddress();
   const userIdElement = address ? <p>{truncateAddress(address)}</p> : null;
+
+  const { contract } = useContract("0x1C8b6ace2BD3f9A5007c1cf0b06eE531ad3Dd17A");
+  const { data: activeRequestData, isLoading: loading } = useContractRead(
+    contract,
+    "getBloodReqById",
+    [address]
+  );
+  console.log(activeRequestData);
+
+
 
   const userData = {
     userId: userIdElement,
@@ -21,7 +30,8 @@ const UserProfile = () => {
     userEmail: 'john@example.com',
     numberOfDonations: 5,
     numberOfRequests: 5,
-    history: [
+    history: 
+    [
       { id: 'D123', type: 'donation', bloodType: 'A+', date: '2024-01-01', time: '10:00', location: 'Hospital A' },
       { id: 'D456', type: 'donation', bloodType: 'B-', date: '2024-01-15', time: '11:00', location: 'Hospital B' },
       { id: 'D789', type: 'donation', bloodType: 'AB+', date: '2024-02-01', time: '09:00', location: 'Hospital C' },
