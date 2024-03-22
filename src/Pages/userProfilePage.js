@@ -147,7 +147,7 @@ const UserProfile = () => {
                       Blood Type : <span className="font-bold text-base text-black">{item.bloodType}</span>
                     </div>
                     <div>
-                      Urgency : <span className="font-bold text-base text-black">{item.urgency}</span>
+                      Date : <span className="font-bold text-base text-black">{item.date}</span>
                     </div>
                     <div>
                       <button onClick={() => {
