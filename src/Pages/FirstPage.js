@@ -3,7 +3,7 @@ import AboutSection from '../Components/AboutSection';
 import InstructionSection from '../Components/InstructionSection';
 import PointSection from '../Components/PointSection';
 import RegistrationSection from '../Components/RegistrationSection';
-import WelcomeSection from '../Components/Welcome';
+import WelcomeSection from '../Components/WelcomeSection';
 import React from 'react';
 
 
