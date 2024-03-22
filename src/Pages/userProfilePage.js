@@ -16,19 +16,20 @@ const UserProfile = () => {
   // Check if the address is available before using it
   const userIdElement = address ? <p>{truncateAddress(address)}</p> : null;
 
-  const { contract } = useContract("0x2721d46144702600fa700548B2E98D1d59896CAa");
+  const { contract } = useContract("0xfCCcEaaa2d9D6E8084674F76F50c07D98185753c");
   const { data: userDataArray, isLoading } = useContractRead(contract, "getUserDetailsById", [address]);
   console.log(userDataArray);
   // Check if userDataArray is defined and not empty before accessing its first element
   const username = userDataArray?.[0];
   const contactNo = userDataArray?.[3];
+  const email = userDataArray?.[4];
 
 
   const userData = {
     userId: userIdElement,
     username: username,
     contactNo: contactNo,
-    userEmail: 'john@example.com',
+    userEmail: email,
     numberOfDonations: 5,
     numberOfRequests: 5,
     history: [

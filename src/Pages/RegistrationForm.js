@@ -104,9 +104,9 @@ const RegistrationForm = () => {
 					</div>
 					<div className="text-center">
                         <Web3Button
-                            contractAddress="0x2721d46144702600fa700548B2E98D1d59896CAa"
+                            contractAddress="0xfCCcEaaa2d9D6E8084674F76F50c07D98185753c"
                             action={(contract) => {
-                                contract.call("registerUser", [formData.username, formData.age, formData.contactNum, formData.bloodType])
+                                contract.call("registerUser", [formData.username, formData.age, formData.contactNum, formData.email, formData.bloodType])
                             }}
                             >
                             Register
