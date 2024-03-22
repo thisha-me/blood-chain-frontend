@@ -14,9 +14,7 @@ function FirstPage() {
         <AboutSection/>
         <InstructionSection/>
         <RegistrationSection/>
-      </>
-  
-      
+      </>      
     );
   }
   
