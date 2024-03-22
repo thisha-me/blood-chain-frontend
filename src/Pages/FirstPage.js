@@ -1,5 +1,5 @@
 import '../App.css';
-import AboutSection from '../Components/AboutSection';
+import AboutSection from '../Components/About';
 import InstructionSection from '../Components/InstructionSection';
 import PointSection from '../Components/PointSection';
 import RegistrationSection from '../Components/RegistrationSection';
