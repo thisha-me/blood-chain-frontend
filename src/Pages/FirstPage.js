@@ -8,16 +8,15 @@ import React from 'react';
 
 
 function FirstPage() {
-    return (
-      <>
-        <WelcomeSection/>
-        <PointSection/>
-        <AboutSection/>
-        <InstructionSection/>
-        <RegistrationSection/>
-      </>      
-    );
-  }
-  
-  export default FirstPage;
-  
+  return (
+    <>
+      <WelcomeSection />
+      <PointSection />
+      <AboutSection />
+      <InstructionSection />
+      <RegistrationSection />
+    </>
+  );
+}
+
+export default FirstPage;

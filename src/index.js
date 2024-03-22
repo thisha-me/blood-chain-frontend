@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import './output.css';
 
-import FirstPage from './Pages/fristPage';
+import FirstPage from './Pages/FirstPage';
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
 import DonationCards from './Pages/DonationCards';
