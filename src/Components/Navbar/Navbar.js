@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { useRef, useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import "./Navbar.css";
@@ -134,12 +135,16 @@ const Navbar = () => {
           Profile
         </Link>
 
-        <Link>
-          <ConnectWallet
-            theme={"light"}
-            modalSize={"wide"}
-          />
-        </Link>
+        <div className="connect-wallet-button">
+          <Link>
+            <ConnectWallet
+              theme={"light"}
+              modalSize={"wide"}
+            />
+          </Link>
+        </div>
+
+        
 
 
         <button
