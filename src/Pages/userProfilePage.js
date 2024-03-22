@@ -6,8 +6,8 @@ import { truncateAddress } from "../utils/truncateAddress";
 import { useAddress} from "@thirdweb-dev/react";
 
 const UserProfile = () => {
-  const [selectedDonation, setSelectedDonation] = useState(null);
-  const [selectedRequestIndex, setSelectedRequestIndex] = useState(null);
+  const [setSelectedDonation] = useState(null);
+  const [setSelectedRequestIndex] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
 
 
