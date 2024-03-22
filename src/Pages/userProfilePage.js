@@ -3,11 +3,11 @@ import image from '../assets/user.png';
 import '../Styles/userProfile.css';
 import Share from '../assets/share.png';
 import { truncateAddress } from "../utils/truncateAddress";
-import { ConnectWallet, Web3Button, useAddress, useContract, useContractRead, useDisconnect } from "@thirdweb-dev/react";
+import { useAddress} from "@thirdweb-dev/react";
 
 const UserProfile = () => {
-  const [selectedDonation, setSelectedDonation] = useState(null);
-  const [selectedRequestIndex, setSelectedRequestIndex] = useState(null);
+  const [setSelectedDonation] = useState(null);
+  const [setSelectedRequestIndex] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
 
 
@@ -47,7 +47,6 @@ const UserProfile = () => {
     } else {
       document.body.style.overflow = "auto";
     }
-
     return () => {
       document.body.style.overflow = "auto";
     };
@@ -143,11 +142,9 @@ const UserProfile = () => {
               >
                 X
               </button>
-
               <div className="text-1xl flex justify-center font-bold mb-4 md:mb-8 gap-4">
                 Do you want to fullfil the request?
               </div>
-
               <div className='flex justify-center mt-3'>
                 <button
                   onClick={() => {
@@ -163,20 +160,13 @@ const UserProfile = () => {
                   No
                 </button>
               </div>
-
-
               <div className="font-bold grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
                 <p className="py-1"></p>
-
               </div>
-
-
             </div>
           </div>
         )}
       </div>
-
-
 
       {/* Scheduled Donations part */}
       <div className="bg-white flex flex-col sm:flex-row xl:w-3/4 w-full  p-4 rounded-2xl relative mt-2">
@@ -213,7 +203,6 @@ const UserProfile = () => {
         </div>
       </div>
 
-
       {/* Donation History part */}
       <div className="bg-white flex flex-col sm:flex-row xl:w-3/4 w-full p-4 rounded-2xl relative mt-2">
         <div className="bg-[#F0F0F0] w-full mr-0 h-58 mb-0 sm:ml-4 rounded-2xl relative max">
@@ -246,7 +235,6 @@ const UserProfile = () => {
         </div>
       </div>
 
-
       {/* Request History part */}
       <div className="bg-white flex flex-col sm:flex-row xl:w-3/4 w-full p-4 rounded-2xl relative mt-2">
         <div className="bg-[#F0F0F0] w-full mr-0 h-58 mb-0 sm:ml-4 rounded-2xl relative max">
@@ -273,7 +261,6 @@ const UserProfile = () => {
                       style={{ border: '4px solid #fff' }} // Adjust padding here
                     >
                       <img src={Share} className=' h-8 w-8' />
-
                     </button>
                   </div>
                 )

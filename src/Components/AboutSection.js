@@ -193,13 +193,13 @@ const AboutSection = () => {
               <div className="">
                 <p className="text-center font-medium"><span className="text-[#DC143C] center-text">Connecting Lives</span></p>
                 <p style={{ fontSize: "15px" }} className="text-justify">
-                  Blood Chain serves as a vital link between blood donors and patients in need, fostering a community dedicated to ensuring that life-saving blood reaches those who require it the most, precisely when they need it. By joining this platform, individuals become part of a network that actively contributes to the well-being of others, highlighting the powerful connection between donors and the recipients of their generosity. The platform's commitment to connecting lives underscores the importance of collective efforts in providing timely and crucial support to those facing medical challenges.
+                  Blood Chain serves as a vital link between blood donors and patients in need, fostering a community dedicated to ensuring that life-saving blood reaches those who require it the most, precisely when they need it. By joining this platform, individuals become part of a network that actively contributes to the well-being of others, highlighting the powerful connection between donors and the recipients of their generosity. The platform&apos;s commitment to connecting lives underscores the importance of collective efforts in providing timely and crucial support to those facing medical challenges.
                 </p>
               </div>
               <div className="">
                 <p className="text-center font-medium"><span className="text-[#DC143C] center-text">Transparency and Trust</span></p>
                 <p style={{ fontSize: "15px" }} className="text-justify">
-                  At the heart of Blood Chain's mission lies a dedication to transparency and ethical practices. The platform prioritizes the safety and quality of every blood donation, implementing a decentralized system to ensure the utmost security of donor and patient data. This commitment fosters trust among participants, reassuring them that their contributions are not only impactful but are also handled with the highest standards of integrity, making the act of donation an ethically sound and reliable endeavor.
+                  At the heart of Blood Chain&apos;s mission lies a dedication to transparency and ethical practices. The platform prioritizes the safety and quality of every blood donation, implementing a decentralized system to ensure the utmost security of donor and patient data. This commitment fosters trust among participants, reassuring them that their contributions are not only impactful but are also handled with the highest standards of integrity, making the act of donation an ethically sound and reliable endeavor.
                 </p>
               </div>
             </div>
