@@ -4,8 +4,15 @@ import "../Styles/userProfile.css";
 import Share from "../assets/share.png";
 import { truncateAddress } from "../utils/truncateAddress";
 
-import {Link} from "react-router-dom";
-import { ConnectWallet, Web3Button, useAddress, useContract, useContractRead, useDisconnect } from "@thirdweb-dev/react";
+import { Link } from "react-router-dom";
+import {
+  ConnectWallet,
+  Web3Button,
+  useAddress,
+  useContract,
+  useContractRead,
+  useDisconnect,
+} from "@thirdweb-dev/react";
 
 const UserProfile = () => {
   const [selectedDonation, setSelectedDonation] = useState(null);
@@ -76,22 +83,28 @@ const UserProfile = () => {
 
   const registrationButton = !isRegistered && (
     <div className="flex items-center justify-center flex-col">
-      <span className="text-2xl font-bold mb-4 mt-10">You are not registered. Please register.</span>
-        <button className="bg-[#8C0909] hover:bg-red-700 text-white font-bold py-2 px-5 rounded-xl hover:scale-105 transition-all duration-500 mb-20">
-          <p className="font-bold text-2xl"><Link to="/registration">Register Now</Link></p>
-        </button>
-      
+      <span className="text-2xl font-bold mb-4 mt-10">
+        You are not registered. Please register.
+      </span>
+      <button className="bg-[#8C0909] hover:bg-red-700 text-white font-bold py-2 px-5 rounded-xl hover:scale-105 transition-all duration-500 mb-20">
+        <p className="font-bold text-2xl">
+          <Link to="/registration">Register Now</Link>
+        </p>
+      </button>
     </div>
-    
   );
 
-  const { data: userDataArray, isLoading } = useContractRead(contract, "getUserDetails",[],{from: address});
+  const { data: userDataArray, isLoading } = useContractRead(
+    contract,
+    "getUserDetails",
+    [],
+    { from: address }
+  );
   console.log(userDataArray);
   // // Check if userDataArray is defined and not empty before accessing its first element
   const username = userDataArray?.[0];
   const contactNo = userDataArray?.[1];
   const email = userDataArray?.[2];
-
 
   const userData = {
     userId: userIdElement,
@@ -184,7 +197,7 @@ const UserProfile = () => {
 
   return (
     <div className="bg-[#F0F0F0] min-h-screen p-5 flex flex-col items-center justify-center mt-16 mb-16">
-            {registrationButton}
+      {registrationButton}
 
       {/* User information part */}
       <div className="bg-white flex flex-col xl:flex-row xl:w-3/4 w-full p-4 rounded-2xl relative items-center justify-center">
@@ -301,15 +314,15 @@ const UserProfile = () => {
               </button>
 
               <div className="text-1xl flex justify-center font-bold mb-4 md:mb-8 ">
-                Do you want to fullfil the request?
+                Do you want to fulfill the request?
               </div>
 
               <div className=" justify-center mt-3">
                 <div className="w-22">
                   <button
-                    onClick={() => {}}
-                    onClickCapture={() => setShowDonorInput(false)}
+                    onClick={() => setShowDonorInput(false)}
                     className="px-2 py-1 button text-backgroundColor rounded-lg mr-4 w-full"
+                    style={{ display: showDonorInput ? "none" : "block" }}
                   >
                     <div>Yes Without Donor</div>
                   </button>
@@ -320,6 +333,7 @@ const UserProfile = () => {
                   <button
                     onClick={() => setShowDonorInput(true)}
                     className="px-2 py-1 button text-backgroundColor rounded-lg mr-4 w-full"
+                    style={{ display: showDonorInput ? "none" : "block" }}
                   >
                     Yes
                   </button>
@@ -331,6 +345,8 @@ const UserProfile = () => {
                     onClick={() => setShowPopup(false)}
                     onClickCapture={() => setShowDonorInput(false)}
                     className="px-2 py-1 w-full bg-transparent hover:bg-secondaryColor text-mainColor hover:text-mainColor border border-mainColor hover:border-transparent rounded"
+                    style={{ display: showDonorInput ? "none" : "block" }}
+
                   >
                     No
                   </button>
@@ -347,7 +363,7 @@ const UserProfile = () => {
                     className="border border-gray-300 px-4 py-2 rounded-lg w-full focus:outline-none focus:border-primaryColor mr-2"
                   />
                   <button
-                    onClick={() => fulfillRequestById(donorId)}
+                    onClick={() => setShowPopup(false)}
                     onClickCapture={() => setShowDonorInput(false)}
                     className="px-4 py-2 bg-transparent hover:bg-secondaryColor text-mainColor hover:text-mainColor border border-mainColor hover:border-transparent rounded"
                   >
