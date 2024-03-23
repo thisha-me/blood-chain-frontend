@@ -27,23 +27,32 @@ const DonationCards = () => {
 
   const filterRequests = () => {
     let filteredRequests = [...sortedRequests];
-  
-    // Filter by blood type
-    if (selectedBloodType) {
+    
+    // If no blood type selected (selectedBloodType is null or empty), filter by district
+    if (!selectedBloodType || selectedBloodType === "") {
+      // Filter by district if selectedDistrict is not empty
+      if (selectedDistrict) {
+        filteredRequests = filteredRequests.filter(
+          (request) => request.location === selectedDistrict
+        );
+      }
+    } else {
+      // Filter by blood type
       filteredRequests = filteredRequests.filter(
         (request) => request.bloodType === selectedBloodType
       );
+      
+      // Filter by district if both blood type and district are selected
+      if (selectedDistrict) {
+        filteredRequests = filteredRequests.filter(
+          (request) => request.location === selectedDistrict
+        );
+      }
     }
-  
-    // Filter by district if both blood type and district are selected
-    if (selectedBloodType && selectedDistrict) {
-      filteredRequests = filteredRequests.filter(
-        (request) => request.location === selectedDistrict
-      );
-    }
-  
+    
     return filteredRequests;
   };
+  
   
 
   const sortRequestsByDateAndTime = () => {
@@ -148,6 +157,26 @@ const DonationCards = () => {
     // Reset district selection when province changes
     setSelectedDistrict('');
   };
+
+  useEffect(() => {
+    // Check if selected blood type is empty ("") or null
+    if (!selectedBloodType || selectedBloodType === "") {
+      // Reset selected province and district
+      setSelectedProvince("");
+      setSelectedDistrict("");
+    }
+    
+    // Filter the requests based on blood type
+    if (selectedBloodType) {
+      const filteredRequests = formattedData.filter(
+        (request) => request.bloodType === selectedBloodType
+      );
+      setSortedRequests(filteredRequests);
+    } else {
+      // If no blood type selected, show all requests
+      setSortedRequests(formattedData);
+    }
+  }, [selectedBloodType, formattedData]);
   
   return (
     <div className="py-1 px-4 md:px-10 lg:px-20 mt-16 mb-16 ">
@@ -203,7 +232,7 @@ const DonationCards = () => {
       onChange={handleProvinceChange}
       className="border border-bgColor2 px-2 py-1 rounded mx-2 md:w-auto min-w-[200px]"
     >
-      <option disabled selected>
+      <option value="" disabled selected>
         Select Province
       </option>
       <option value="">ALL</option>
@@ -220,9 +249,11 @@ const DonationCards = () => {
       onChange={(e) => setSelectedDistrict(e.target.value)}
       className="border border-bgColor2 px-2 py-1 rounded mx-2 md:w-auto min-w-[200px]"
     >
-      <option disabled selected>
+      <option value="" disabled selected>
       Select District
     </option>
+    <option value="">ALL</option>
+
     {/* Use selectedProvince to get the relevant districts */}
     {districts[selectedProvince]?.map((district) => (
       <option key={district} value={district}>
