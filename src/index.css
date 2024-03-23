@@ -48,3 +48,17 @@ body {
 .active-text-red {
   color: red;
 }
+
+.connect-wallet-button button {
+  background-color: transparent;; 
+  color: #DC143C;
+  border: 1px solid #8C0909;
+  height: 50px;
+  border-radius: 0.9rem;
+  margin-bottom: 2px;
+}
+
+.connect-wallet-button :hover{
+  background-color:#f0f0f0; 
+}
+
