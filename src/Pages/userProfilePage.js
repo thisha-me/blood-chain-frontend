@@ -5,6 +5,7 @@ import Share from '../assets/share.png';
 import { truncateAddress } from "../utils/truncateAddress";
 import { useAddress} from "@thirdweb-dev/react";
 
+// State variables for managing selected donation, selected request index, and popup visibility
 const UserProfile = () => {
   const [setSelectedDonation] = useState(null);
   const [setSelectedRequestIndex] = useState(null);
@@ -12,6 +13,7 @@ const UserProfile = () => {
 
 
   const address = useAddress();
+   // Check if the address is available before using it
   const userIdElement = address ? <p>{truncateAddress(address)}</p> : null;
 
   const userData = {
@@ -30,7 +32,7 @@ const UserProfile = () => {
       { id: 'J9KL0MN', type: 'request', bloodType: 'AB+', date: '2024-03-20', urgency: 'Low', location: 'Hospital Z', status: 'Pending', number: 3 },
     ]
   };
-
+  // Function to handle button click event
   const handleButtonClick = (index, type) => {
     if (type === 'donation') {
       setSelectedDonation(userData.history[index]);
@@ -112,6 +114,7 @@ const UserProfile = () => {
                 item.type === 'request' && (
                   <div className="font-medium text-base rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3 max-h-90 max-w-90" key={index}
                     style={{ flexBasis: 'calc(33.33% - 16px)' }}>
+                      {/* Displaying request details */}
                     <div>
                       Request ID : <span className="font-bold text-base text-black ">{item.id}</span>
                     </div>
@@ -121,6 +124,7 @@ const UserProfile = () => {
                     <div>
                       Urgency : <span className="font-bold text-base text-black">{item.urgency}</span>
                     </div>
+                     {/* Button to fulfill the request */}
                     <div>
                       <button onClick={() => {
                         setShowPopup(true);
@@ -133,9 +137,11 @@ const UserProfile = () => {
           </div>
         </div>
 
+        {/* Popup to confirm fulfilling the request */}
         {showPopup && (
           <div className="fixed top-0 left-0 w-full h-full bg-secondaryColor bg-opacity-60 flex items-center justify-center">
             <div className="bg-white p-4 md:p-6 w-full md:w-3/4 lg:w-1/2 max-w-lg h-auto rounded shadow-lg">
+              {/* Close button for the popup */}
               <button
                 onClick={() => setShowPopup(false)}
                 className="ml-auto flex text-center py-1 text-textColor hover:secondaryColor font-bold rounded"
@@ -145,6 +151,8 @@ const UserProfile = () => {
               <div className="text-1xl flex justify-center font-bold mb-4 md:mb-8 gap-4">
                 Do you want to fullfil the request?
               </div>
+
+               {/* Buttons to confirm or cancel the request */}
               <div className='flex justify-center mt-3'>
                 <button
                   onClick={() => {
