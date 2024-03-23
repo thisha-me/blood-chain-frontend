@@ -8,7 +8,7 @@ import loadingGif from "../assets/Rolling-1s-157px.gif";
 
 const DonationCards = () => {
   const { contract } = useContract(
-    "0x1C8b6ace2BD3f9A5007c1cf0b06eE531ad3Dd17A"
+    "0x9D2E2eAf9495f165AFBDCF1031f507A281dF1040"
   );
   const { data: bloodRequestData, isLoading: loading } = useContractRead(
     contract,

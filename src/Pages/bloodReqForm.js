@@ -129,7 +129,7 @@ const BloodReqForm = () => {
 					</div>
 					<div className="text-center">
 						<Web3Button
-							contractAddress="0x1C8b6ace2BD3f9A5007c1cf0b06eE531ad3Dd17A"
+							contractAddress="0x9D2E2eAf9495f165AFBDCF1031f507A281dF1040"
 							action={(contract) => {
 								contract.call("submitBloodReq", [
 									formData.pname,

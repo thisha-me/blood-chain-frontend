@@ -20,7 +20,7 @@ const UserProfile = () => {
   ) : null;
 
   const { contract } = useContract(
-    "0xfCCcEaaa2d9D6E8084674F76F50c07D98185753c"
+    "0x9D2E2eAf9495f165AFBDCF1031f507A281dF1040"
   );
   const { data: activeRequestData, isLoading: loading } = useContractRead(
     contract,
@@ -67,7 +67,7 @@ const UserProfile = () => {
       date: dateString,
     };
 
-    console.log(activeReqDataArray);
+    console.log("active req: ".activeReqDataArray);
   } else {
     console.log("activeRequestData is undefined or null");
   }
@@ -85,12 +85,13 @@ const UserProfile = () => {
     
   );
 
-  const { data: userDataArray, isLoading } = useContractRead(contract, "getUserDetailsById", [address]);
+  const { data: userDataArray, isLoading } = useContractRead(contract, "getUserDetails");
+  console.log("adoooo");
   console.log(userDataArray);
-  // Check if userDataArray is defined and not empty before accessing its first element
+  // // Check if userDataArray is defined and not empty before accessing its first element
   const username = userDataArray?.[0];
-  const contactNo = userDataArray?.[3];
-  const email = userDataArray?.[4];
+  const contactNo = userDataArray?.[1];
+  const email = userDataArray?.[2];
 
 
   const userData = {
