@@ -106,14 +106,15 @@ const UserProfile = () => {
   const username = userDataArray?.[0];
   const contactNo = userDataArray?.[1];
   const email = userDataArray?.[2];
+  const donationNo = parseInt(userDataArray?.[5], 16);
 
   const userData = {
     userId: userIdElement,
     username: username,
     contactNo: contactNo,
     userEmail: email,
-    numberOfDonations: 5,
-    numberOfRequests: 5,
+    numberOfDonations: donationNo,
+    numberOfRequests: 0,
     history: [
       {
         id: "D123",
