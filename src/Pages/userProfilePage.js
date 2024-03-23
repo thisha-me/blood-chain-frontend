@@ -34,7 +34,8 @@ const UserProfile = () => {
     "getBloodReqById",
     [address]
   );
-  console.log(activeRequestData);
+
+  
 
   const fulfillRequestById = async (donorId) => {
     try {
@@ -171,7 +172,7 @@ const UserProfile = () => {
     ],
   };
 
-  console.log(userData);
+
 
   const handleButtonClick = (index, type) => {
     if (type === "donation") {
@@ -382,7 +383,7 @@ const UserProfile = () => {
                   <Web3Button
                     contractAddress="0x9D2E2eAf9495f165AFBDCF1031f507A281dF1040"
                     action={(contract) => {
-                      contract.call("fulfillBloodReq", [{donorId}], { from: address })
+                      contract.call("fulfillBloodReq", [donorId])
                     }}
                   >
                     Confirm
@@ -508,11 +509,10 @@ const UserProfile = () => {
                         <span className="font-bold">Request number </span>{" "}
                         {item.number}
                         <span
-                          className={`absolute right-4 top-1/2 transform -translate-y-1/2 font-bold text-base ${
-                            item.status === "Fulfilled"
-                              ? " text-black "
-                              : " text-gray-300"
-                          }`}
+                          className={`absolute right-4 top-1/2 transform -translate-y-1/2 font-bold text-base ${item.status === "Fulfilled"
+                            ? " text-black "
+                            : " text-gray-300"
+                            }`}
                         >
                           {item.status}
                         </span>
