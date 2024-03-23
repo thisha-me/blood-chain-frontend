@@ -3,14 +3,9 @@ import image from "../assets/user.png";
 import "../Styles/userProfile.css";
 import Share from "../assets/share.png";
 import { truncateAddress } from "../utils/truncateAddress";
-import {
-  ConnectWallet,
-  Web3Button,
-  useAddress,
-  useContract,
-  useContractRead,
-  useDisconnect,
-} from "@thirdweb-dev/react";
+
+import {Link} from "react-router-dom";
+import { ConnectWallet, Web3Button, useAddress, useContract, useContractRead, useDisconnect } from "@thirdweb-dev/react";
 
 const UserProfile = () => {
   const [selectedDonation, setSelectedDonation] = useState(null);
@@ -77,11 +72,33 @@ const UserProfile = () => {
     console.log("activeRequestData is undefined or null");
   }
 
+  const isRegistered = !!address;
+
+  const registrationButton = !isRegistered && (
+    <div className="flex items-center justify-center flex-col">
+      <span className="text-2xl font-bold mb-4 mt-10">You are not registered. Please register.</span>
+        <button className="bg-[#8C0909] hover:bg-red-700 text-white font-bold py-2 px-5 rounded-xl hover:scale-105 transition-all duration-500 mb-20">
+          <p className="font-bold text-2xl"><Link to="/registration">Register Now</Link></p>
+        </button>
+      
+    </div>
+    
+  );
+
+  const { contract } = useContract("0xfCCcEaaa2d9D6E8084674F76F50c07D98185753c");
+  const { data: userDataArray, isLoading } = useContractRead(contract, "getUserDetailsById", [address]);
+  console.log(userDataArray);
+  // Check if userDataArray is defined and not empty before accessing its first element
+  const username = userDataArray?.[0];
+  const contactNo = userDataArray?.[3];
+  const email = userDataArray?.[4];
+
+
   const userData = {
     userId: userIdElement,
-    username: "john_doe",
-    contactNo: "123-456-7890",
-    userEmail: "john@example.com",
+    username: username,
+    contactNo: contactNo,
+    userEmail: email,
     numberOfDonations: 5,
     numberOfRequests: 5,
     history: [
@@ -168,6 +185,8 @@ const UserProfile = () => {
 
   return (
     <div className="bg-[#F0F0F0] min-h-screen p-5 flex flex-col items-center justify-center mt-16 mb-16">
+            {registrationButton}
+
       {/* User information part */}
       <div className="bg-white flex flex-col xl:flex-row xl:w-3/4 w-full p-4 rounded-2xl relative items-center justify-center">
         {/* User Avatar */}
@@ -267,6 +286,7 @@ const UserProfile = () => {
                   </button>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
