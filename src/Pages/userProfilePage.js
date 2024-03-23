@@ -85,7 +85,7 @@ const UserProfile = () => {
     
   );
 
-  const { data: userDataArray, isLoading } = useContractRead(contract, "getUserDetails");
+  const { data: userDataArray, isLoading } = useContractRead(contract, "getUserDetails",[],{from: address});
   console.log(userDataArray);
   // // Check if userDataArray is defined and not empty before accessing its first element
   const username = userDataArray?.[0];
