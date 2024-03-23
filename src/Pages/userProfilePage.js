@@ -303,7 +303,7 @@ const UserProfile = () => {
         </div>
 
         {showPopup && (
-          <div className="fixed top-0 left-0 w-full h-full bg-secondaryColor bg-opacity-60 flex items-center justify-center ">
+          <div className="fixed top-0 left-0 w-full h-full bg-secondaryColor bg-opacity-60 flex items-center justify-center z-10">
             <div className="bg-white p-4 md:p-6 w-full md:w-3/4 lg:w-1/2 max-w-lg h-auto rounded shadow-lg">
               <button
                 onClick={() => setShowPopup(false)}
@@ -319,13 +319,23 @@ const UserProfile = () => {
 
               <div className=" justify-center mt-3">
                 <div className="w-22">
-                  <button
+                  {/* <button
                     onClick={() => setShowDonorInput(false)}
                     className="px-2 py-1 button text-backgroundColor rounded-lg mr-4 w-full"
                     style={{ display: showDonorInput ? "none" : "block" }}
                   >
                     <div>Yes Without Donor</div>
-                  </button>
+                  </button> */}
+                  <Web3Button
+                    onClick={() => setShowDonorInput(false)}
+                    contractAddress="0x9D2E2eAf9495f165AFBDCF1031f507A281dF1040"
+                    action={(contract) => {
+                      contract.call("fulfillBloodReq")
+                    }}
+                  >
+                    Yes Without Donor
+                  </Web3Button>
+
                 </div>
               </div>
               <div className=" justify-center mt-3">
@@ -362,13 +372,21 @@ const UserProfile = () => {
                     placeholder="Enter Donor ID"
                     className="border border-gray-300 px-4 py-2 rounded-lg w-full focus:outline-none focus:border-primaryColor mr-2"
                   />
-                  <button
+                  {/* <button
                     onClick={() => setShowPopup(false)}
                     onClickCapture={() => setShowDonorInput(false)}
                     className="px-4 py-2 bg-transparent hover:bg-secondaryColor text-mainColor hover:text-mainColor border border-mainColor hover:border-transparent rounded"
                   >
                     Confirm
-                  </button>
+                  </button> */}
+                  <Web3Button
+                    contractAddress="0x9D2E2eAf9495f165AFBDCF1031f507A281dF1040"
+                    action={(contract) => {
+                      contract.call("fulfillBloodReq", [{donorId}], { from: address })
+                    }}
+                  >
+                    Confirm
+                  </Web3Button>
                 </div>
               )}
 
