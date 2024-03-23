@@ -20,7 +20,7 @@ const UserProfile = () => {
   ) : null;
 
   const { contract } = useContract(
-    "0x16204c59D2dE5A2A59bc097CD3ED78DEC0c2Ac57"
+    "0xfCCcEaaa2d9D6E8084674F76F50c07D98185753c"
   );
   const { data: activeRequestData, isLoading: loading } = useContractRead(
     contract,
@@ -85,7 +85,6 @@ const UserProfile = () => {
     
   );
 
-  const { contract } = useContract("0xfCCcEaaa2d9D6E8084674F76F50c07D98185753c");
   const { data: userDataArray, isLoading } = useContractRead(contract, "getUserDetailsById", [address]);
   console.log(userDataArray);
   // Check if userDataArray is defined and not empty before accessing its first element
@@ -286,7 +285,6 @@ const UserProfile = () => {
                   </button>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
