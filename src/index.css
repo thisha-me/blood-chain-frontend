@@ -64,6 +64,7 @@ body {
 
 .web3-button button{
   width: 100%;
+  height:33px;
   color: #FFFFFF;
   background-color:var(--secondary-color);
   
