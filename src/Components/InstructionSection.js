@@ -142,10 +142,10 @@ const InstructionSection = () => {
             <br/>
 
             <div className="">
-              <p className="text-center font-medium"><span className="text-[#DC143C] center-text"> Blockchain's Role in Protecting Donor Data:</span></p>
+              <p className="text-center font-medium"><span className="text-[#DC143C] center-text"> Blockchain&apos;s Role in Protecting Donor Data:</span></p>
               <br/>
               <p style={{ fontSize: "15px" }} className="text-justify">
-              Data immutability: Once a donor's medical information is added to the blockchain, it cannot be altered or deleted without the consensus of all participants in the network. This makes it tamper-proof and protects against unauthorized data modification.
+              Data immutability: Once a donor&apos;s medical information is added to the blockchain, it cannot be altered or deleted without the consensus of all participants in the network. This makes it tamper-proof and protects against unauthorized data modification.
               <br/><br/>
               Encryption: Donors can choose to encrypt their most sensitive medical data before storing it on the blockchain. This adds an extra layer of security and ensures that only authorized parties can access it.
               <br/><br/>
