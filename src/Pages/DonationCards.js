@@ -6,46 +6,72 @@ import statement from "../Images/statement.png";
 import { useContract, useContractRead } from "@thirdweb-dev/react";
 import loadingGif from "../assets/Rolling-1s-157px.gif";
 
+const CONTRACT_ADDRESS = "0x53A1F65Ab31E7F971082947fb79D335C77549a9c";
+
 const DonationCards = () => {
-  const { contract } = useContract(
-    "0x1C8b6ace2BD3f9A5007c1cf0b06eE531ad3Dd17A"
-  );
+  const { contract } = useContract(CONTRACT_ADDRESS);
+
   const { data: bloodRequestData, isLoading: loading } = useContractRead(
     contract,
-    "getAllRequests"
+    "getFullFilledRequests",
+    [false]
   );
   const [formattedData, setFormattedData] = useState([]);
   const [showLoader, setShowLoader] = useState(true); // State to manage loader visibility
   const [showPopup, setShowPopup] = useState(false);
   const [selectedRequest, setSelectedRequest] = useState(null);
-  const [sortedRequests, setSortedRequests] = useState([...formattedData]);
+  const [sortedRequests, setSortedRequests] = useState([]);
   const [isAscending, setIsAscending] = useState(true);
   const [selectedBloodType, setBloodType] = useState(null);
+  const [selectedDistrict, setSelectedDistrict] = useState('');
+  const [selectedProvince, setSelectedProvince] = useState('');
+
 
   const filterRequests = () => {
-    if (selectedBloodType) {
-      return sortedRequests.filter(
+    let filteredRequests = [...sortedRequests];
+
+    // If no blood type selected (selectedBloodType is null or empty), filter by district
+    if (!selectedBloodType || selectedBloodType === "") {
+      // Filter by district if selectedDistrict is not empty
+      if (selectedDistrict) {
+        filteredRequests = filteredRequests.filter(
+          (request) => request.location === selectedDistrict
+        );
+      }
+    } else {
+      // Filter by blood type
+      filteredRequests = filteredRequests.filter(
         (request) => request.bloodType === selectedBloodType
       );
+
+      // Filter by district if both blood type and district are selected
+      if (selectedDistrict) {
+        filteredRequests = filteredRequests.filter(
+          (request) => request.location === selectedDistrict
+        );
+      }
     }
-    return sortedRequests;
+
+    return filteredRequests;
   };
+
+
 
   const sortRequestsByDateAndTime = () => {
     const sortedData = [...sortedRequests];
-    
+
     sortedData.sort((a, b) => {
       const dateA = new Date(a.date + ' ' + a.time);
       const dateB = new Date(b.date + ' ' + b.time);
-  
+
       return isAscending ? dateA - dateB : dateB - dateA;
     });
-    
+
     setSortedRequests(sortedData);
     setIsAscending(!isAscending);
   };
-  
-  
+
+
 
   const resetSorting = () => {
     setSortedRequests([...formattedData]);
@@ -115,9 +141,48 @@ const DonationCards = () => {
     }
   }, [selectedBloodType, formattedData]);
 
+  useEffect(() => {
+    if (showPopup) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [showPopup]);
+
+  const handleProvinceChange = (e) => {
+    const selectedProvince = e.target.value;
+    setSelectedProvince(selectedProvince);
+    // Reset district selection when province changes
+    setSelectedDistrict('');
+  };
+
+  useEffect(() => {
+    // Check if selected blood type is empty ("") or null
+    if (!selectedBloodType || selectedBloodType === "") {
+      // Reset selected province and district
+      setSelectedProvince("");
+      setSelectedDistrict("");
+    }
+
+    // Filter the requests based on blood type
+    if (selectedBloodType) {
+      const filteredRequests = formattedData.filter(
+        (request) => request.bloodType === selectedBloodType
+      );
+      setSortedRequests(filteredRequests);
+    } else {
+      // If no blood type selected, show all requests
+      setSortedRequests(formattedData);
+    }
+  }, [selectedBloodType, formattedData]);
+
   return (
     <div className="py-1 px-4 md:px-10 lg:px-20 mt-16 mb-16 ">
-      <div className="donate-blood-container ">
+      <div className="donate-blood-container">
         <img
           src={donateBlood}
           alt="donateBlood"
@@ -163,6 +228,44 @@ const DonationCards = () => {
               <option value="O+">O+</option>
               <option value="O-">O-</option>
             </select>
+
+            <select
+              value={selectedProvince}
+              onChange={handleProvinceChange}
+              className="border border-bgColor2 px-2 py-1 rounded mx-2 md:w-auto min-w-[200px]"
+            >
+              <option value="" disabled selected>
+                Select Province
+              </option>
+              <option value="">ALL</option>
+              {provinces.map((province) => (
+                <option key={province} value={province}>
+                  {province}
+                </option>
+              ))}
+            </select>
+            {/* Select element for districts */}
+            {selectedProvince && (
+              <select
+                value={selectedDistrict}
+                onChange={(e) => setSelectedDistrict(e.target.value)}
+                className="border border-bgColor2 px-2 py-1 rounded mx-2 md:w-auto min-w-[200px]"
+              >
+                <option value="" disabled selected>
+                  Select District
+                </option>
+                <option value="">ALL</option>
+
+                {/* Use selectedProvince to get the relevant districts */}
+                {districts[selectedProvince]?.map((district) => (
+                  <option key={district} value={district}>
+                    {district}
+                  </option>
+                ))}
+              </select>
+            )}
+
+
           </div>
         </div>
       </div>
@@ -179,7 +282,7 @@ const DonationCards = () => {
 
       {/* Render donation cards when data is loaded */}
       {!showLoader && (
-        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-10 px-20 md:px-20 lg:px-56 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-10 px-20 md:px-20 sm:w-full lg:px-56 mb-10">
           {filterRequests().map((request) => (
             <div key={request.id} className="shadow-md border rounded-lg p-4">
               <p className="font-bold">Request ID : {shortenID(request.id)}</p>
@@ -217,13 +320,15 @@ const DonationCards = () => {
             </div>
 
             <div className="font-bold grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
-              <p className="py-1">Recipient Name:</p>
+              <p className="py-1">Recipient Name :</p>
               <p className="py-1">{selectedRequest.name}</p>
-              <p className="py-1">Donation Center:</p>
+              <p className="py-1">District :</p>
               <p className="py-1">{selectedRequest.location}</p>
-              <p className="py-1">Contact Number:</p>
+              <p className="py-1">Donation Center :</p>
+              <p className="py-1">{selectedRequest.donationCenter}</p>
+              <p className="py-1">Contact Number :</p>
               <p className="py-1">{selectedRequest.contactNumber}</p>
-              <p className="py-1">Blood Type:</p>
+              <p className="py-1">Blood Type :</p>
               <p className="py-1">{selectedRequest.bloodType}</p>
             </div>
 
@@ -238,5 +343,29 @@ const DonationCards = () => {
     </div>
   );
 };
+
+const provinces = [
+  'Central',
+  'Eastern',
+  'North Central',
+  'Northern',
+  'North Western',
+  'Sabaragamuwa',
+  'Southern',
+  'Uva',
+  'Western'
+];
+
+const districts = {
+  'Central': ['Kandy', 'Matale', 'Nuwara Eliya'],
+  'Eastern': ['Ampara', 'Batticaloa', 'Trincomalee'],
+  'North Central': ['Anuradhapura', 'Polonnaruwa'],
+  'Northern': ['Jaffna', 'Kilinochchi', 'Mannar', 'Mullaitivu', 'Vavuniya'],
+  'North Western': ['Kurunegala', 'Puttalam'],
+  'Sabaragamuwa': ['Kegalle', 'Ratnapura'],
+  'Southern': ['Galle', 'Hambantota', 'Matara'],
+  'Uva': ['Badulla', 'Monaragala'],
+  'Western': ['Colombo', 'Gampaha', 'Kalutara']
+}
 
 export default DonationCards;
