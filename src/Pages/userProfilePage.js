@@ -1,24 +1,19 @@
 import React, { useEffect, useState } from "react";
 import image from "../assets/user.png";
 import "../Styles/userProfile.css";
-import Share from "../assets/share.png";
 import { truncateAddress } from "../utils/truncateAddress";
 
 const CONTRACT_ADDRESS = "0x53A1F65Ab31E7F971082947fb79D335C77549a9c";
 
 import { Link } from "react-router-dom";
 import {
-  ConnectWallet,
   Web3Button,
   useAddress,
   useContract,
   useContractRead,
-  useDisconnect,
 } from "@thirdweb-dev/react";
 
 const UserProfile = () => {
-  const [selectedDonation, setSelectedDonation] = useState(null);
-  const [selectedRequestIndex, setSelectedRequestIndex] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const [showDonorInput, setShowDonorInput] = useState(false);
   const [donorId, setDonorId] = useState("");
@@ -29,7 +24,7 @@ const UserProfile = () => {
 
   const { contract } = useContract(CONTRACT_ADDRESS);
 
-  const { data: activeRequestData, isLoading: loading } = useContractRead(
+  const { data: activeRequestData } = useContractRead(
     contract,
     "getActiveRequest",
     [],
@@ -69,20 +64,24 @@ const UserProfile = () => {
       city,
       bloodType,
       dateTimeObj,
-      status,
     ] = activeRequestData;
     const date = new Date(dateTimeObj.toNumber() * 1000);
     const dateString = date.toLocaleDateString("en-US");
     activeReqDataArray = {
-      userId: userIdElement,
+      userId: userId,
       bloodType: bloodType,
       date: dateString,
+      contactNo: contactNumber,
+      district: district,
+      province: province,
+      city: city,
+      username: username,
     };
   }
 
-  
 
-  const { data: userDataArray, isLoading } = useContractRead(
+
+  const { data: userDataArray } = useContractRead(
     contract,
     "getUserDetails",
     [],
@@ -99,52 +98,34 @@ const UserProfile = () => {
     history: {
       bloodDonations: Array.isArray(userDataArray?.[7])
         ? userDataArray[7].map((donationData) => ({
-            id: donationData[0],
-            bloodType: donationData[6],
-            date: new Date(donationData[7] * 1000).toLocaleDateString("en-US"),
-            time: new Date(donationData[7] * 1000).toLocaleTimeString("en-US", {
-              hour: "2-digit",
-              minute: "2-digit",
-            }),
-            location: donationData[3],
-          }))
+          id: donationData[0],
+          bloodType: donationData[6],
+          date: new Date(donationData[7] * 1000).toLocaleDateString("en-US"),
+          time: new Date(donationData[7] * 1000).toLocaleTimeString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+          }),
+          location: donationData[3],
+        }))
         : [],
       bloodRequests: Array.isArray(userDataArray?.[6])
         ? userDataArray[6].map((requestData) => ({
-            id: requestData[0],
-            bloodType: requestData[6],
-            date: new Date(requestData[7] * 1000).toLocaleDateString("en-US"),
-            time: new Date(requestData[7] * 1000).toLocaleTimeString("en-US", {
-              hour: "2-digit",
-              minute: "2-digit",
-            }),
-            district: requestData[3],
-            location: requestData[5],
-            status: requestData[8],
-          }))
+          id: requestData[0],
+          bloodType: requestData[6],
+          date: new Date(requestData[7] * 1000).toLocaleDateString("en-US"),
+          time: new Date(requestData[7] * 1000).toLocaleTimeString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+          }),
+          district: requestData[3],
+          location: requestData[5],
+          status: requestData[8],
+        }))
         : [],
     },
   };
 
   console.log(userDataArray);
-
-  const handleButtonClick = (index, type) => {
-    if (type === "donation") {
-      setSelectedDonation(userData.history.bloodDonations[index]);
-      setSelectedRequestIndex(null); // Reset selected request
-    } else if (type === "request") {
-      setSelectedRequestIndex(index);
-      setSelectedDonation(null); // Reset selected donation
-    }
-  };
-
-  const fulfillRequestById = async (donorId) => {
-    try {
-      await contract.fulfillBloodReqById(donorId);
-    } catch (error) {
-      console.error("Error fulfilling request:", error);
-    }
-  };
 
   const isRegistered = !!userDataArray?.[0];
 
@@ -231,45 +212,45 @@ const UserProfile = () => {
               Active Requests
             </div>
             {activeReqDataArray.date !== "1/1/1970" && (
-            <div className="flex flex-wrap">
-              <div
-                className="font-medium text-base rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3 max-h-90 max-w-90 "
-                style={{ flexBasis: "calc(33.33% - 16px)" }}
-              >
-                <div>
-                  Request ID :{" "}
-                  <span className="font-bold text-base text-black ">
-                    {activeReqDataArray.userId}
-                  </span>
-                </div>
-                <div>
-                  Blood Type :{" "}
-                  <span className="font-bold text-base text-black">
-                    {activeReqDataArray.bloodType}
-                  </span>
-                </div>
-                <div>
-                  Date :{" "}
-                  <span className="font-bold text-base text-black">
-                    {activeReqDataArray.date}
-                  </span>
-                </div>
-                <div>
-                  <button
-                    onClick={() => {
-                      setShowPopup(true);
-                    }}
-                    className="my-3 px-4 py-2 button text-backgroundColor  rounded-lg "
-                  >
-                    Full fill request
-                  </button>
+              <div className="flex flex-wrap">
+                <div
+                  className="font-medium text-base rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3 max-h-90 max-w-90 "
+                  style={{ flexBasis: "calc(33.33% - 16px)" }}
+                >
+                  <div>
+                    Request ID :{" "}
+                    <span className="font-bold text-base text-black ">
+                      {activeReqDataArray.userId}
+                    </span>
+                  </div>
+                  <div>
+                    Blood Type :{" "}
+                    <span className="font-bold text-base text-black">
+                      {activeReqDataArray.bloodType}
+                    </span>
+                  </div>
+                  <div>
+                    Date :{" "}
+                    <span className="font-bold text-base text-black">
+                      {activeReqDataArray.date}
+                    </span>
+                  </div>
+                  <div>
+                    <button
+                      onClick={() => {
+                        setShowPopup(true);
+                      }}
+                      className="my-3 px-4 py-2 button text-backgroundColor  rounded-lg "
+                    >
+                      Full fill request
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
             )}
           </div>
         </div>
-      
+
         {showPopup && (
           <div className="fixed top-0 left-0 w-full h-full bg-secondaryColor bg-opacity-60 flex items-center justify-center z-10">
             <div className="bg-white p-4 md:p-6 w-full md:w-3/4 lg:w-1/2 max-w-lg h-auto rounded shadow-lg">
@@ -295,7 +276,7 @@ const UserProfile = () => {
                       connectWalletProps={{ btnTitle: "Yes Without Donor" }}
                       onClick={() => setShowDonorInput(false)}
 
-                      contractAddress="0x53A1F65Ab31E7F971082947fb79D335C77549a9c"
+                      contractAddress={CONTRACT_ADDRESS}
                       action={(contract) => {
                         contract.call("fulfillBloodReq");
                       }}
@@ -344,7 +325,7 @@ const UserProfile = () => {
 
                     <div className="web3-button">
                       <Web3Button
-                        contractAddress="0x53A1F65Ab31E7F971082947fb79D335C77549a9c"
+                        contractAddress={CONTRACT_ADDRESS}
                         action={(contract) => {
                           contract.call("fulfillBloodReq", [donorId], {
                             from: address,
@@ -428,39 +409,39 @@ const UserProfile = () => {
             </div>
             <div className="flex flex-wrap">
               {userData.history.bloodRequests
-              .reverse()
-              .map((request, index) => (
-                <div
-                  className="font-medium text-base rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3"
-                  key={index}
-                  style={{ flexBasis: "calc(33.33% - 16px)" }}
-                >
-                  <div>
-                    Blood type :{" "}
-                    <span className="font-bold text-base text-black">
-                      {request.bloodType}
-                    </span>
+                .reverse()
+                .map((request, index) => (
+                  <div
+                    className="font-medium text-base rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3"
+                    key={index}
+                    style={{ flexBasis: "calc(33.33% - 16px)" }}
+                  >
+                    <div>
+                      Blood type :{" "}
+                      <span className="font-bold text-base text-black">
+                        {request.bloodType}
+                      </span>
+                    </div>
+                    <div>
+                      Date :{" "}
+                      <span className="font-bold text-base text-black">
+                        {request.date}
+                      </span>
+                    </div>
+                    <div>
+                      District :{" "}
+                      <span className="font-bold text-base text-black">
+                        {request.district}
+                      </span>
+                    </div>
+                    <div>
+                      Location :{" "}
+                      <span className="font-bold text-base text-black">
+                        {request.location}
+                      </span>
+                    </div>
                   </div>
-                  <div>
-                    Date :{" "}
-                    <span className="font-bold text-base text-black">
-                      {request.date}
-                    </span>
-                  </div>
-                  <div>
-                    District :{" "}
-                    <span className="font-bold text-base text-black">
-                      {request.district}
-                    </span>
-                  </div>
-                  <div>
-                    Location :{" "}
-                    <span className="font-bold text-base text-black">
-                      {request.location}
-                    </span>
-                  </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
         </div>
