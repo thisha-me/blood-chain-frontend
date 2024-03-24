@@ -321,22 +321,19 @@ const UserProfile = () => {
 
               <div className=" justify-center mt-3">
                 <div className="w-22">
-                  {/* <button
-                    onClick={() => setShowDonorInput(false)}
-                    className="px-2 py-1 button text-backgroundColor rounded-lg mr-4 w-full"
-                    style={{ display: showDonorInput ? "none" : "block" }}
-                  >
-                    <div>Yes Without Donor</div>
-                  </button> */}
-                  <Web3Button
-                    onClick={() => setShowDonorInput(false)}
-                    contractAddress="0x9D2E2eAf9495f165AFBDCF1031f507A281dF1040"
-                    action={(contract) => {
-                      contract.call("fulfillBloodReq")
-                    }}
-                  >
-                    Yes Without Donor
-                  </Web3Button>
+                  <div className="web3-button"style={{ display: showDonorInput ? "none" : "block" }}>
+                    <Web3Button
+                      connectWalletProps={{ btnTitle: "Yes Without Donor"}} 
+                      onClick={() => setShowDonorInput(false)}
+                      contractAddress="0x9D2E2eAf9495f165AFBDCF1031f507A281dF1040"
+                      action={(contract) => {
+                        contract.call("fulfillBloodReq")
+                      }}
+                      
+                    >
+                      Yes Without Donor
+                    </Web3Button>
+                  </div>
 
                 </div>
               </div>
@@ -367,28 +364,28 @@ const UserProfile = () => {
 
               {showDonorInput && (
                 <div className="mt-4 flex items-center mt-15">
-                  <input
-                    type="text"
-                    value={donorId}
-                    onChange={(e) => setDonorId(e.target.value)}
-                    placeholder="Enter Donor ID"
-                    className="border border-gray-300 px-4 py-2 rounded-lg w-full focus:outline-none focus:border-primaryColor mr-2"
-                  />
-                  {/* <button
-                    onClick={() => setShowPopup(false)}
-                    onClickCapture={() => setShowDonorInput(false)}
-                    className="px-4 py-2 bg-transparent hover:bg-secondaryColor text-mainColor hover:text-mainColor border border-mainColor hover:border-transparent rounded"
-                  >
-                    Confirm
-                  </button> */}
-                  <Web3Button
-                    contractAddress="0x9D2E2eAf9495f165AFBDCF1031f507A281dF1040"
-                    action={(contract) => {
-                      contract.call("fulfillBloodReq", [donorId])
-                    }}
-                  >
-                    Confirm
-                  </Web3Button>
+                  <div className="w-full">
+                    <div className="flex justify-center mt-3 mb-5">
+                      <input
+                        type="text"
+                        value={donorId}
+                        onChange={(e) => setDonorId(e.target.value)}
+                        placeholder="Enter Donor ID"
+                        className="border border-gray-300 px-4 py-2 rounded-lg w-full focus:outline-none focus:border-primaryColor mr-2"
+                      />
+                    </div>
+          
+                    <div className="web3-button">
+                      <Web3Button
+                        contractAddress="0x9D2E2eAf9495f165AFBDCF1031f507A281dF1040"
+                        action={(contract) => {
+                          contract.call("fulfillBloodReq", [{donorId}], { from: address })
+                        }}
+                      >
+                        Confirm
+                      </Web3Button>
+                    </div>
+                  </div>
                 </div>
               )}
 
@@ -537,3 +534,4 @@ const UserProfile = () => {
 };
 
 export default UserProfile;
+

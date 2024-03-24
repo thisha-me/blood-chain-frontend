@@ -62,3 +62,14 @@ body {
   background-color:#f0f0f0; 
 }
 
+.web3-button button{
+  width: 100%;
+  color: #FFFFFF;
+  background-color:var(--secondary-color);
+  
+}
+
+.web3-button :hover{
+  background-color: var(--primary-color);
+}
+
