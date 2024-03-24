@@ -80,20 +80,7 @@ const UserProfile = () => {
     };
   }
 
-  const isRegistered = !!address;
-
-  const registrationButton = !isRegistered && (
-    <div className="flex items-center justify-center flex-col">
-      <span className="text-2xl font-bold mb-4 mt-10">
-        You are not registered. Please register.
-      </span>
-      <button className="bg-[#8C0909] hover:bg-red-700 text-white font-bold py-2 px-5 rounded-xl hover:scale-105 transition-all duration-500 mb-20">
-        <p className="font-bold text-2xl">
-          <Link to="/registration">Register Now</Link>
-        </p>
-      </button>
-    </div>
-  );
+  
 
   const { data: userDataArray, isLoading } = useContractRead(
     contract,
@@ -158,6 +145,21 @@ const UserProfile = () => {
       console.error("Error fulfilling request:", error);
     }
   };
+
+  const isRegistered = !!userDataArray?.[0];
+
+  const registrationButton = !isRegistered && (
+    <div className="flex items-center justify-center flex-col">
+      <span className="text-2xl font-bold mb-4 mt-10">
+        You are not registered. Please register.
+      </span>
+      <button className="bg-[#8C0909] hover:bg-red-700 text-white font-bold py-2 px-5 rounded-xl hover:scale-105 transition-all duration-500 mb-20">
+        <p className="font-bold text-2xl">
+          <Link to="/registration">Register Now</Link>
+        </p>
+      </button>
+    </div>
+  );
 
   return (
     <div className="bg-[#F0F0F0] min-h-screen p-5 flex flex-col items-center justify-center mt-16 mb-16">
