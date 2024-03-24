@@ -324,7 +324,7 @@ const UserProfile = () => {
                     <Web3Button
                       connectWalletProps={{ btnTitle: "Yes Without Donor" }}
                       onClick={() => setShowDonorInput(false)}
-                      contractAddress="0x9D2E2eAf9495f165AFBDCF1031f507A281dF1040"
+                      contractAddress={CONTRACT_ADDRESS}
                       action={(contract) => {
                         contract.call("fulfillBloodReq");
                       }}
@@ -373,7 +373,7 @@ const UserProfile = () => {
 
                     <div className="web3-button">
                       <Web3Button
-                        contractAddress="0x9D2E2eAf9495f165AFBDCF1031f507A281dF1040"
+                        contractAddress={CONTRACT_ADDRESS}
                         action={(contract) => {
                           contract.call("fulfillBloodReq", [ donorId ], {
                             from: address,
