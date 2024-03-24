@@ -402,7 +402,7 @@ const UserProfile = () => {
         <div className="bg-[#F0F0F0] w-full mr-0 h-58 mb-0 sm:ml-4 rounded-2xl relative max">
           <div className="text-black font-bold text-base text-left justify-items-center my-2 p-2">
             <div className="font-bold text-base flex rounded-xl mx-2 mb-2 bg-white p-2 sm:w-1/2">
-              Scheduled Donations
+              Donations History
             </div>
             <div className="flex flex-wrap">
               {userData.history.map(
@@ -452,76 +452,51 @@ const UserProfile = () => {
       </div>
 
       {/* Donation History part */}
-      <div className="bg-white flex flex-col sm:flex-row xl:w-3/4 w-full p-4 rounded-2xl relative mt-2">
+      <div className="bg-white flex flex-col sm:flex-row xl:w-3/4 w-full  p-4 rounded-2xl relative mt-2">
         <div className="bg-[#F0F0F0] w-full mr-0 h-58 mb-0 sm:ml-4 rounded-2xl relative max">
           <div className="text-black font-bold text-base text-left justify-items-center my-2 p-2">
-            <div className="font-bold text-base flex rounded-xl mx-2 mb-2 bg-white p-2 sm:w-1/2">
-              Donation History
+            <div className="font-bold text-base flex rounded-xl mx-2 mb-2 bg-white p-2 w-9/10">
+            Request History
             </div>
-            <div className="flex-col sm:flex-wrap">
+            <div className="flex flex-wrap">
               {userData.history.map(
                 (item, index) =>
                   item.type === "donation" && (
-                    <div key={index} className="mb-4 sm:flex">
-                      <input
-                        type="textbox"
-                        value={`Donation number ${index + 1}`}
-                        className="border p-2 rounded-xl mb-2 sm:mr-2 sm:mb-0"
-                        style={{ width: "100%", maxWidth: "900px" }}
-                      />
-                      <button
-                        onClick={() => handleButtonClick(index, "donation")}
-                        className="ml-2 text-white px-1 py-1 rounded-md flex items-center"
-                        style={{ border: "4px solid #fff" }}
-                      >
-                        <img src={Share} className=" h-8 w-8" />
-                      </button>
-                    </div>
-                  )
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Request History part */}
-      <div className="bg-white flex flex-col sm:flex-row xl:w-3/4 w-full p-4 rounded-2xl relative mt-2">
-        <div className="bg-[#F0F0F0] w-full mr-0 h-58 mb-0 sm:ml-4 rounded-2xl relative max">
-          <div className="text-black font-bold text-base text-left justify-items-center my-2 p-2">
-            <div className="font-bold text-base flex rounded-xl mx-2 mb-2 bg-white p-2 sm:w-1/2">
-              Request History
-            </div>
-            <div className="flex-col sm:flex-wrap">
-              {userData.history.map(
-                (item, index) =>
-                  item.type === "request" && (
-                    <div key={index} className="mb-4 sm:flex items-center">
-                      <div
-                        className="border p-2 rounded-xl mb-2 sm:mr-2 sm:mb-0 bg-white"
-                        style={{
-                          width: "100%",
-                          maxWidth: "900px",
-                          position: "relative",
-                        }}
-                      >
-                        <span className="font-bold">Request number </span>{" "}
-                        {item.number}
-                        <span
-                          className={`absolute right-4 top-1/2 transform -translate-y-1/2 font-bold text-base ${item.status === "Fulfilled"
-                            ? " text-black "
-                            : " text-gray-300"
-                            }`}
-                        >
-                          {item.status}
+                    <div
+                      className="font-medium text-base rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3"
+                      key={index}
+                      style={{ flexBasis: "calc(33.33% - 16px)" }}
+                    >
+                      <div>
+                        Donation ID :{" "}
+                        <span className="font-bold text-base text-black">
+                          {item.id}
                         </span>
                       </div>
-                      <button
-                        onClick={() => handleButtonClick(index, "request")}
-                        className="ml-2 text-white px-1 py-1 rounded-md flex items-center"
-                        style={{ border: "4px solid #fff" }} // Adjust padding here
-                      >
-                        <img src={Share} className=" h-8 w-8" />
-                      </button>
+                      <div>
+                        Blood type :{" "}
+                        <span className="font-bold text-base text-black">
+                          {item.bloodType}
+                        </span>
+                      </div>
+                      <div>
+                        Date :{" "}
+                        <span className="font-bold text-base text-black">
+                          {item.date}
+                        </span>
+                      </div>
+                      <div>
+                        Time :{" "}
+                        <span className="font-bold text-base text-black">
+                          {item.time}
+                        </span>
+                      </div>
+                      <div>
+                        Location :{" "}
+                        <span className="font-bold text-base text-black">
+                          {item.location}
+                        </span>
+                      </div>
                     </div>
                   )
               )}
