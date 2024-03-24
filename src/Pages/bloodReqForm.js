@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Web3Button } from "@thirdweb-dev/react";
 
+const CONTRACT_ADDRESS ="0x53A1F65Ab31E7F971082947fb79D335C77549a9c";
+
 const BloodReqForm = () => {
 	const [formData, setFormData] = useState({
 		pname: '',
@@ -129,7 +131,7 @@ const BloodReqForm = () => {
 					</div>
 					<div className="text-center">
 						<Web3Button
-							contractAddress="0x9D2E2eAf9495f165AFBDCF1031f507A281dF1040"
+							contractAddress={CONTRACT_ADDRESS}
 							action={(contract) => {
 								contract.call("submitBloodReq", [
 									formData.pname,
