@@ -107,8 +107,8 @@ const UserProfile = () => {
     username: userDataArray?.[0] || "",
     contactNo: userDataArray?.[1] || "",
     userEmail: userDataArray?.[2] || "",
-    numberOfDonations: parseInt(userDataArray?.[5], 16) || 0,
-    numberOfRequests: 0,
+    numberOfDonations: userDataArray?.[7].length || 0,
+    numberOfRequests: userDataArray?.[6].length || 0,
     history: {
       bloodDonations: Array.isArray(userDataArray?.[7])
         ? userDataArray[7].map((donationData) => ({
@@ -138,6 +138,8 @@ const UserProfile = () => {
         : [],
     },
   };
+
+  console.log(userDataArray);
 
   const handleButtonClick = (index, type) => {
     if (type === "donation") {
