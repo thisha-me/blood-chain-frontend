@@ -457,12 +457,6 @@ const UserProfile = () => {
                       {request.location}
                     </span>
                   </div>
-                  <div>
-                    Status :{" "}
-                    <span className="font-bold text-base text-black">
-                      {request.status}
-                    </span>
-                  </div>
                 </div>
               ))}
             </div>
