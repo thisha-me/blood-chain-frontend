@@ -373,7 +373,7 @@ const UserProfile = () => {
                       <Web3Button
                         contractAddress="0x9D2E2eAf9495f165AFBDCF1031f507A281dF1040"
                         action={(contract) => {
-                          contract.call("fulfillBloodReq", [{ donorId }], {
+                          contract.call("fulfillBloodReq", [ donorId ], {
                             from: address,
                           });
                         }}
