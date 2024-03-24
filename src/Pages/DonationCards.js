@@ -6,13 +6,15 @@ import statement from "../Images/statement.png";
 import { useContract, useContractRead } from "@thirdweb-dev/react";
 import loadingGif from "../assets/Rolling-1s-157px.gif";
 
+const CONTRACT_ADDRESS = "0x5fD3E4da3bEcB422A9b1a4958ff435A1F24ccFc1";
+
 const DonationCards = () => {
-  const { contract } = useContract(
-    "0x9D2E2eAf9495f165AFBDCF1031f507A281dF1040"
-  );
+  const { contract } = useContract(CONTRACT_ADDRESS);
+
   const { data: bloodRequestData, isLoading: loading } = useContractRead(
     contract,
-    "getAllRequests"
+    "getFullFilledRequests",
+    [false]
   );
   const [formattedData, setFormattedData] = useState([]);
   const [showLoader, setShowLoader] = useState(true); // State to manage loader visibility
@@ -33,19 +35,19 @@ const DonationCards = () => {
 
   const sortRequestsByDateAndTime = () => {
     const sortedData = [...sortedRequests];
-    
+
     sortedData.sort((a, b) => {
       const dateA = new Date(a.date + ' ' + a.time);
       const dateB = new Date(b.date + ' ' + b.time);
-  
+
       return isAscending ? dateA - dateB : dateB - dateA;
     });
-    
+
     setSortedRequests(sortedData);
     setIsAscending(!isAscending);
   };
-  
-  
+
+
 
   const resetSorting = () => {
     setSortedRequests([...formattedData]);

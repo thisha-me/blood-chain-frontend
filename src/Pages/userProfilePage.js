@@ -4,6 +4,8 @@ import "../Styles/userProfile.css";
 import Share from "../assets/share.png";
 import { truncateAddress } from "../utils/truncateAddress";
 
+const CONTRACT_ADDRESS ="0x5fD3E4da3bEcB422A9b1a4958ff435A1F24ccFc1";
+
 import { Link } from "react-router-dom";
 import {
   ConnectWallet,
@@ -26,13 +28,13 @@ const UserProfile = () => {
     <span>{truncateAddress(address)}</span>
   ) : null;
 
-  const { contract } = useContract(
-    "0x9D2E2eAf9495f165AFBDCF1031f507A281dF1040"
-  );
+  const { contract } = useContract(CONTRACT_ADDRESS);
+
   const { data: activeRequestData, isLoading: loading } = useContractRead(
     contract,
-    "getBloodReqById",
-    [address]
+    "getActiveRequest",
+    [],
+    { from: address }
   );
 
   const fulfillRequestById = async (donorId) => {

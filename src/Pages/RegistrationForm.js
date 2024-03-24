@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Web3Button } from "@thirdweb-dev/react";
 
+const CONTRACT_ADDRESS ="0x5fD3E4da3bEcB422A9b1a4958ff435A1F24ccFc1";
+
 const RegistrationForm = () => {
     const [formData, setFormData] = useState({
         username : '',
@@ -104,7 +106,7 @@ const RegistrationForm = () => {
 					</div>
 					<div className="text-center">
                         <Web3Button
-                            contractAddress="0x9D2E2eAf9495f165AFBDCF1031f507A281dF1040"
+                            contractAddress={CONTRACT_ADDRESS}
                             action={(contract) => {
                                 contract.call("registerUser", [formData.username, formData.contactNum, formData.email, formData.age, formData.bloodType])
                             }}
