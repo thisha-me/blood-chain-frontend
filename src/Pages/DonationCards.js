@@ -181,8 +181,8 @@ const DonationCards = () => {
   }, [selectedBloodType, formattedData]);
 
   return (
-    <div className="py-1 px-4 md:px-10 lg:px-20 mt-16 mb-16 h-screen">
-      <div className="donate-blood-container ">
+    <div className="py-1 px-4 md:px-10 lg:px-20 mt-16 mb-16 ">
+      <div className="donate-blood-container">
         <img
           src={donateBlood}
           alt="donateBlood"
@@ -282,7 +282,7 @@ const DonationCards = () => {
 
       {/* Render donation cards when data is loaded */}
       {!showLoader && (
-        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-10 px-20 md:px-20 lg:px-56 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-10 px-20 md:px-20 sm:w-full lg:px-56 mb-10">
           {filterRequests().map((request) => (
             <div key={request.id} className="shadow-md border rounded-lg p-4">
               <p className="font-bold">Request ID : {shortenID(request.id)}</p>

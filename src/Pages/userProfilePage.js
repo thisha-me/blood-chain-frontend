@@ -79,8 +79,6 @@ const UserProfile = () => {
     };
   }
 
-
-
   const { data: userDataArray } = useContractRead(
     contract,
     "getUserDetails",
@@ -98,29 +96,29 @@ const UserProfile = () => {
     history: {
       bloodDonations: Array.isArray(userDataArray?.[7])
         ? userDataArray[7].map((donationData) => ({
-          id: donationData[0],
-          bloodType: donationData[6],
-          date: new Date(donationData[7] * 1000).toLocaleDateString("en-US"),
-          time: new Date(donationData[7] * 1000).toLocaleTimeString("en-US", {
-            hour: "2-digit",
-            minute: "2-digit",
-          }),
-          location: donationData[3],
-        }))
+            id: donationData[0],
+            bloodType: donationData[6],
+            date: new Date(donationData[7] * 1000).toLocaleDateString("en-US"),
+            time: new Date(donationData[7] * 1000).toLocaleTimeString("en-US", {
+              hour: "2-digit",
+              minute: "2-digit",
+            }),
+            location: donationData[3],
+          }))
         : [],
       bloodRequests: Array.isArray(userDataArray?.[6])
         ? userDataArray[6].map((requestData) => ({
-          id: requestData[0],
-          bloodType: requestData[6],
-          date: new Date(requestData[7] * 1000).toLocaleDateString("en-US"),
-          time: new Date(requestData[7] * 1000).toLocaleTimeString("en-US", {
-            hour: "2-digit",
-            minute: "2-digit",
-          }),
-          district: requestData[3],
-          location: requestData[5],
-          status: requestData[8],
-        }))
+            id: requestData[0],
+            bloodType: requestData[6],
+            date: new Date(requestData[7] * 1000).toLocaleDateString("en-US"),
+            time: new Date(requestData[7] * 1000).toLocaleTimeString("en-US", {
+              hour: "2-digit",
+              minute: "2-digit",
+            }),
+            district: requestData[3],
+            location: requestData[5],
+            status: requestData[8],
+          }))
         : [],
     },
   };
@@ -205,45 +203,47 @@ const UserProfile = () => {
       </div>
 
       {/* Activate request part */}
-      <div className="bg-white flex flex-col sm:flex-row xl:w-3/4 w-full p-4 rounded-2xl relative mt-2">
+      {/* Activate request part */}
+      <div className="bg-white flex flex-col sm:flex-row xl:w-3/4 w-full  p-4 rounded-2xl relative mt-2">
         <div className="bg-[#F0F0F0] w-full mr-0 h-58 mb-0 sm:ml-4 rounded-2xl relative max">
-          <div className="text-black font-bold text-base text-left justify-items-center my-2 p-2">
+          <div className="text-black font-bold text-base text-left justify-items-center my-2 p-2 ">
             <div className="font-bold text-base flex rounded-xl mx-2 mb-2 bg-white p-2  w-9/10">
               Active Requests
             </div>
             {activeReqDataArray.date !== "1/1/1970" && (
               <div className="flex flex-wrap">
-                <div
-                  className="font-medium text-base rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3 max-h-90 max-w-90 "
-                  style={{ flexBasis: "calc(33.33% - 16px)" }}
-                >
-                  <div>
-                    Request ID :{" "}
-                    <span className="font-bold text-base text-black ">
-                      {activeReqDataArray.userId}
-                    </span>
-                  </div>
-                  <div>
-                    Blood Type :{" "}
-                    <span className="font-bold text-base text-black">
-                      {activeReqDataArray.bloodType}
-                    </span>
-                  </div>
-                  <div>
-                    Date :{" "}
-                    <span className="font-bold text-base text-black">
-                      {activeReqDataArray.date}
-                    </span>
-                  </div>
-                  <div>
-                    <button
-                      onClick={() => {
-                        setShowPopup(true);
-                      }}
-                      className="my-3 px-4 py-2 button text-backgroundColor  rounded-lg "
-                    >
-                      Full fill request
-                    </button>
+                <div className="font-medium text-base rounded-xl mx-2 mb-2 bg-white p-6  max-h-90 max-w-90 w-full">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <div>
+                        Request ID :{" "}
+                        <span className="font-bold text-base text-black ">
+                          {activeReqDataArray.userId}
+                        </span>
+                      </div>
+                      <div>
+                        Blood Type :{" "}
+                        <span className="font-bold text-base text-black">
+                          {activeReqDataArray.bloodType}
+                        </span>
+                      </div>
+                      <div>
+                        Date :{" "}
+                        <span className="font-bold text-base text-black">
+                          {activeReqDataArray.date}
+                        </span>
+                      </div>
+                      <div>
+                        <button
+                          onClick={() => {
+                            setShowPopup(true);
+                          }}
+                          className="my-3 px-4 py-2 button text-backgroundColor  rounded-lg "
+                        >
+                          Full fill request
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -275,7 +275,6 @@ const UserProfile = () => {
                     <Web3Button
                       connectWalletProps={{ btnTitle: "Yes Without Donor" }}
                       onClick={() => setShowDonorInput(false)}
-
                       contractAddress={CONTRACT_ADDRESS}
                       action={(contract) => {
                         contract.call("fulfillBloodReq");
@@ -346,6 +345,7 @@ const UserProfile = () => {
           </div>
         )}
       </div>
+
       {/* Donations History part */}
       <div className="bg-white flex flex-col sm:flex-row xl:w-3/4 w-full  p-4 rounded-2xl relative mt-2">
         <div className="bg-[#F0F0F0] w-full mr-0 h-58 mb-0 sm:ml-4 rounded-2xl relative max">
