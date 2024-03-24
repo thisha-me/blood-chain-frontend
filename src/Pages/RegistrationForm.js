@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Web3Button } from "@thirdweb-dev/react";
 
-const CONTRACT_ADDRESS ="0x5fD3E4da3bEcB422A9b1a4958ff435A1F24ccFc1";
+const CONTRACT_ADDRESS ="0x53A1F65Ab31E7F971082947fb79D335C77549a9c";
 
 const RegistrationForm = () => {
     const [formData, setFormData] = useState({

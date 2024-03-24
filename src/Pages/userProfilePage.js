@@ -4,7 +4,7 @@ import "../Styles/userProfile.css";
 import Share from "../assets/share.png";
 import { truncateAddress } from "../utils/truncateAddress";
 
-const CONTRACT_ADDRESS ="0x5fD3E4da3bEcB422A9b1a4958ff435A1F24ccFc1";
+const CONTRACT_ADDRESS ="0x53A1F65Ab31E7F971082947fb79D335C77549a9c";
 
 import { Link } from "react-router-dom";
 import {

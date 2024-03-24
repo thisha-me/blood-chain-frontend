@@ -6,7 +6,7 @@ import statement from "../Images/statement.png";
 import { useContract, useContractRead } from "@thirdweb-dev/react";
 import loadingGif from "../assets/Rolling-1s-157px.gif";
 
-const CONTRACT_ADDRESS = "0x5fD3E4da3bEcB422A9b1a4958ff435A1F24ccFc1";
+const CONTRACT_ADDRESS = "0x53A1F65Ab31E7F971082947fb79D335C77549a9c";
 
 const DonationCards = () => {
   const { contract } = useContract(CONTRACT_ADDRESS);
