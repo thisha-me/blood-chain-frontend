@@ -6,13 +6,15 @@ import statement from "../Images/statement.png";
 import { useContract, useContractRead } from "@thirdweb-dev/react";
 import loadingGif from "../assets/Rolling-1s-157px.gif";
 
+const CONTRACT_ADDRESS = "0x53A1F65Ab31E7F971082947fb79D335C77549a9c";
+
 const DonationCards = () => {
-  const { contract } = useContract(
-    "0x1C8b6ace2BD3f9A5007c1cf0b06eE531ad3Dd17A"
-  );
+  const { contract } = useContract(CONTRACT_ADDRESS);
+
   const { data: bloodRequestData, isLoading: loading } = useContractRead(
     contract,
-    "getAllRequests"
+    "getFullFilledRequests",
+    [false]
   );
   const [formattedData, setFormattedData] = useState([]);
   const [showLoader, setShowLoader] = useState(true); // State to manage loader visibility
@@ -27,7 +29,7 @@ const DonationCards = () => {
 
   const filterRequests = () => {
     let filteredRequests = [...sortedRequests];
-    
+
     // If no blood type selected (selectedBloodType is null or empty), filter by district
     if (!selectedBloodType || selectedBloodType === "") {
       // Filter by district if selectedDistrict is not empty
@@ -41,7 +43,7 @@ const DonationCards = () => {
       filteredRequests = filteredRequests.filter(
         (request) => request.bloodType === selectedBloodType
       );
-      
+
       // Filter by district if both blood type and district are selected
       if (selectedDistrict) {
         filteredRequests = filteredRequests.filter(
@@ -49,27 +51,27 @@ const DonationCards = () => {
         );
       }
     }
-    
+
     return filteredRequests;
   };
-  
-  
+
+
 
   const sortRequestsByDateAndTime = () => {
     const sortedData = [...sortedRequests];
-    
+
     sortedData.sort((a, b) => {
       const dateA = new Date(a.date + ' ' + a.time);
       const dateB = new Date(b.date + ' ' + b.time);
-  
+
       return isAscending ? dateA - dateB : dateB - dateA;
     });
-    
+
     setSortedRequests(sortedData);
     setIsAscending(!isAscending);
   };
-  
-  
+
+
 
   const resetSorting = () => {
     setSortedRequests([...formattedData]);
@@ -165,7 +167,7 @@ const DonationCards = () => {
       setSelectedProvince("");
       setSelectedDistrict("");
     }
-    
+
     // Filter the requests based on blood type
     if (selectedBloodType) {
       const filteredRequests = formattedData.filter(
@@ -177,9 +179,9 @@ const DonationCards = () => {
       setSortedRequests(formattedData);
     }
   }, [selectedBloodType, formattedData]);
-  
+
   return (
-    <div className="py-1 px-4 md:px-10 lg:px-20 mt-16 mb-16 ">
+    <div className="py-1 px-4 md:px-10 lg:px-20 mt-16 mb-16 h-screen">
       <div className="donate-blood-container ">
         <img
           src={donateBlood}
@@ -228,42 +230,42 @@ const DonationCards = () => {
             </select>
 
             <select
-      value={selectedProvince}
-      onChange={handleProvinceChange}
-      className="border border-bgColor2 px-2 py-1 rounded mx-2 md:w-auto min-w-[200px]"
-    >
-      <option value="" disabled selected>
-        Select Province
-      </option>
-      <option value="">ALL</option>
-      {provinces.map((province) => (
-        <option key={province} value={province}>
-          {province}
-        </option>
-      ))}
-    </select>
-    {/* Select element for districts */}
-    {selectedProvince && (
-      <select
-      value={selectedDistrict}
-      onChange={(e) => setSelectedDistrict(e.target.value)}
-      className="border border-bgColor2 px-2 py-1 rounded mx-2 md:w-auto min-w-[200px]"
-    >
-      <option value="" disabled selected>
-      Select District
-    </option>
-    <option value="">ALL</option>
+              value={selectedProvince}
+              onChange={handleProvinceChange}
+              className="border border-bgColor2 px-2 py-1 rounded mx-2 md:w-auto min-w-[200px]"
+            >
+              <option value="" disabled selected>
+                Select Province
+              </option>
+              <option value="">ALL</option>
+              {provinces.map((province) => (
+                <option key={province} value={province}>
+                  {province}
+                </option>
+              ))}
+            </select>
+            {/* Select element for districts */}
+            {selectedProvince && (
+              <select
+                value={selectedDistrict}
+                onChange={(e) => setSelectedDistrict(e.target.value)}
+                className="border border-bgColor2 px-2 py-1 rounded mx-2 md:w-auto min-w-[200px]"
+              >
+                <option value="" disabled selected>
+                  Select District
+                </option>
+                <option value="">ALL</option>
 
-    {/* Use selectedProvince to get the relevant districts */}
-    {districts[selectedProvince]?.map((district) => (
-      <option key={district} value={district}>
-        {district}
-      </option>
-    ))}
-  </select>
-    )}
+                {/* Use selectedProvince to get the relevant districts */}
+                {districts[selectedProvince]?.map((district) => (
+                  <option key={district} value={district}>
+                    {district}
+                  </option>
+                ))}
+              </select>
+            )}
 
-            
+
           </div>
         </div>
       </div>
@@ -343,27 +345,27 @@ const DonationCards = () => {
 };
 
 const provinces = [
-	'Central',
-	'Eastern',
-	'North Central',
-	'Northern',
-	'North Western',
-	'Sabaragamuwa',
-	'Southern',
-	'Uva',
-	'Western'
+  'Central',
+  'Eastern',
+  'North Central',
+  'Northern',
+  'North Western',
+  'Sabaragamuwa',
+  'Southern',
+  'Uva',
+  'Western'
 ];
 
 const districts = {
-	'Central': ['Kandy', 'Matale', 'Nuwara Eliya'],
-	'Eastern': ['Ampara', 'Batticaloa', 'Trincomalee'],
-	'North Central': ['Anuradhapura', 'Polonnaruwa'],
-	'Northern': ['Jaffna', 'Kilinochchi', 'Mannar', 'Mullaitivu', 'Vavuniya'],
-	'North Western': ['Kurunegala', 'Puttalam'],
-	'Sabaragamuwa': ['Kegalle', 'Ratnapura'],
-	'Southern': ['Galle', 'Hambantota', 'Matara'],
-	'Uva': ['Badulla', 'Monaragala'],
-	'Western': ['Colombo', 'Gampaha', 'Kalutara']
+  'Central': ['Kandy', 'Matale', 'Nuwara Eliya'],
+  'Eastern': ['Ampara', 'Batticaloa', 'Trincomalee'],
+  'North Central': ['Anuradhapura', 'Polonnaruwa'],
+  'Northern': ['Jaffna', 'Kilinochchi', 'Mannar', 'Mullaitivu', 'Vavuniya'],
+  'North Western': ['Kurunegala', 'Puttalam'],
+  'Sabaragamuwa': ['Kegalle', 'Ratnapura'],
+  'Southern': ['Galle', 'Hambantota', 'Matara'],
+  'Uva': ['Badulla', 'Monaragala'],
+  'Western': ['Colombo', 'Gampaha', 'Kalutara']
 }
 
 export default DonationCards;
