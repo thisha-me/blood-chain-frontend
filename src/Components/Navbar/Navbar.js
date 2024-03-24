@@ -1,19 +1,38 @@
-/* eslint-disable react/react-in-jsx-scope */
 import { useRef, useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import "./Navbar.css";
 import { Link, useLocation } from "react-router-dom";
 import {
   ConnectWallet,
+  Web3Button,
+  useAddress,
   useContract,
   useContractWrite,
+  useContractRead,
+  useDisconnect,
 } from "@thirdweb-dev/react";
+import { STATUS_CONTRACT_ADDRESS } from "../Navbar/../../constants/addresses";
 
 const Navbar = () => {
+  const address = useAddress();
+  const [newStatus, setNewStatus] = useState(address);
+  
   const { contract } = useContract(
     "0x729676943630Cc1090a10100Db0E55ee0EAc33b4"
   );
-  useContractWrite(contract, "connectWallet");
+  const { mutateAsync: connectWallet, isLoading } = useContractWrite(
+    contract,
+    "connectWallet"
+  );
+
+  const call = async () => {
+    try {
+      const data = await connectWallet({ args: [address] });
+      console.info("contract call successs", data);
+    } catch (err) {
+      console.error("contract call failure", err);
+    }
+  };
 
   const [activeNavLink, setActiveNavLink] = useState(null);
   const [showShadow, setShowShadow] = useState(false);
@@ -62,10 +81,7 @@ const Navbar = () => {
         BloodChain
       </Link>
 
-      <nav
-        ref={navbarRef}
-        className="md:flex flex-column gap-8 flex items-center"
-      >
+      <nav ref={navbarRef} className="md:flex flex-column gap-8 flex items-center">
         <Link
           to="/"
           className={`${
@@ -118,11 +134,13 @@ const Navbar = () => {
           Profile
         </Link>
 
-        <div className="connect-wallet-button">
-          <Link>
-            <ConnectWallet theme={"light"} modalSize={"wide"} />
-          </Link>
-        </div>
+        <Link>
+          <ConnectWallet
+            theme={"light"}
+            modalSize={"wide"}
+          />
+        </Link>
+
 
         <button
           className="navbar-btn navbar-close-btn md:hidden"
@@ -134,6 +152,7 @@ const Navbar = () => {
       <button className="navbar-btn md:hidden" onClick={displayNavbar}>
         <FaBars />
       </button>
+
     </header>
   );
 };
