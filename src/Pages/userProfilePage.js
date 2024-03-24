@@ -35,8 +35,6 @@ const UserProfile = () => {
     [address]
   );
 
-  
-
   const fulfillRequestById = async (donorId) => {
     try {
       await contract.fulfillBloodReqById(donorId);
@@ -115,65 +113,61 @@ const UserProfile = () => {
     userEmail: email,
     numberOfDonations: donationNo,
     numberOfRequests: 0,
-    history: [
-      {
-        id: "D123",
-        type: "donation",
-        bloodType: "A+",
-        date: "2024-01-01",
-        time: "10:00",
-        location: "Hospital A",
-      },
-      {
-        id: "D456",
-        type: "donation",
-        bloodType: "B-",
-        date: "2024-01-15",
-        time: "11:00",
-        location: "Hospital B",
-      },
-      {
-        id: "D789",
-        type: "donation",
-        bloodType: "AB+",
-        date: "2024-02-01",
-        time: "09:00",
-        location: "Hospital C",
-      },
-      {
-        id: "A12B34C",
-        type: "request",
-        bloodType: "O+",
-        date: "2024-02-10",
-        urgency: "High",
-        location: "Colombo General Hospital",
-        status: "Fulfilled",
-        number: 1,
-      },
-      {
-        id: "G56H78I",
-        type: "request",
-        bloodType: "A-",
-        date: "2024-03-05",
-        urgency: "Medium",
-        location: "Hospital Y",
-        status: "Pending",
-        number: 2,
-      },
-      {
-        id: "J9KL0MN",
-        type: "request",
-        bloodType: "AB+",
-        date: "2024-03-20",
-        urgency: "Low",
-        location: "Hospital Z",
-        status: "Pending",
-        number: 3,
-      },
-    ],
+    history: {
+      donations: [
+        {
+          id: "D123",
+          bloodType: "A+",
+          date: "2024-01-01",
+          time: "10:00",
+          location: "Hospital A",
+        },
+        {
+          id: "D456",
+          bloodType: "B-",
+          date: "2024-01-15",
+          time: "11:00",
+          location: "Hospital B",
+        },
+        {
+          id: "D789",
+          bloodType: "AB+",
+          date: "2024-02-01",
+          time: "09:00",
+          location: "Hospital C",
+        },
+      ],
+      requests: [
+        {
+          id: "A12B34C",
+          bloodType: "O+",
+          date: "2024-02-10",
+          urgency: "High",
+          location: "Colombo General Hospital",
+          status: "Fulfilled",
+          number: 1,
+        },
+        {
+          id: "G56H78I",
+          bloodType: "A-",
+          date: "2024-03-05",
+          urgency: "Medium",
+          location: "Hospital Y",
+          status: "Pending",
+          number: 2,
+        },
+        {
+          id: "J9KL0MN",
+          bloodType: "AB+",
+          date: "2024-03-20",
+          urgency: "Low",
+          location: "Hospital Z",
+          status: "Pending",
+          number: 3,
+        },
+      ],
+    },
   };
-
-
 
   const handleButtonClick = (index, type) => {
     if (type === "donation") {
@@ -321,20 +315,21 @@ const UserProfile = () => {
 
               <div className=" justify-center mt-3">
                 <div className="w-22">
-                  <div className="web3-button"style={{ display: showDonorInput ? "none" : "block" }}>
+                  <div
+                    className="web3-button"
+                    style={{ display: showDonorInput ? "none" : "block" }}
+                  >
                     <Web3Button
-                      connectWalletProps={{ btnTitle: "Yes Without Donor"}} 
+                      connectWalletProps={{ btnTitle: "Yes Without Donor" }}
                       onClick={() => setShowDonorInput(false)}
                       contractAddress="0x9D2E2eAf9495f165AFBDCF1031f507A281dF1040"
                       action={(contract) => {
-                        contract.call("fulfillBloodReq")
+                        contract.call("fulfillBloodReq");
                       }}
-                      
                     >
                       Yes Without Donor
                     </Web3Button>
                   </div>
-
                 </div>
               </div>
               <div className=" justify-center mt-3">
@@ -355,7 +350,6 @@ const UserProfile = () => {
                     onClickCapture={() => setShowDonorInput(false)}
                     className="px-2 py-1 w-full bg-transparent hover:bg-secondaryColor text-mainColor hover:text-mainColor border border-mainColor hover:border-transparent rounded"
                     style={{ display: showDonorInput ? "none" : "block" }}
-
                   >
                     No
                   </button>
@@ -374,12 +368,14 @@ const UserProfile = () => {
                         className="border border-gray-300 px-4 py-2 rounded-lg w-full focus:outline-none focus:border-primaryColor mr-2"
                       />
                     </div>
-          
+
                     <div className="web3-button">
                       <Web3Button
                         contractAddress="0x9D2E2eAf9495f165AFBDCF1031f507A281dF1040"
                         action={(contract) => {
-                          contract.call("fulfillBloodReq", [{donorId}], { from: address })
+                          contract.call("fulfillBloodReq", [{ donorId }], {
+                            from: address,
+                          });
                         }}
                       >
                         Confirm
@@ -396,110 +392,109 @@ const UserProfile = () => {
           </div>
         )}
       </div>
-
-      {/* Scheduled Donations part */}
+      {/* Donations History part */}
       <div className="bg-white flex flex-col sm:flex-row xl:w-3/4 w-full  p-4 rounded-2xl relative mt-2">
         <div className="bg-[#F0F0F0] w-full mr-0 h-58 mb-0 sm:ml-4 rounded-2xl relative max">
           <div className="text-black font-bold text-base text-left justify-items-center my-2 p-2">
-            <div className="font-bold text-base flex rounded-xl mx-2 mb-2 bg-white p-2 sm:w-1/2">
+            <div className="font-bold text-base flex rounded-xl mx-2 mb-2 bg-white p-2 w-9/10">
               Donations History
             </div>
             <div className="flex flex-wrap">
-              {userData.history.map(
-                (item, index) =>
-                  item.type === "donation" && (
-                    <div
-                      className="font-medium text-base rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3"
-                      key={index}
-                      style={{ flexBasis: "calc(33.33% - 16px)" }}
-                    >
-                      <div>
-                        Donation ID :{" "}
-                        <span className="font-bold text-base text-black">
-                          {item.id}
-                        </span>
-                      </div>
-                      <div>
-                        Blood type :{" "}
-                        <span className="font-bold text-base text-black">
-                          {item.bloodType}
-                        </span>
-                      </div>
-                      <div>
-                        Date :{" "}
-                        <span className="font-bold text-base text-black">
-                          {item.date}
-                        </span>
-                      </div>
-                      <div>
-                        Time :{" "}
-                        <span className="font-bold text-base text-black">
-                          {item.time}
-                        </span>
-                      </div>
-                      <div>
-                        Location :{" "}
-                        <span className="font-bold text-base text-black">
-                          {item.location}
-                        </span>
-                      </div>
-                    </div>
-                  )
-              )}
+              {userData.history.donations.map((donation, index) => (
+                <div
+                  className="font-medium text-base rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3"
+                  key={index}
+                  style={{ flexBasis: "calc(33.33% - 16px)" }}
+                >
+                  <div>
+                    Donation ID :{" "}
+                    <span className="font-bold text-base text-black">
+                      {donation.id}
+                    </span>
+                  </div>
+                  <div>
+                    Blood type :{" "}
+                    <span className="font-bold text-base text-black">
+                      {donation.bloodType}
+                    </span>
+                  </div>
+                  <div>
+                    Date :{" "}
+                    <span className="font-bold text-base text-black">
+                      {donation.date}
+                    </span>
+                  </div>
+                  <div>
+                    Time :{" "}
+                    <span className="font-bold text-base text-black">
+                      {donation.time}
+                    </span>
+                  </div>
+                  <div>
+                    Location :{" "}
+                    <span className="font-bold text-base text-black">
+                      {donation.location}
+                    </span>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Donation History part */}
+      {/* Request History part */}
       <div className="bg-white flex flex-col sm:flex-row xl:w-3/4 w-full  p-4 rounded-2xl relative mt-2">
         <div className="bg-[#F0F0F0] w-full mr-0 h-58 mb-0 sm:ml-4 rounded-2xl relative max">
           <div className="text-black font-bold text-base text-left justify-items-center my-2 p-2">
             <div className="font-bold text-base flex rounded-xl mx-2 mb-2 bg-white p-2 w-9/10">
-            Request History
+              Request History
             </div>
             <div className="flex flex-wrap">
-              {userData.history.map(
-                (item, index) =>
-                  item.type === "donation" && (
-                    <div
-                      className="font-medium text-base rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3"
-                      key={index}
-                      style={{ flexBasis: "calc(33.33% - 16px)" }}
-                    >
-                      <div>
-                        Donation ID :{" "}
-                        <span className="font-bold text-base text-black">
-                          {item.id}
-                        </span>
-                      </div>
-                      <div>
-                        Blood type :{" "}
-                        <span className="font-bold text-base text-black">
-                          {item.bloodType}
-                        </span>
-                      </div>
-                      <div>
-                        Date :{" "}
-                        <span className="font-bold text-base text-black">
-                          {item.date}
-                        </span>
-                      </div>
-                      <div>
-                        Time :{" "}
-                        <span className="font-bold text-base text-black">
-                          {item.time}
-                        </span>
-                      </div>
-                      <div>
-                        Location :{" "}
-                        <span className="font-bold text-base text-black">
-                          {item.location}
-                        </span>
-                      </div>
-                    </div>
-                  )
-              )}
+              {userData.history.requests.map((request, index) => (
+                <div
+                  className="font-medium text-base rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3"
+                  key={index}
+                  style={{ flexBasis: "calc(33.33% - 16px)" }}
+                >
+                  <div>
+                    Request ID :{" "}
+                    <span className="font-bold text-base text-black">
+                      {request.id}
+                    </span>
+                  </div>
+                  <div>
+                    Blood type :{" "}
+                    <span className="font-bold text-base text-black">
+                      {request.bloodType}
+                    </span>
+                  </div>
+                  <div>
+                    Date :{" "}
+                    <span className="font-bold text-base text-black">
+                      {request.date}
+                    </span>
+                  </div>
+                  <div>
+                    Urgency :{" "}
+                    <span className="font-bold text-base text-black">
+                      {request.urgency}
+                    </span>
+                  </div>
+                  <div>
+                    Location :{" "}
+                    <span className="font-bold text-base text-black">
+                      {request.location}
+                    </span>
+                  </div>
+                  <div>
+                    Status :{" "}
+                    <span className="font-bold text-base text-black">
+                      {request.status}
+                    </span>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -509,4 +504,3 @@ const UserProfile = () => {
 };
 
 export default UserProfile;
-
