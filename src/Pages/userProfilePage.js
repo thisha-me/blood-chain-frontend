@@ -266,7 +266,6 @@ const UserProfile = () => {
           </div>
         </div>
       
-
         {showPopup && (
           <div className="fixed top-0 left-0 w-full h-full bg-secondaryColor bg-opacity-60 flex items-center justify-center z-10">
             <div className="bg-white p-4 md:p-6 w-full md:w-3/4 lg:w-1/2 max-w-lg h-auto rounded shadow-lg">
@@ -372,6 +371,7 @@ const UserProfile = () => {
             <div className="flex flex-wrap">
               {userData.history.bloodDonations
                 .filter((donation) => donation.date !== "1/1/1970")
+                .reverse()
                 .map((donation, index) => (
                   <div
                     className="font-medium text-base rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3"
@@ -423,7 +423,9 @@ const UserProfile = () => {
               Request History
             </div>
             <div className="flex flex-wrap">
-              {userData.history.bloodRequests.map((request, index) => (
+              {userData.history.bloodRequests
+              .reverse()
+              .map((request, index) => (
                 <div
                   className="font-medium text-base rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3"
                   key={index}

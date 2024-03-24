@@ -118,7 +118,7 @@ const DonationCards = () => {
   }, [selectedBloodType, formattedData]);
 
   return (
-    <div className="py-1 px-4 md:px-10 lg:px-20 mt-16 mb-16 ">
+    <div className="py-1 px-4 md:px-10 lg:px-20 mt-16 mb-16 h-screen">
       <div className="donate-blood-container ">
         <img
           src={donateBlood}
