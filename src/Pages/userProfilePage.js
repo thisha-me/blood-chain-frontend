@@ -226,6 +226,7 @@ const UserProfile = () => {
             <div className="font-bold text-base flex rounded-xl mx-2 mb-2 bg-white p-2  w-9/10">
               Active Requests
             </div>
+            {activeReqDataArray.date !== "1/1/1970" && (
             <div className="flex flex-wrap">
               <div
                 className="font-medium text-base rounded-xl mx-2 mb-2 bg-white p-6 sm:w-1/3 max-h-90 max-w-90 "
@@ -261,8 +262,10 @@ const UserProfile = () => {
                 </div>
               </div>
             </div>
+            )}
           </div>
         </div>
+      
 
         {showPopup && (
           <div className="fixed top-0 left-0 w-full h-full bg-secondaryColor bg-opacity-60 flex items-center justify-center z-10">
