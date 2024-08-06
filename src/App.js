@@ -1,11 +1,12 @@
 import React from 'react';
-import './App.css';
+import PartnerForm from './PartnerForm';
 
 function App() {
-  return(
-    <React.Fragment>
-    </React.Fragment>
-    );
+  return (
+    <div className="App">
+      <PartnerForm />
+    </div>
+  );
 }
 
 export default App;
